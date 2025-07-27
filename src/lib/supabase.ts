@@ -4,6 +4,11 @@ import { Database } from '@/types/database';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+// Debug completo das variáveis
+console.log('🔍 DEBUG: Variáveis de ambiente no Cloudflare:');
+console.log('NEXT_PUBLIC_SUPABASE_URL:', supabaseUrl || 'UNDEFINED');
+console.log('NEXT_PUBLIC_SUPABASE_ANON_KEY:', supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'UNDEFINED');
+
 // Validação mais rigorosa
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('⚠️ Variáveis do Supabase não configuradas, usando localStorage como fallback');

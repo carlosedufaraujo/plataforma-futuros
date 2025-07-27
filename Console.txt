@@ -1,0 +1,23 @@
+[Info] Successfully preconnected to https://fonts.googleapis.com/ (x2)
+[Info] Successfully preconnected to https://fonts.gstatic.com/
+[Log] ✅ Cliente Supabase criado com sucesso (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🚀 SISTEMA CONFIGURADO PARA USAR APENAS SUPABASE (230-cd7d4e8076d4e067.js, line 1)
+[Log] ✅ Supabase disponível e ativo (230-cd7d4e8076d4e067.js, line 1)
+[Log] 📡 Buscando dados do usuário... (layout-f1c9f51e3e850cae.js, line 1)
+[Log] ⚠️  Sistema limpo - aguardando dados reais (layout-f1c9f51e3e850cae.js, line 1)
+[Log] 🔥 HYBRID CONTEXT: Usando SupabaseDataAdapter (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🔥 HYBRID CONTEXT: addPosition function: – "function" (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🔥 HYBRID CONTEXT: addTransaction function: – "function" (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🔄 RENTABILIDADE PAGE: Recalculando portfolio - positions: – 0 – "transactions:" – 0 (page-00e201c714233f74.js, line 1)
+[Log] 📡 Carregando dados do Supabase... (230-cd7d4e8076d4e067.js, line 1)
+[Error] Failed to load resource: the server responded with a status of 401 () (transactions, line 0)
+[Error] Failed to load resource: the server responded with a status of 401 () (positions, line 0)
+[Error] ❌ Erro ao carregar dados do Supabase: – Object
+Object
+	(função anônima) (230-cd7d4e8076d4e067.js:1:14385)
+[Error] Failed to load resource: the server responded with a status of 401 () (brokerages, line 0)
+[Log] 🔥 HYBRID CONTEXT: Usando SupabaseDataAdapter (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🔥 HYBRID CONTEXT: addPosition function: – "function" (230-cd7d4e8076d4e067.js, line 1)
+[Log] 🔥 HYBRID CONTEXT: addTransaction function: – "function" (230-cd7d4e8076d4e067.js, line 1)
+[Error] Failed to load resource: the server responded with a status of 401 () (options, line 0)
+[Error] Failed to load resource: the server responded with a status of 401 () (users, line 0)
