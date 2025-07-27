@@ -1,0 +1,27 @@
+# Ignore MCP server files during Pages build
+mcp-server/
+deploy-mcp.sh
+wrangler.toml.bak
+
+# Ignore development files
+.env.local
+.env.development
+node_modules/
+.next/
+out/
+.git/
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
