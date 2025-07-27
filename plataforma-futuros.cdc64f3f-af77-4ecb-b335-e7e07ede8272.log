@@ -1,0 +1,332 @@
+2025-07-27T16:29:39.092689Z	Cloning repository...
+2025-07-27T16:29:39.746582Z	From https://github.com/carlosedufaraujo/plataforma-futuros
+2025-07-27T16:29:39.74703Z	 * branch            6cd662640a3b27bddc79f5eb90c1166c2a634341 -> FETCH_HEAD
+2025-07-27T16:29:39.747129Z	
+2025-07-27T16:29:39.785962Z	HEAD is now at 6cd6626 Initial commit - Sistema de Investimentos Boi Gordo
+2025-07-27T16:29:39.786347Z	
+2025-07-27T16:29:39.863965Z	
+2025-07-27T16:29:39.864385Z	Using v2 root directory strategy
+2025-07-27T16:29:39.886121Z	Success: Finished cloning repository files
+2025-07-27T16:29:41.543709Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-07-27T16:29:41.544418Z	
+2025-07-27T16:29:41.54679Z	Found wrangler.toml file. Reading build configuration...
+2025-07-27T16:29:42.648134Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-07-27T16:29:42.717755Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-07-27T16:29:42.718254Z	Installing project dependencies: npm clean-install --progress=false
+2025-07-27T16:29:56.463115Z	
+2025-07-27T16:29:56.463358Z	added 409 packages, and audited 410 packages in 13s
+2025-07-27T16:29:56.463538Z	
+2025-07-27T16:29:56.463656Z	145 packages are looking for funding
+2025-07-27T16:29:56.463763Z	  run `npm fund` for details
+2025-07-27T16:29:56.464989Z	
+2025-07-27T16:29:56.465242Z	found 0 vulnerabilities
+2025-07-27T16:29:56.497673Z	Executing user command: npm run build
+2025-07-27T16:29:56.872615Z	
+2025-07-27T16:29:56.872907Z	> frontend@0.1.0 build
+2025-07-27T16:29:56.873151Z	> next build
+2025-07-27T16:29:56.873244Z	
+2025-07-27T16:29:57.603943Z	 ⚠ Invalid next.config.mjs options detected: 
+2025-07-27T16:29:57.604478Z	 ⚠     Unrecognized key(s) in object: 'telemetry'
+2025-07-27T16:29:57.60489Z	 ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2025-07-27T16:29:57.610164Z	⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-07-27T16:29:57.614109Z	Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-07-27T16:29:57.614291Z	This information is used to shape Next.js' roadmap and prioritize features.
+2025-07-27T16:29:57.614535Z	You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-07-27T16:29:57.614642Z	https://nextjs.org/telemetry
+2025-07-27T16:29:57.614716Z	
+2025-07-27T16:29:57.674087Z	   ▲ Next.js 15.4.2
+2025-07-27T16:29:57.674292Z	   - Environments: .env.production
+2025-07-27T16:29:57.674419Z	
+2025-07-27T16:29:57.7368Z	   Creating an optimized production build ...
+2025-07-27T16:30:09.819828Z	 ✓ Compiled successfully in 8.0s
+2025-07-27T16:30:09.824791Z	   Linting and checking validity of types ...
+2025-07-27T16:30:15.434536Z	
+2025-07-27T16:30:15.434835Z	Failed to compile.
+2025-07-27T16:30:15.434972Z	
+2025-07-27T16:30:15.435095Z	./src/app/layout.tsx
+2025-07-27T16:30:15.435201Z	32:9  Warning: Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+2025-07-27T16:30:15.43529Z	
+2025-07-27T16:30:15.435394Z	./src/components/Admin/BrokerageManager.tsx
+2025-07-27T16:30:15.435505Z	4:10  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.436474Z	4:16  Warning: 'Edit' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.436839Z	4:22  Warning: 'Trash2' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.437426Z	4:30  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.437655Z	4:40  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.437799Z	4:47  Warning: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.437925Z	
+2025-07-27T16:30:15.438051Z	./src/components/Admin/DataManager.tsx
+2025-07-27T16:30:15.438162Z	4:10  Warning: 'Download' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.438303Z	4:20  Warning: 'Upload' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.438504Z	4:28  Warning: 'Trash2' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.438654Z	4:36  Warning: 'Database' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.438775Z	4:46  Warning: 'RefreshCw' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.438896Z	9:10  Warning: 'isLoading' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.439029Z	9:21  Warning: 'setIsLoading' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.439148Z	13:43  Warning: 'fetchData' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.43926Z	261:25  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.439371Z	261:47  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.439485Z	
+2025-07-27T16:30:15.439591Z	./src/components/Admin/IDManager.tsx
+2025-07-27T16:30:15.439692Z	7:38  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.439812Z	
+2025-07-27T16:30:15.439929Z	./src/components/Admin/UserManager.tsx
+2025-07-27T16:30:15.440046Z	4:10  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440173Z	4:16  Warning: 'Edit' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440313Z	4:22  Warning: 'Trash2' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440424Z	4:30  Warning: 'User' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440544Z	4:36  Warning: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440653Z	4:42  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.440763Z	
+2025-07-27T16:30:15.440876Z	./src/components/Common/BrokerageSelector.tsx
+2025-07-27T16:30:15.440977Z	4:26  Warning: 'ChevronDown' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.441085Z	
+2025-07-27T16:30:15.441185Z	./src/components/Common/ModalManager.tsx
+2025-07-27T16:30:15.441281Z	4:10  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.441401Z	4:16  Warning: 'Target' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.441533Z	4:24  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.44165Z	4:36  Warning: 'Settings' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.441757Z	4:46  Warning: 'BarChart3' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.441877Z	7:8  Warning: 'StrategyModal' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.442186Z	8:8  Warning: 'AnalysisModal' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.442321Z	9:8  Warning: 'SettingsModal' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.442435Z	68:44  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.442566Z	94:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.442687Z	120:45  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.442792Z	140:55  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.442889Z	
+2025-07-27T16:30:15.44299Z	./src/components/Debug/AutoClearButton.tsx
+2025-07-27T16:30:15.443098Z	19:11  Error: 'itemsFound' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.443195Z	29:35  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.443288Z	
+2025-07-27T16:30:15.4434Z	./src/components/Debug/DataInspector.tsx
+2025-07-27T16:30:15.443509Z	6:30  Warning: 'checkCurrentDataState' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.443616Z	19:52  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.443718Z	
+2025-07-27T16:30:15.443816Z	./src/components/Demo/NetPositionDemo.tsx
+2025-07-27T16:30:15.443908Z	143:25  Error: Parsing error: Unexpected token. Did you mean `{'>'}` or `&gt;`?
+2025-07-27T16:30:15.444001Z	
+2025-07-27T16:30:15.444111Z	./src/components/Modals/BrokerageRegistrationModal.tsx
+2025-07-27T16:30:15.444218Z	504:164  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.44429Z	504:189  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.444383Z	
+2025-07-27T16:30:15.444502Z	./src/components/Modals/BrokerageSetupModal.tsx
+2025-07-27T16:30:15.444602Z	4:10  Warning: 'X' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.444692Z	4:13  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.444766Z	4:23  Warning: 'User' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.444831Z	4:29  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.444917Z	4:36  Warning: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.444999Z	4:42  Warning: 'MapPin' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.445092Z	4:50  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.44519Z	32:21  Warning: 'setIsLoading' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.445309Z	33:28  Warning: 'setConnectionStatus' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.445414Z	34:24  Warning: 'setErrorMessage' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.445542Z	
+2025-07-27T16:30:15.445606Z	./src/components/Modals/ClosePositionModal.tsx
+2025-07-27T16:30:15.445663Z	129:9  Warning: 'pnlDifference' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.445721Z	138:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.445796Z	162:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.445908Z	166:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.445978Z	169:63  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.446057Z	274:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.446123Z	
+2025-07-27T16:30:15.446201Z	./src/components/Modals/NewPositionModal.tsx
+2025-07-27T16:30:15.44631Z	58:32  Error: A `require()` style import is forbidden.  @typescript-eslint/no-require-imports
+2025-07-27T16:30:15.446408Z	289:6  Warning: React Hook useEffect has a missing dependency: 'findContractBySymbol'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+2025-07-27T16:30:15.446525Z	
+2025-07-27T16:30:15.446633Z	./src/components/Modals/StrategyModal.tsx
+2025-07-27T16:30:15.446702Z	147:113  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.446766Z	
+2025-07-27T16:30:15.446836Z	./src/components/Pages/OpcoesPage.tsx
+2025-07-27T16:30:15.446905Z	4:10  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.446999Z	4:16  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447098Z	4:28  Warning: 'TrendingDown' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447194Z	4:42  Warning: 'AlertTriangle' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447286Z	4:57  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447368Z	4:69  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447457Z	7:8  Warning: 'StatusBadge' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.447567Z	54:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.447646Z	172:30  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.447718Z	172:41  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.447816Z	197:30  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.447932Z	197:41  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.448032Z	205:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.448179Z	407:43  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.44829Z	
+2025-07-27T16:30:15.448438Z	./src/components/Pages/PerformancePage.tsx
+2025-07-27T16:30:15.448554Z	4:10  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.448701Z	4:22  Warning: 'TrendingDown' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.448809Z	4:36  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.448904Z	4:48  Warning: 'BarChart3' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.44902Z	8:8  Warning: 'DataTable' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.449094Z	9:8  Warning: 'StatusBadge' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.449169Z	19:36  Warning: 'options' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.449269Z	132:68  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.449371Z	208:6  Warning: React Hook useMemo has an unnecessary dependency: 'selectedPeriod'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+2025-07-27T16:30:15.449513Z	399:53  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.449591Z	
+2025-07-27T16:30:15.44967Z	./src/components/Pages/PosicoesPage.tsx
+2025-07-27T16:30:15.44978Z	3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450015Z	26:5  Warning: 'getDirectionColor' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450158Z	27:5  Warning: 'getNeutralizedPositionsForPerformance' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450263Z	29:5  Warning: 'getRealizedPnL' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450383Z	44:68  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.45056Z	129:46  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.450671Z	190:9  Warning: 'handleEditPosition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.45078Z	237:9  Warning: 'handleDuplicatePosition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450887Z	280:9  Warning: 'handleClosePosition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.450978Z	280:52  Warning: 'currentPrice' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.451047Z	293:55  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.451109Z	298:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.451165Z	305:49  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.451223Z	312:69  Warning: 'b' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.451279Z	418:57  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.451341Z	494:15  Warning: 'openPositionsForGestao' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.451397Z	888:64  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.45146Z	922:21  Error: Missing "key" prop for element in array  react/jsx-key
+2025-07-27T16:30:15.451549Z	1329:25  Error: Missing "key" prop for element in array  react/jsx-key
+2025-07-27T16:30:15.451608Z	1345:25  Error: Missing "key" prop for element in array  react/jsx-key
+2025-07-27T16:30:15.451665Z	
+2025-07-27T16:30:15.45172Z	./src/components/Pages/RentabilidadePage.tsx
+2025-07-27T16:30:15.451777Z	4:10  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.45184Z	4:22  Warning: 'TrendingDown' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.451899Z	4:36  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.45197Z	4:48  Warning: 'BarChart3' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452025Z	4:59  Warning: 'PieChart' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452082Z	4:69  Warning: 'Target' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452136Z	5:10  Warning: 'formatCurrency' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452192Z	5:26  Warning: 'formatPercentage' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452245Z	17:10  Warning: 'activeTab' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452301Z	17:21  Warning: 'setActiveTab' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452364Z	19:36  Warning: 'options' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452419Z	
+2025-07-27T16:30:15.4525Z	./src/components/Settings/BrokerageManagement.tsx
+2025-07-27T16:30:15.452568Z	32:10  Warning: 'selectedBrokerageForUsers' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452632Z	33:10  Warning: 'showUserLinkModal' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452692Z	201:9  Warning: 'openUserLinkModal' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.452748Z	
+2025-07-27T16:30:15.453232Z	./src/components/Settings/ContractManagement.tsx
+2025-07-27T16:30:15.453334Z	68:32  Error: A `require()` style import is forbidden.  @typescript-eslint/no-require-imports
+2025-07-27T16:30:15.453589Z	154:9  Warning: 'handleDateChange' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.453836Z	169:32  Error: A `require()` style import is forbidden.  @typescript-eslint/no-require-imports
+2025-07-27T16:30:15.45393Z	231:32  Error: A `require()` style import is forbidden.  @typescript-eslint/no-require-imports
+2025-07-27T16:30:15.454187Z	259:32  Error: A `require()` style import is forbidden.  @typescript-eslint/no-require-imports
+2025-07-27T16:30:15.454445Z	479:24  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.45472Z	479:38  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.454806Z	
+2025-07-27T16:30:15.45487Z	./src/components/Test/NetTestComponent.tsx
+2025-07-27T16:30:15.455017Z	4:10  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.455174Z	122:32  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.455279Z	122:53  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.455383Z	123:32  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.455627Z	123:52  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+2025-07-27T16:30:15.455823Z	
+2025-07-27T16:30:15.455973Z	./src/contexts/DataContext.tsx
+2025-07-27T16:30:15.456331Z	18:74  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.456418Z	19:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.456655Z	75:11  Warning: 'cleanupResult' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.456755Z	351:53  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.456854Z	
+2025-07-27T16:30:15.456977Z	./src/contexts/HybridDataContext.tsx
+2025-07-27T16:30:15.45707Z	55:74  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.457171Z	56:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.457274Z	
+2025-07-27T16:30:15.457381Z	./src/contexts/SupabaseDataContext.tsx
+2025-07-27T16:30:15.457505Z	19:74  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.457663Z	20:29  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.457917Z	165:69  Warning: 'previousPosition' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.458048Z	165:88  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.458305Z	400:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+2025-07-27T16:30:15.4584Z	429:16  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.458762Z	557:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.458899Z	558:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.459008Z	654:66  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.459096Z	
+2025-07-27T16:30:15.459177Z	./src/contexts/UserContext.tsx
+2025-07-27T16:30:15.459331Z	10:20  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.459431Z	
+2025-07-27T16:30:15.459546Z	./src/hooks/useAccessControl.ts
+2025-07-27T16:30:15.459636Z	3:33  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.459719Z	
+2025-07-27T16:30:15.459804Z	./src/hooks/useAutoClean.ts
+2025-07-27T16:30:15.459887Z	12:11  Error: 'itemsFound' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.45997Z	38:20  Warning: 'e' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.460056Z	
+2025-07-27T16:30:15.46014Z	./src/hooks/useNetPositions.ts
+2025-07-27T16:30:15.460239Z	264:49  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.460341Z	294:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.460425Z	317:11  Error: 'operacoesRealizadas' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.46053Z	425:33  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.460615Z	464:11  Error: 'neutralizacoesDetectadas' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.460691Z	465:11  Error: 'transacoesParaNeutralizacao' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.460766Z	623:6  Warning: React Hook useMemo has an unnecessary dependency: 'positions'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+2025-07-27T16:30:15.460848Z	633:30  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.460926Z	680:11  Error: 'operacoesParciais' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.461004Z	680:30  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.461084Z	781:74  Warning: 'idx' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.461166Z	781:79  Warning: 'arr' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.461238Z	
+2025-07-27T16:30:15.461309Z	./src/lib/supabase.ts
+2025-07-27T16:30:15.461394Z	23:15  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.461482Z	24:20  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.461565Z	
+2025-07-27T16:30:15.461636Z	./src/services/api.ts
+2025-07-27T16:30:15.461708Z	1:28  Warning: 'Transaction' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.461783Z	16:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.461854Z	30:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.461936Z	156:26  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.462012Z	161:28  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.46209Z	161:42  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.462179Z	
+2025-07-27T16:30:15.462264Z	./src/services/localStorage.ts
+2025-07-27T16:30:15.462346Z	312:16  Error: 'key' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.462423Z	
+2025-07-27T16:30:15.462512Z	./src/services/supabaseService.ts
+2025-07-27T16:30:15.462592Z	2:18  Warning: 'Inserts' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.462669Z	2:27  Warning: 'Updates' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.462752Z	182:26  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.462833Z	314:22  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.462912Z	450:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.462994Z	465:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463075Z	488:35  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463158Z	494:39  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463242Z	511:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463332Z	
+2025-07-27T16:30:15.463417Z	./src/services/websocket.ts
+2025-07-27T16:30:15.46353Z	70:46  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463621Z	80:42  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463707Z	90:40  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463793Z	105:30  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463888Z	111:41  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.463983Z	117:43  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.464062Z	
+2025-07-27T16:30:15.464143Z	./src/types/index.ts
+2025-07-27T16:30:15.464222Z	153:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.464298Z	158:13  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.464397Z	198:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.464501Z	
+2025-07-27T16:30:15.464589Z	./src/utils/autoCleanMockData.ts
+2025-07-27T16:30:15.464673Z	14:7  Error: 'itemsToRemove' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.464756Z	
+2025-07-27T16:30:15.464838Z	./src/utils/calculations.ts
+2025-07-27T16:30:15.464935Z	118:16  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.46503Z	202:48  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.465124Z	
+2025-07-27T16:30:15.465209Z	./src/utils/clearData.ts
+2025-07-27T16:30:15.465293Z	24:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.465398Z	132:31  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.465497Z	154:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-07-27T16:30:15.465581Z	167:12  Error: 'key' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.465664Z	184:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.465747Z	185:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.465829Z	
+2025-07-27T16:30:15.465913Z	./src/utils/inspectLocalStorage.ts
+2025-07-27T16:30:15.466053Z	91:12  Error: 'key' is never reassigned. Use 'const' instead.  prefer-const
+2025-07-27T16:30:15.466151Z	107:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.466236Z	
+2025-07-27T16:30:15.466333Z	./src/utils/seedData.ts
+2025-07-27T16:30:15.466411Z	188:14  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+2025-07-27T16:30:15.466507Z	
+2025-07-27T16:30:15.466591Z	info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+2025-07-27T16:30:15.497358Z	Failed: Error while executing user command. Exited with error code: 1
+2025-07-27T16:30:15.509425Z	Failed: build command exited with code: 1
+2025-07-27T16:30:19.997572Z	Failed: error occurred while running build command
