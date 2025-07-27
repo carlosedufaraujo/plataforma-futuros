@@ -2,6 +2,7 @@
 const nextConfig = {
   // Configurações para Cloudflare Pages
   output: 'export',
+  trailingSlash: true, // Importante para Cloudflare Pages
   images: {
     unoptimized: true,
   },
