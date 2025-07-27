@@ -1,0 +1,25 @@
+2025-07-27T15:12:05.524076Z	Cloning repository...
+2025-07-27T15:12:06.212295Z	From https://github.com/carlosedufaraujo/Plataforma-gesta-futuros-black
+2025-07-27T15:12:06.212741Z	 * branch            017f84071a7e0ef35ff19133a51f4642866917fa -> FETCH_HEAD
+2025-07-27T15:12:06.212834Z	
+2025-07-27T15:12:06.252509Z	HEAD is now at 017f840 docs: Adiciona documentação completa dos padrões do sistema
+2025-07-27T15:12:06.252892Z	
+2025-07-27T15:12:06.335986Z	
+2025-07-27T15:12:06.336417Z	Using v2 root directory strategy
+2025-07-27T15:12:06.368664Z	Success: Finished cloning repository files
+2025-07-27T15:12:08.164468Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-07-27T15:12:08.165602Z	
+2025-07-27T15:12:09.298645Z	No wrangler.toml file found. Continuing.
+2025-07-27T15:12:09.363983Z	Detected the following tools from environment: 
+2025-07-27T15:12:09.364836Z	Executing user command: npm run build
+2025-07-27T15:12:09.82237Z	npm error code ENOENT
+2025-07-27T15:12:09.822921Z	npm error syscall open
+2025-07-27T15:12:09.823093Z	npm error path /opt/buildhome/repo/package.json
+2025-07-27T15:12:09.823252Z	npm error errno -2
+2025-07-27T15:12:09.823376Z	npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/opt/buildhome/repo/package.json'
+2025-07-27T15:12:09.823498Z	npm error enoent This is related to npm not being able to find a file.
+2025-07-27T15:12:09.823855Z	npm error enoent
+2025-07-27T15:12:09.823943Z	npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2025-07-27T15_12_09_737Z-debug-0.log
+2025-07-27T15:12:09.832003Z	Failed: Error while executing user command. Exited with error code: 254
+2025-07-27T15:12:09.839703Z	Failed: build command exited with code: 1
+2025-07-27T15:12:11.459581Z	Failed: error occurred while running build command
