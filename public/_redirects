@@ -1,0 +1,9 @@
+# Redirects para Cloudflare Pages
+# Formato: origem destino código
+
+# Rotas de debug
+/debug              /debug/index.html       200
+/diagnostics        /diagnostics/index.html 200
+
+# SPA fallback - todas as outras rotas vão para index
+/*                  /index.html             200

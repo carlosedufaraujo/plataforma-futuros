@@ -1,5 +1,13 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": []
+  "exclude": [
+    "/_next/*",
+    "/static/*",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.svg",
+    "/*.ico"
+  ]
 }
