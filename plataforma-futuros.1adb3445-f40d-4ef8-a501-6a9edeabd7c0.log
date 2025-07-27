@@ -1,0 +1,85 @@
+2025-07-27T17:05:20.018088428Z	Cloning repository...
+2025-07-27T17:05:20.65909649Z	From https://github.com/carlosedufaraujo/plataforma-futuros
+2025-07-27T17:05:20.6592967Z	 * branch            1efd45fdac23dd8ba81bf785940f3a4e6f622391 -> FETCH_HEAD
+2025-07-27T17:05:20.659387565Z	
+2025-07-27T17:05:20.698529967Z	HEAD is now at 1efd45f fix: Remover conflito de wrangler.toml para Pages build
+2025-07-27T17:05:20.69880179Z	
+2025-07-27T17:05:20.776982638Z	
+2025-07-27T17:05:20.777410237Z	Using v2 root directory strategy
+2025-07-27T17:05:20.799421856Z	Success: Finished cloning repository files
+2025-07-27T17:05:23.345769052Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-07-27T17:05:23.346410179Z	
+2025-07-27T17:05:24.451845039Z	No wrangler.toml file found. Continuing.
+2025-07-27T17:05:24.65348675Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-07-27T17:05:24.653519147Z	Installing project dependencies: npm clean-install --progress=false
+2025-07-27T17:05:38.554330474Z	
+2025-07-27T17:05:38.554606925Z	added 409 packages, and audited 410 packages in 13s
+2025-07-27T17:05:38.554727351Z	
+2025-07-27T17:05:38.554948943Z	145 packages are looking for funding
+2025-07-27T17:05:38.555054132Z	  run `npm fund` for details
+2025-07-27T17:05:38.555554673Z	
+2025-07-27T17:05:38.555759271Z	found 0 vulnerabilities
+2025-07-27T17:05:38.584245586Z	Executing user command: npm run build:cf
+2025-07-27T17:05:38.946845939Z	
+2025-07-27T17:05:38.946967014Z	> frontend@0.1.0 build:cf
+2025-07-27T17:05:38.947196779Z	> ESLINT_CONFIG_FILE=.eslintrc.prod.json next build
+2025-07-27T17:05:38.947209613Z	
+2025-07-27T17:05:39.646737767Z	⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2025-07-27T17:05:39.650796933Z	Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-07-27T17:05:39.65098812Z	This information is used to shape Next.js' roadmap and prioritize features.
+2025-07-27T17:05:39.651148584Z	You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-07-27T17:05:39.651322954Z	https://nextjs.org/telemetry
+2025-07-27T17:05:39.651390189Z	
+2025-07-27T17:05:39.709571149Z	   ▲ Next.js 15.4.2
+2025-07-27T17:05:39.709693576Z	   - Environments: .env.production
+2025-07-27T17:05:39.709940843Z	
+2025-07-27T17:05:39.77048179Z	   Creating an optimized production build ...
+2025-07-27T17:05:51.7468492Z	 ✓ Compiled successfully in 8.0s
+2025-07-27T17:05:51.751680231Z	   Skipping validation of types
+2025-07-27T17:05:51.75210664Z	   Skipping linting
+2025-07-27T17:05:52.050640979Z	   Collecting page data ...
+2025-07-27T17:05:54.136650971Z	   Generating static pages (0/6) ...
+2025-07-27T17:05:54.784910529Z	🔍 DEBUG: Variáveis de ambiente no Cloudflare:
+2025-07-27T17:05:54.785078267Z	NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+2025-07-27T17:05:54.785338424Z	NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIs...
+2025-07-27T17:05:54.785586071Z	✅ Cliente Supabase criado com sucesso
+2025-07-27T17:05:54.889424151Z	   Generating static pages (1/6) 
+2025-07-27T17:05:54.889761046Z	   Generating static pages (2/6) 
+2025-07-27T17:05:54.991968628Z	   Generating static pages (4/6) 
+2025-07-27T17:05:55.012503391Z	 ✓ Generating static pages (6/6)
+2025-07-27T17:05:55.42344319Z	   Finalizing page optimization ...
+2025-07-27T17:05:55.423528005Z	   Collecting build traces ...
+2025-07-27T17:06:01.348638252Z	   Exporting (0/3) ...
+2025-07-27T17:06:01.798835761Z	🔍 DEBUG: Variáveis de ambiente no Cloudflare:
+2025-07-27T17:06:01.79920076Z	NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+2025-07-27T17:06:01.79923247Z	NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIs...
+2025-07-27T17:06:01.801123492Z	✅ Cliente Supabase criado com sucesso
+2025-07-27T17:06:01.827973656Z	 ✓ Exporting (3/3)
+2025-07-27T17:06:01.842432127Z	
+2025-07-27T17:06:01.845312847Z	Route (app)                                 Size  First Load JS
+2025-07-27T17:06:01.845489882Z	┌ ○ /                                     114 kB         262 kB
+2025-07-27T17:06:01.84559567Z	├ ○ /_not-found                            990 B         101 kB
+2025-07-27T17:06:01.8457681Z	└ ○ /debug                                1.9 kB         102 kB
+2025-07-27T17:06:01.845889138Z	+ First Load JS shared by all            99.7 kB
+2025-07-27T17:06:01.846043903Z	  ├ chunks/4bd1b696-cf72ae8a39fa05aa.js  54.1 kB
+2025-07-27T17:06:01.846192762Z	  ├ chunks/964-1d8e3d2561872b55.js       43.6 kB
+2025-07-27T17:06:01.846305297Z	  └ other shared chunks (total)          1.91 kB
+2025-07-27T17:06:01.846444403Z	
+2025-07-27T17:06:01.846513844Z	
+2025-07-27T17:06:01.846617166Z	○  (Static)  prerendered as static content
+2025-07-27T17:06:01.846723744Z	
+2025-07-27T17:06:01.890405786Z	Finished
+2025-07-27T17:06:02.836583948Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-07-27T17:06:02.837121872Z	
+2025-07-27T17:06:03.942293513Z	No wrangler.toml file found. Continuing.
+2025-07-27T17:06:03.943212055Z	Note: No functions dir at /functions found. Skipping.
+2025-07-27T17:06:03.943418632Z	Validating asset output directory
+2025-07-27T17:06:06.587806951Z	Deploying your site to Cloudflare's global network...
+2025-07-27T17:06:07.773741088Z	Parsed 3 valid header rules.
+2025-07-27T17:06:09.103852623Z	Uploading... (31/40)
+2025-07-27T17:06:09.770541564Z	Uploading... (34/40)
+2025-07-27T17:06:09.892567902Z	Uploading... (37/40)
+2025-07-27T17:06:09.982211048Z	Uploading... (40/40)
+2025-07-27T17:06:09.982480051Z	✨ Success! Uploaded 9 files (31 already uploaded) (1.28 sec)
+2025-07-27T17:06:09.982493813Z	
+2025-07-27T17:06:10.449623441Z	✨ Upload complete!
