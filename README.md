@@ -1,3 +1,9 @@
+# Sistema de Investimentos - Boi Gordo
+
+Sistema completo para gestão de investimentos em contratos futuros de boi gordo.
+
+**Última atualização:** 28/01/2025 às 16:30 - Deploy automático configurado
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
