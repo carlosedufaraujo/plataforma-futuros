@@ -1,4 +1,4 @@
-# Memória do Claude - Sistema Boi Gordo Investimentos
+# Memória do Claude - Sistema Plataforma Futuros
 
 ## 🚀 Deploy no Cloudflare - SEMPRE FAZER GIT PUSH
 
@@ -14,7 +14,7 @@ O deploy para o Cloudflare é automático após o push. Aguardar 2-3 minutos par
 ## 📋 Informações do Sistema
 
 ### URLs
-- **Produção**: https://boi-gordo-investimentos.pages.dev
+- **Produção**: https://plataforma-futuros.pages.dev
 - **GitHub**: https://github.com/carlosedufaraujo/plataforma-futuros
 - **Supabase**: https://supabase.com/dashboard/project/kdfevkbwohcajcwrqzor
 
