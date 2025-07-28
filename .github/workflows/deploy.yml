@@ -22,7 +22,7 @@ jobs:
         run: npm ci
         
       - name: Build
-        run: npm run build
+        run: npm run build:cf
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
@@ -33,33 +33,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: boi-gordo-investimentos
-          directory: .next
+          directory: out
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy-backend:
-    runs-on: ubuntu-latest
-    name: Deploy Backend to Cloudflare Workers
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          
-      - name: Install dependencies
-        run: |
-          cd backend
-          npm ci
-          
-      - name: Build Worker
-        run: |
-          cd backend
-          npm run build:worker
-          
-      - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: backend
-          environment: production
