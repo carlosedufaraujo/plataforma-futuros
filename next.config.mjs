@@ -15,6 +15,30 @@ const nextConfig = {
   // Configurações de produção
   poweredByHeader: false,
   compress: true,
+  // Headers de segurança
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: blob: https:",
+              "connect-src 'self' https://kdfevkbwohcajcwrqzor.supabase.co wss://kdfevkbwohcajcwrqzor.supabase.co https://boi-gordo-mcp-official.carlosedufaraujo.workers.dev",
+              "frame-ancestors 'none'",
+              "base-uri 'self'",
+              "form-action 'self'"
+            ].join('; ')
+          },
+        ],
+      },
+    ];
+  },
   // Variáveis de ambiente - FORÇAR valores se não existirem
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',

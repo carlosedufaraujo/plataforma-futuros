@@ -1,12 +1,6 @@
 /*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://kdfevkbwohcajcwrqzor.supabase.co wss://kdfevkbwohcajcwrqzor.supabase.co https://boi-gordo-mcp-official.carlosedufaraujo.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.supabase.in wss://*.supabase.in;
-
-/_next/static/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/images/*
-  Cache-Control: public, max-age=86400
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
