@@ -1,12 +1,12 @@
 # 🚨 CORREÇÃO DE PROBLEMAS DE LOGIN - SUPABASE
 
-## 📋 **Problema Identificado**
+## 🎯 **SOLUÇÃO: Script Único que Executa TUDO**
 
-O script anterior estava muito longo e o Supabase parou a execução. Agora temos **3 opções** para corrigir:
+O problema é que o Supabase SQL Editor estava executando apenas a última linha. Agora temos um script que **FORÇA a execução completa** usando um bloco DO.
 
-## 🔧 **OPÇÃO 1: Script Simples (RECOMENDADO)**
+## 🔧 **EXECUTE ESTE SCRIPT (RECOMENDADO):**
 
-**Use este primeiro - mais provável de funcionar:**
+### **Arquivo: `CORRIGIR_LOGIN_UNICO.sql`**
 
 1. **Acesse o SQL Editor:**
    ```
@@ -15,28 +15,36 @@ O script anterior estava muito longo e o Supabase parou a execução. Agora temo
 
 2. **Copie TODO o conteúdo do arquivo:**
    ```
-   CORRIGIR_LOGIN_SIMPLES.sql
+   CORRIGIR_LOGIN_UNICO.sql
    ```
 
 3. **Cole no SQL Editor e clique em "Run"**
 
-4. **Deve aparecer no final:**
+4. **Deve aparecer várias mensagens:**
    ```
-   RLS CORRIGIDO! | total_policies: 9
+   ✅ RLS desabilitado em todas as tabelas
+   ✅ Todas as políticas removidas
+   ✅ RLS reabilitado em todas as tabelas
+   ✅ Políticas de users criadas
+   ✅ Política de user_brokerages criada
+   ✅ Política de brokerages criada
+   ✅ Políticas de dados do usuário criadas
+   ✅ Política de contracts criada
+   🎉 TODAS AS POLÍTICAS RLS FORAM CORRIGIDAS COM SUCESSO!
    ```
 
-## 🔧 **OPÇÃO 2: Script em 3 Partes (Se a Opção 1 falhar)**
+5. **E no final:**
+   ```
+   🎯 SCRIPT EXECUTADO COM SUCESSO!
+   Total de políticas criadas: 9
+   ```
 
-Execute **EM SEQUÊNCIA**, um de cada vez:
+## ✨ **Por que este script vai funcionar:**
 
-1. **Primeiro:** `CORRIGIR_LOGIN_SUPABASE_PARTE_1.sql`
-   - Deve mostrar: "Políticas removidas com sucesso!"
-
-2. **Segundo:** `CORRIGIR_LOGIN_SUPABASE_PARTE_2.sql`
-   - Deve mostrar: "=== EXECUTAR PARTE 3 AGORA ==="
-
-3. **Terceiro:** `CORRIGIR_LOGIN_SUPABASE_PARTE_3.sql`
-   - Deve mostrar: "=== RLS CORRIGIDO COM SUCESSO ==="
+- ✅ **Bloco DO**: Força execução de todas as instruções em sequência
+- ✅ **RAISE NOTICE**: Mostra progresso em tempo real
+- ✅ **Uma transação**: Tudo executado de uma vez só
+- ✅ **Verificação**: Confirma que tudo foi criado corretamente
 
 ## 🧪 **TESTE O LOGIN**
 
@@ -61,41 +69,33 @@ Após login bem-sucedido, deve aparecer:
 ✅ Dados do usuário carregados, redirecionando...
 ```
 
-## 🐛 **Se Ainda Houver Problemas**
+## 🐛 **Se AINDA Houver Problemas**
 
-### **Script não executa completo:**
-- Tente a **Opção 2** (em partes)
-- Ou execute linha por linha manualmente
+### **Script não mostra todas as mensagens:**
+- O Supabase pode estar com problema
+- Tente recarregar a página e executar novamente
 
 ### **Erro "Permission denied":**
-- Execute novamente o script escolhido
+- Execute o script novamente
 - Aguarde alguns segundos e teste o login
-
-### **Erro "User not found":**
-- Execute o script `FIX_AUTH_LOGIN.sql`
-- Ou verifique se os usuários existem na tabela `users`
 
 ### **Login trava no loading:**
 - Limpe cache do browser (Ctrl+Shift+R)
 - Verifique se `npm run dev` está rodando
 - Olhe o console do browser para erros
 
-## ✅ **Status das Correções**
+## 📋 **Outras Opções (Backup)**
 
-### **Código já corrigido:**
-- ✅ `src/app/login/page.tsx` - Refatorado
-- ✅ `src/contexts/AuthContext.tsx` - Melhorado
-- ✅ Logs de debugging adicionados
-- ✅ Verificação de usuário já logado
+Se o script único não funcionar (improvável), você ainda tem:
+- **Opção 2:** Scripts divididos em 3 partes
+- **Opção 3:** Script simples linha por linha
 
-### **Aguardando execução:**
-- 🔄 Script SQL para corrigir RLS
-- 🔄 Teste das credenciais
+## 📞 **Relatório de Sucesso**
 
-## 📞 **Ainda não funciona?**
+Após executar, me informe:
+1. ✅ Viu todas as mensagens de ✅ durante a execução?
+2. ✅ Apareceu "🎉 TODAS AS POLÍTICAS RLS FORAM CORRIGIDAS COM SUCESSO!"?
+3. ✅ Conseguiu fazer login com as credenciais?
+4. ✅ Redirecionou para a página principal?
 
-Se nenhum script funcionar, me informe:
-1. Qual opção você tentou
-2. Qual foi a última mensagem que apareceu
-3. Print da tela de erro (se houver)
-4. Log do console do browser 
+**Este script DEVE executar tudo de uma vez! 🚀** 
