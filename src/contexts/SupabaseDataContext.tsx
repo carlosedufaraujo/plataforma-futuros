@@ -448,12 +448,21 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (authUser && users.length > 0) {
       const loggedUser = users.find(u => u.id === authUser.id);
-      if (loggedUser && (!currentUser || currentUser.id !== loggedUser.id)) {
+      if (loggedUser) {
         setCurrentUser(loggedUser);
-        console.log('👤 Usuário atual atualizado:', loggedUser.nome);
+        console.log('👤 Usuário atual definido:', loggedUser.nome);
+        
+        // Se o usuário tem uma corretora selecionada, definir também
+        if (loggedUser.selected_brokerage_id && brokerages.length > 0) {
+          const defaultBrokerage = brokerages.find(b => b.id === loggedUser.selected_brokerage_id);
+          if (defaultBrokerage && !selectedBrokerage) {
+            setSelectedBrokerage(defaultBrokerage);
+            console.log('🏢 Corretora padrão selecionada:', defaultBrokerage.name);
+          }
+        }
       }
     }
-  }, [authUser, users]);
+  }, [authUser, users, brokerages]);
 
   // ================================
   // FUNÇÕES PARA POSIÇÕES
