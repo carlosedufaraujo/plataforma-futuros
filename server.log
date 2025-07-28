@@ -22,3 +22,12 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
  GET / 200 in 64ms
  GET / 200 in 25ms
  GET / 200 in 38ms
+ ✓ Compiled in 673ms (832 modules)
+ GET / 200 in 74ms
+ ✓ Compiled in 327ms (832 modules)
+ GET / 200 in 48ms
+ ✓ Compiled in 330ms (832 modules)
+ GET / 200 in 46ms
+ ✓ Compiled in 360ms (832 modules)
+ GET / 200 in 76ms
+ GET / 200 in 146ms

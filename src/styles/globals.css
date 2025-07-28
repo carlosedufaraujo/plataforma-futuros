@@ -14095,6 +14095,40 @@ th .btn-primary:hover {
 }
 
 /* Modal de Análise Detalhada - Estilos específicos */
+.position-modal {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 90vh;
+}
+
+.position-modal .modal-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-secondary);
+}
+
+.position-modal .modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.position-modal .modal-body::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+.position-modal .modal-body::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.position-modal .modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
 .position-modal .form-section {
   background: transparent;
   border: none;
@@ -14375,6 +14409,20 @@ th .btn-primary:hover {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
+}
+
+/* Footer fixo no modal */
+.position-modal .modal-footer {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  z-index: 10;
 }
 
 .table-header {

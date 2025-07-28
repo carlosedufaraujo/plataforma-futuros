@@ -1188,7 +1188,7 @@ export default function PosicoesPage({ selectedPeriod }: PosicoesPageProps) {
       {/* Modal de Detalhes das Posições */}
       {isDetailsModalOpen && selectedConsolidated && (
         <div className="modal-overlay">
-          <div className="modal position-modal" style={{ width: '800px', maxWidth: '95vw' }}>
+          <div className="modal position-modal" style={{ width: '900px', maxWidth: '95vw', maxHeight: '90vh', display: 'flex', flexDirection: 'column' }}>
             {/* Header */}
             <div className="modal-header">
               <div className="modal-title-section">
@@ -1210,7 +1210,7 @@ export default function PosicoesPage({ selectedPeriod }: PosicoesPageProps) {
             </div>
 
             {/* Body */}
-            <div className="modal-body">
+            <div className="modal-body" style={{ flex: 1, overflow: 'auto', padding: '24px' }}>
               {/* Cards de Resumo Superior */}
               <div className="position-analysis-grid">
                 {/* Card Principal - Resumo da Posição */}
