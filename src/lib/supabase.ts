@@ -5,6 +5,14 @@ import { Database } from '@/types/database';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://kdfevkbwohcajcwrqzor.supabase.co';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkZmV2a2J3b2hjYWpjd3Jxem9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzODcsImV4cCI6MjA2ODg5MTM4N30.4nBjKi3rdpfbYmxeoa8GELdBLq8JY6ym68cJX7jpaus';
 
+// Debug - verificar valores
+if (typeof window !== 'undefined') {
+  console.log('🔍 Supabase Config Debug:');
+  console.log('URL:', supabaseUrl);
+  console.log('Key length:', supabaseAnonKey?.length);
+  console.log('Key preview:', supabaseAnonKey?.substring(0, 50) + '...');
+}
+
 // Criar cliente com configuração simplificada
 const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
