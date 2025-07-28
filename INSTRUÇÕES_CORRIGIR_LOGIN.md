@@ -1,53 +1,59 @@
 # 🚨 CORREÇÃO DE PROBLEMAS DE LOGIN - SUPABASE
 
-## 📋 **Problemas Identificados**
+## 📋 **Problema Identificado**
 
-✅ **Corrigidos no código:**
-- Inconsistência entre LoginPage e AuthContext
-- Problema com `admin.deleteUser()` no cliente
-- Gerenciamento de estado fragmentado
-- Redirecionamento após login melhorado
+O script anterior estava muito longo e o Supabase parou a execução. Agora temos **3 opções** para corrigir:
 
-❌ **Pendente - Executar no Supabase:**
-- Políticas RLS causando recursão infinita
-- Erro: "infinite recursion detected in policy for relation 'users'"
+## 🔧 **OPÇÃO 1: Script Simples (RECOMENDADO)**
 
-## 🔧 **PASSO 1: Executar Script SQL no Supabase**
+**Use este primeiro - mais provável de funcionar:**
 
-1. **Acesse o SQL Editor do Supabase:**
+1. **Acesse o SQL Editor:**
    ```
    https://supabase.com/dashboard/project/kdfevkbwohcajcwrqzor/sql/new
    ```
 
 2. **Copie TODO o conteúdo do arquivo:**
    ```
-   CORRIGIR_LOGIN_SUPABASE.sql
+   CORRIGIR_LOGIN_SIMPLES.sql
    ```
 
 3. **Cole no SQL Editor e clique em "Run"**
 
-4. **Verifique se aparece:**
+4. **Deve aparecer no final:**
    ```
-   === RLS CORRIGIDO COM SUCESSO ===
-   Total de políticas criadas: 8
+   RLS CORRIGIDO! | total_policies: 9
    ```
 
-## 🧪 **PASSO 2: Testar o Login**
+## 🔧 **OPÇÃO 2: Script em 3 Partes (Se a Opção 1 falhar)**
 
-### **Credenciais de Teste:**
+Execute **EM SEQUÊNCIA**, um de cada vez:
+
+1. **Primeiro:** `CORRIGIR_LOGIN_SUPABASE_PARTE_1.sql`
+   - Deve mostrar: "Políticas removidas com sucesso!"
+
+2. **Segundo:** `CORRIGIR_LOGIN_SUPABASE_PARTE_2.sql`
+   - Deve mostrar: "=== EXECUTAR PARTE 3 AGORA ==="
+
+3. **Terceiro:** `CORRIGIR_LOGIN_SUPABASE_PARTE_3.sql`
+   - Deve mostrar: "=== RLS CORRIGIDO COM SUCESSO ==="
+
+## 🧪 **TESTE O LOGIN**
+
+### **Credenciais:**
 - **Admin:** `carloseduardo@acexcapital.com` / `Acex@2025`
 - **Usuário:** `angelocaiado@rialmaagropecuaria.com.br` / `Rialma@2025`
 
-### **Fluxo de Teste:**
-1. Acesse a aplicação: `http://localhost:3000`
-2. Deve redirecionar para `/login` automaticamente
-3. Tente fazer login com as credenciais acima
+### **Passos:**
+1. Acesse: `http://localhost:3000`
+2. Deve redirecionar para `/login`
+3. Use uma das credenciais acima
 4. Deve aparecer: "Login realizado com sucesso!"
 5. Deve redirecionar para a página principal
 
-## 🔍 **PASSO 3: Verificar Console do Browser**
+## 🔍 **Console do Browser**
 
-Após o login, verifique no console do browser se aparece:
+Após login bem-sucedido, deve aparecer:
 ```
 🔑 Tentando fazer login com: carloseduardo@acexcapital.com
 ✅ Login realizado, dados da sessão: {user: {...}}
@@ -57,47 +63,39 @@ Após o login, verifique no console do browser se aparece:
 
 ## 🐛 **Se Ainda Houver Problemas**
 
-### **Erro: "User not found"**
-- Execute novamente o script `FIX_AUTH_LOGIN.sql`
-- Verifique se os usuários existem na tabela `users`
+### **Script não executa completo:**
+- Tente a **Opção 2** (em partes)
+- Ou execute linha por linha manualmente
 
-### **Erro: "Permission denied"**
-- Execute novamente o script `CORRIGIR_LOGIN_SUPABASE.sql`
-- Verifique se as políticas RLS foram criadas corretamente
+### **Erro "Permission denied":**
+- Execute novamente o script escolhido
+- Aguarde alguns segundos e teste o login
 
-### **Erro: "Invalid login credentials"**
-- Verifique se você está usando as credenciais corretas
-- Execute o script `CORRIGIR_LOGIN_SUPABASE.sql` para ver as senhas corretas
+### **Erro "User not found":**
+- Execute o script `FIX_AUTH_LOGIN.sql`
+- Ou verifique se os usuários existem na tabela `users`
 
-### **Aplicação trava no loading**
-- Limpe o cache do browser (Ctrl+Shift+R)
-- Verifique se `npm run dev` está rodando sem erros
-- Verifique o console do browser para erros JavaScript
+### **Login trava no loading:**
+- Limpe cache do browser (Ctrl+Shift+R)
+- Verifique se `npm run dev` está rodando
+- Olhe o console do browser para erros
 
-## 📊 **Status das Correções**
+## ✅ **Status das Correções**
 
-### ✅ **Já Corrigido no Código:**
-- `src/app/login/page.tsx` - Refatorado para usar AuthContext
-- `src/contexts/AuthContext.tsx` - Melhorado fluxo de autenticação
-- Remoção do problema `admin.deleteUser()` no cliente
-- Adição de logs detalhados para debugging
-- Verificação automática de usuário já logado
+### **Código já corrigido:**
+- ✅ `src/app/login/page.tsx` - Refatorado
+- ✅ `src/contexts/AuthContext.tsx` - Melhorado
+- ✅ Logs de debugging adicionados
+- ✅ Verificação de usuário já logado
 
-### 🔄 **Aguardando Execução:**
-- Script SQL para corrigir políticas RLS no Supabase
-- Teste do login com credenciais reais
+### **Aguardando execução:**
+- 🔄 Script SQL para corrigir RLS
+- 🔄 Teste das credenciais
 
-## 📱 **Próximos Passos**
+## 📞 **Ainda não funciona?**
 
-Após executar o script SQL:
-1. Teste o login com ambas as credenciais
-2. Verifique se os dados carregam corretamente
-3. Teste a funcionalidade de logout
-4. Confirme se a proteção de rotas está funcionando
-
-## 📞 **Suporte**
-
-Se precisar de ajuda adicional, forneça:
-- Print da tela de erro
-- Log do console do browser
-- Resultado da execução do script SQL no Supabase 
+Se nenhum script funcionar, me informe:
+1. Qual opção você tentou
+2. Qual foi a última mensagem que apareceu
+3. Print da tela de erro (se houver)
+4. Log do console do browser 
