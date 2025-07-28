@@ -1,0 +1,21 @@
+
+> frontend@0.1.0 dev
+> next dev
+
+🔧 Next.js Config - Variáveis de Ambiente:
+NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
+🔧 Next.js Config - Variáveis de Ambiente:
+NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
+   ▲ Next.js 15.4.2
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.100.64:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1075ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ○ Compiling / ...
+ ✓ Compiled / in 3.2s (846 modules)
+ GET / 200 in 3475ms

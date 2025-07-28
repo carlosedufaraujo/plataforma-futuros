@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, BarChart3, PieChart, Target } from 'lucide-react';
 import { formatCurrency, formatPercentage } from '@/utils/formatters';
 import { useHybridData } from '@/contexts/HybridDataContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Chart, registerables } from 'chart.js';
 
 // Registrar componentes do Chart.js
@@ -17,6 +18,7 @@ export default function RentabilidadePage({ selectedPeriod }: RentabilidadePageP
   const [activeTab, setActiveTab] = useState<'overview' | 'detailed'>('overview');
   
   const { positions, transactions, options, currentUser } = useHybridData();
+  const { user } = useAuth();
   
   // Referencias para os gráficos
   const capitalChartRef = useRef<HTMLCanvasElement>(null);
@@ -387,12 +389,13 @@ export default function RentabilidadePage({ selectedPeriod }: RentabilidadePageP
             const event = new CustomEvent('openNewPositionModal');
             window.dispatchEvent(event);
           }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          Nova Posição
+          <span>Nova Posição</span>
         </button>
       </div>
     );

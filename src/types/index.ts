@@ -12,6 +12,7 @@ export interface User {
   telefone: string;
   email: string;
   isActive: boolean;
+  role?: 'admin' | 'trader' | 'viewer'; // Role do usuário
   createdAt: string;
   updatedAt: string;
   // Relação com corretoras

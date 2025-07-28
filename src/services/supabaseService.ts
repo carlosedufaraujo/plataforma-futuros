@@ -117,11 +117,7 @@ export class SupabaseService {
   async getPositions(userId?: string): Promise<Position[]> {
     let query = supabase
       .from('positions')
-      .select(`
-        *,
-        users(nome),
-        brokerages(nome)
-      `)
+      .select('*')
       .order('entry_date', { ascending: false });
     
     if (userId) {

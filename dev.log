@@ -1,0 +1,193 @@
+
+> frontend@0.1.0 dev
+> next dev
+
+🔧 Next.js Config - Variáveis de Ambiente:
+NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
+🔧 Next.js Config - Variáveis de Ambiente:
+NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
+   ▲ Next.js 15.4.2
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.100.64:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1302ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.2s (841 modules)
+ GET / 200 in 3515ms
+ ✓ Compiled in 417ms (832 modules)
+ GET / 200 in 67ms
+ ✓ Compiled in 305ms (832 modules)
+ GET / 200 in 42ms
+ ✓ Compiled in 418ms (832 modules)
+ GET / 200 in 48ms
+ ✓ Compiled /_not-found in 110ms (823 modules)
+ GET /_next/static/css/app/layout.css?v=1753665728056 404 in 194ms
+ ✓ Compiled in 400ms (837 modules)
+ GET / 200 in 44ms
+ ✓ Compiled in 332ms (837 modules)
+ ⨯ Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js'
+    at <unknown> (.next/server/app/page.js:973:27)
+    at Object.<anonymous> (.next/server/app/page.js:979:3) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
+  page: '/'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 718ms (1151 modules)
+ GET / 500 in 1110ms
+ GET / 200 in 68ms
+ GET / 200 in 9ms
+ GET / 200 in 102ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/app/page.js 500 in 4857ms
+ GET /_next/static/chunks/webpack.js?v=1753665752774 500 in 4866ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 4859ms
+ GET /_next/static/chunks/app/layout.js 500 in 4877ms
+ GET /_next/static/chunks/main-app.js?v=1753665752774 500 in 4884ms
+ GET /_next/static/css/app/layout.css?v=1753665752774 500 in 4885ms
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback.pack.gz: Error: invalid code lengths set
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ GET / 500 in 91ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js?ts=1753669509855 500 in 64ms
+ GET /_next/static/chunks/fallback/main.js?ts=1753669509855 500 in 62ms
+ GET /_next/static/chunks/fallback/pages/_app.js?ts=1753669509855 500 in 61ms
+ GET /_next/static/chunks/fallback/pages/_error.js?ts=1753669509855 500 in 61ms
+ GET /_next/static/chunks/fallback/react-refresh.js?ts=1753669509855 500 in 63ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ GET / 500 in 54ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js?ts=1753669513087 500 in 65ms
+ GET /_next/static/chunks/fallback/main.js?ts=1753669513087 500 in 64ms
+ GET /_next/static/chunks/fallback/pages/_app.js?ts=1753669513087 500 in 64ms
+ GET /_next/static/chunks/fallback/pages/_error.js?ts=1753669513087 500 in 64ms
+ GET /_next/static/chunks/fallback/react-refresh.js?ts=1753669513087 500 in 64ms
+[?25h

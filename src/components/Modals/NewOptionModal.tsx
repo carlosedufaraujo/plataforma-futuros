@@ -91,39 +91,44 @@ export default function NewOptionModal({ isOpen, onClose, onSubmit, editingOptio
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
+      <div className="modal position-modal">
+        {/* Header */}
         <div className="modal-header">
-          <h3>{editingOption ? 'Editar Opção' : 'Nova Opção'}</h3>
-          <button 
-            className="modal-close"
-            onClick={onClose}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="modal-title-section">
+            <h2 className="modal-title">{editingOption ? 'Editar Opção' : 'Nova Opção'}</h2>
+            <span className="modal-subtitle">
+              {editingOption ? 'Modificar estratégia de opção' : 'Criar nova estratégia com opções'}
+            </span>
+          </div>
+          <button className="modal-close" onClick={onClose} type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
         
+        {/* Body */}
         <div className="modal-body">
           <form onSubmit={handleSubmit}>
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Tipo</label>
+            {/* Campos principais horizontais */}
+            <div className="form-row horizontal-close-fields">
+              <div className="field-group flex-1">
+                <label className="field-label">Tipo de Opção</label>
                 <select 
-                  className="form-select"
+                  className="form-input"
                   value={formData.option_type}
                   onChange={(e) => handleInputChange('option_type', e.target.value as 'CALL' | 'PUT')}
                 >
-                  <option value="CALL">Call</option>
-                  <option value="PUT">Put</option>
+                  <option value="CALL">Call (Compra)</option>
+                  <option value="PUT">Put (Venda)</option>
                 </select>
               </div>
               
-              <div className="form-group">
-                <label className="form-label">Ativo Base</label>
+              <div className="field-group flex-1">
+                <label className="field-label">Ativo Base</label>
                 <select 
-                  className="form-select"
+                  className="form-input"
                   value={formData.contractType}
                   onChange={(e) => handleInputChange('contractType', e.target.value)}
                 >
@@ -132,17 +137,17 @@ export default function NewOptionModal({ isOpen, onClose, onSubmit, editingOptio
                 </select>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Vencimento</label>
+              <div className="field-group flex-1">
+                <label className="field-label">Vencimento</label>
                 <select 
-                  className="form-select"
+                  className="form-input"
                   value={formData.expiration}
                   onChange={(e) => handleInputChange('expiration', e.target.value)}
                   disabled={activeExpirations.length === 0}
                 >
-                  <option value="">Selecione um vencimento</option>
+                  <option value="">Selecione</option>
                   {activeExpirations.length === 0 ? (
-                    <option value="" disabled>Nenhum vencimento ativo - Configure em Configurações</option>
+                    <option value="" disabled>Configure vencimentos</option>
                   ) : (
                     activeExpirations.map(exp => (
                       <option key={exp.id} value={exp.code}>
@@ -154,47 +159,70 @@ export default function NewOptionModal({ isOpen, onClose, onSubmit, editingOptio
               </div>
             </div>
 
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Strike</label>
-                <input 
-                  type="number"
-                  className="form-input"
-                  value={formData.strike_price}
-                  onChange={(e) => handleInputChange('strike_price', e.target.value)}
-                  step="0.01"
-                  required
-                />
+            {/* Valores da Opção */}
+            <div className="form-row horizontal-close-fields">
+              <div className="field-group flex-1">
+                <label className="field-label">Strike (Preço de Exercício)</label>
+                <div className="price-input-container-fixed">
+                  <span className="currency-symbol-fixed">R$</span>
+                  <input 
+                    type="number"
+                    className="form-input price-input-fixed"
+                    value={formData.strike_price}
+                    onChange={(e) => handleInputChange('strike_price', e.target.value)}
+                    step="0.01"
+                    placeholder="0,00"
+                    required
+                  />
+                </div>
               </div>
               
-              <div className="form-group">
-                <label className="form-label">Prêmio</label>
-                <input 
-                  type="number"
-                  className="form-input"
-                  value={formData.premium}
-                  onChange={(e) => handleInputChange('premium', e.target.value)}
-                  step="0.01"
-                  required
-                />
+              <div className="field-group flex-1">
+                <label className="field-label">Prêmio</label>
+                <div className="price-input-container-fixed">
+                  <span className="currency-symbol-fixed">R$</span>
+                  <input 
+                    type="number"
+                    className="form-input price-input-fixed"
+                    value={formData.premium}
+                    onChange={(e) => handleInputChange('premium', e.target.value)}
+                    step="0.01"
+                    placeholder="0,00"
+                    required
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Quantidade</label>
+            {/* Quantidade e Operação */}
+            <div className="form-row horizontal-close-fields">
+              <div className="field-group flex-1">
+                <label className="field-label">Quantidade</label>
                 <input 
                   type="number"
                   className="form-input"
                   value={formData.quantity}
                   onChange={(e) => handleInputChange('quantity', e.target.value)}
                   min="1"
+                  placeholder="Número de contratos"
                   required
                 />
               </div>
               
-              <div className="form-group">
-                <label className="form-label">Delta (Opcional)</label>
+              <div className="field-group flex-1">
+                <label className="field-label">Operação</label>
+                <select 
+                  className="form-input"
+                  value={formData.is_purchased.toString()}
+                  onChange={(e) => handleInputChange('is_purchased', e.target.value === 'true')}
+                >
+                  <option value="true">Comprada</option>
+                  <option value="false">Vendida</option>
+                </select>
+              </div>
+
+              <div className="field-group flex-1">
+                <label className="field-label">Delta (Opcional)</label>
                 <input 
                   type="text"
                   className="form-input"
@@ -205,34 +233,49 @@ export default function NewOptionModal({ isOpen, onClose, onSubmit, editingOptio
               </div>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Operação</label>
-              <select 
-                className="form-select"
-                value={formData.is_purchased.toString()}
-                onChange={(e) => handleInputChange('is_purchased', e.target.value === 'true')}
-              >
-                <option value="true">Comprada</option>
-                <option value="false">Vendida</option>
-              </select>
-            </div>
-
-            <div className="modal-actions">
-              <button 
-                type="button" 
-                className="btn btn-secondary"
-                onClick={onClose}
-              >
-                Cancelar
-              </button>
-              <button 
-                type="submit" 
-                className="btn btn-primary"
-              >
-                {editingOption ? 'Atualizar Opção' : 'Criar Opção'}
-              </button>
-            </div>
+            {/* Resumo da Operação (similar ao P&L card) */}
+            {formData.strike_price && formData.premium && formData.quantity && (
+              <div className="pnl-card">
+                <div className="pnl-header">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                  </svg>
+                  <span className="pnl-title">Resumo da Operação</span>
+                </div>
+                <div className="pnl-content">
+                  <div className="pnl-amount">
+                    {(parseFloat(formData.premium) * parseInt(formData.quantity) * 330).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  </div>
+                  <div className="pnl-details">
+                    <span className="pnl-detail-item">
+                      <span className="detail-label">Prêmio Total:</span>
+                      <span className="detail-value">
+                        {formData.quantity} × R$ {parseFloat(formData.premium).toFixed(2)} × 330
+                      </span>
+                    </span>
+                    <span className="pnl-detail-item">
+                      <span className="detail-label">Tipo:</span>
+                      <span className="detail-value">
+                        {formData.option_type} {formData.is_purchased ? 'Comprada' : 'Vendida'}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
           </form>
+        </div>
+
+        {/* Footer */}
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={onClose}>
+            Cancelar
+          </button>
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+            {editingOption ? 'Atualizar Opção' : 'Criar Opção'}
+          </button>
         </div>
       </div>
     </div>

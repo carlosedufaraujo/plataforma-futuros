@@ -1,30 +1,25 @@
 'use client';
 
 import { useState } from 'react';
+import { ENV } from '@/config/env';
 
 export default function DebugPage() {
   const [mcpResult, setMcpResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   const env = {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || 'NOT_SET',
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 
-      `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.substring(0, 20)}...` : 'NOT_SET',
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'NOT_SET',
-    NEXT_PUBLIC_MCP_URL: process.env.NEXT_PUBLIC_MCP_URL || 'NOT_SET',
-    NEXT_PUBLIC_MCP_TOKEN: process.env.NEXT_PUBLIC_MCP_TOKEN || 'NOT_SET',
+    NEXT_PUBLIC_SUPABASE_URL: ENV.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: `${ENV.NEXT_PUBLIC_SUPABASE_ANON_KEY.substring(0, 20)}...`,
+    NEXT_PUBLIC_API_URL: ENV.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_MCP_URL: ENV.NEXT_PUBLIC_MCP_URL,
+    NEXT_PUBLIC_MCP_TOKEN: ENV.NEXT_PUBLIC_MCP_TOKEN,
     NODE_ENV: process.env.NODE_ENV || 'NOT_SET'
   };
 
   const testMCP = async () => {
-    if (!process.env.NEXT_PUBLIC_MCP_URL || process.env.NEXT_PUBLIC_MCP_URL === 'NOT_SET') {
-      setMcpResult({ error: 'MCP URL not configured' });
-      return;
-    }
-
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_MCP_URL}/health`);
+      const response = await fetch(`${ENV.NEXT_PUBLIC_MCP_URL}/health`);
       const data = await response.json();
       setMcpResult(data);
     } catch (error) {

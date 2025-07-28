@@ -11997,7 +11997,8 @@ th .btn-primary:hover {
   font-size: 13px;
   color: var(--text-secondary);
   font-weight: 400;
-  margin-top: -2px;
+  margin-top: 2px;
+  display: block;
 }
 
 /* Position Modal - Título e Subtítulo Específicos */
@@ -14020,6 +14021,439 @@ th .btn-primary:hover {
   width: 100% !important;
   margin-top: 16px !important;
   margin-bottom: 0 !important;
+}
+
+/* Field Values - Valores exibidos em campos read-only */
+.field-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: 10px 0;
+  line-height: 1.4;
+}
+
+.field-value.primary-value {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.field-value.monospace {
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Badges dentro de field-value */
+.field-value .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Section Header e Title para position-modal */
+.position-modal .section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.position-modal .section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+/* Horizontal fields layout */
+.position-modal .horizontal-fields {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.position-modal .horizontal-fields .field-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.position-modal .horizontal-fields .field-group.flex-1 {
+  flex: 1;
+}
+
+.position-modal .horizontal-fields .field-group.flex-2 {
+  flex: 2;
+}
+
+/* Modal de Análise Detalhada - Estilos específicos */
+.position-modal .form-section {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.position-modal .form-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Grid de Cards de Análise */
+.position-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* Cards de Análise */
+.analysis-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.analysis-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-card.primary-card {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-hover) 100%);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Métricas dentro dos cards */
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.metric-row:last-child {
+  border-bottom: none;
+}
+
+.metric-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Comparação de Preços */
+.price-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.price-item {
+  text-align: center;
+  flex: 1;
+}
+
+.price-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.price-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.price-value.current {
+  color: var(--color-primary);
+}
+
+.price-divider {
+  padding: 0 16px;
+  color: var(--text-secondary);
+}
+
+.price-variation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: 6px;
+}
+
+.variation-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.variation-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.variation-value.positive {
+  color: var(--color-positive);
+}
+
+.variation-value.negative {
+  color: var(--color-negative);
+}
+
+/* Card de P&L Análise */
+.pnl-analysis-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.pnl-main {
+  padding: 24px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-hover) 100%);
+}
+
+.pnl-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pnl-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.pnl-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pnl-status.profit {
+  background: var(--color-positive);
+  color: white;
+}
+
+.pnl-status.loss {
+  background: var(--color-negative);
+  color: white;
+}
+
+.pnl-value-section {
+  text-align: center;
+}
+
+.pnl-amount {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.pnl-percentage {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Grid de Métricas do P&L */
+.pnl-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-color);
+}
+
+.pnl-metrics .metric-card {
+  padding: 20px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: background 0.2s ease;
+}
+
+.pnl-metrics .metric-card:last-child {
+  border-right: none;
+}
+
+.pnl-metrics .metric-card:hover {
+  background: var(--bg-hover);
+}
+
+.metric-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.metric-info {
+  flex: 1;
+}
+
+.metric-title {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.metric-info .metric-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Seção da Tabela de Posições */
+.positions-table-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.table-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Ajustes para badges */
+.badge-compra,
+.badge-success {
+  background-color: var(--color-positive);
+  color: white;
+}
+
+.badge-venda,
+.badge-danger {
+  background-color: var(--color-negative);
+  color: white;
+}
+
+/* Tabela dentro do modal */
+.position-modal .data-table {
+  font-size: 13px;
+}
+
+.position-modal .data-table th {
+  font-size: 12px;
+  padding: 10px 12px;
+}
+
+.position-modal .data-table td {
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .position-analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .pnl-metrics {
+    grid-template-columns: 1fr;
+  }
+  
+  .pnl-metrics .metric-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .pnl-metrics .metric-card:last-child {
+    border-bottom: none;
+  }
+  
+  .price-comparison {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .price-divider {
+    transform: rotate(90deg);
+  }
 }
 
 /* Seção de resumo da posição compacta */

@@ -1,110 +1,229 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface User {
   id: string;
-  name: string;
+  nome: string;
   cpf: string;
-  address: string;
-  phone: string;
+  endereco: string;
+  telefone: string;
   email: string;
-  corretoras: string[]; // IDs das corretoras vinculadas
+  is_active: boolean;
+  created_at: string;
 }
 
 interface Brokerage {
   id: string;
-  name: string;
+  nome: string;
   cnpj: string;
 }
 
+interface UserBrokerage {
+  user_id: string;
+  brokerage_id: string;
+  brokerages?: Brokerage;
+}
+
 export default function UserManagement() {
-  // Estados vazios - dados virão do contexto/API
-  const [brokerages] = useState<Brokerage[]>([]);
-
+  const { user: currentUser } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
-
-  // Função para obter nomes das corretoras por IDs
-  const getBrokerageNames = (brokerageIds: string[]): string => {
-    return brokerageIds
-      .map(id => brokerages.find(b => b.id === id)?.name)
-      .filter(Boolean)
-      .join(', ');
-  };
-
+  const [brokerages, setBrokerages] = useState<Brokerage[]>([]);
+  const [userBrokerages, setUserBrokerages] = useState<UserBrokerage[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [selectedBrokerages, setSelectedBrokerages] = useState<string[]>([]);
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     cpf: '',
-    address: '',
-    phone: '',
+    endereco: '',
+    telefone: '',
     email: ''
   });
 
+  // Carregar dados do Supabase
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      
+      // Carregar usuários
+      const { data: usersData, error: usersError } = await supabase
+        .from('users')
+        .select('*')
+        .order('nome');
+      
+      if (usersError) throw usersError;
+      
+      // Carregar corretoras
+      const { data: brokeragesData, error: brokeragesError } = await supabase
+        .from('brokerages')
+        .select('*')
+        .order('nome');
+      
+      if (brokeragesError) throw brokeragesError;
+      
+      // Carregar vinculações
+      const { data: userBrokeragesData, error: ubError } = await supabase
+        .from('user_brokerages')
+        .select('*, brokerages(nome)')
+        .order('user_id');
+      
+      if (ubError) throw ubError;
+      
+      setUsers(usersData || []);
+      setBrokerages(brokeragesData || []);
+      setUserBrokerages(userBrokeragesData || []);
+      
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Obter corretoras de um usuário
+  const getUserBrokerages = (userId: string): string => {
+    const userBrokeragesList = userBrokerages
+      .filter(ub => ub.user_id === userId)
+      .map(ub => ub.brokerages?.nome)
+      .filter(Boolean);
+    
+    return userBrokeragesList.length > 0 ? userBrokeragesList.join(', ') : 'Nenhuma';
+  };
+
   const handleAddUser = () => {
-    // Disparar evento para abrir modal de usuário
-    const event = new CustomEvent('openUserRegistrationModal');
-    window.dispatchEvent(event);
+    setEditingUser(null);
+    setFormData({
+      nome: '',
+      cpf: '',
+      endereco: '',
+      telefone: '',
+      email: ''
+    });
+    setSelectedBrokerages([]);
+    setIsModalOpen(true);
   };
 
   const handleEditUser = (user: User) => {
     setEditingUser(user);
     setFormData({
-      name: user.name,
+      nome: user.nome,
       cpf: user.cpf,
-      address: user.address,
-      phone: user.phone,
+      endereco: user.endereco,
+      telefone: user.telefone,
       email: user.email
     });
+    
+    // Carregar corretoras vinculadas
+    const userBrokerageIds = userBrokerages
+      .filter(ub => ub.user_id === user.id)
+      .map(ub => ub.brokerage_id);
+    setSelectedBrokerages(userBrokerageIds);
+    
     setIsModalOpen(true);
   };
 
-  const handleDeleteUser = (id: string) => {
+  const handleDeleteUser = async (id: string) => {
     const user = users.find(u => u.id === id);
     if (!user) return;
 
-    if (confirm(`Deseja excluir o usuário "${user.name}"?\n\nCPF: ${user.cpf}\nEmail: ${user.email}\n\nEsta ação não pode ser desfeita.`)) {
-      setUsers(prev => prev.filter(user => user.id !== id));
-      
-      // Feedback visual
-      const toast = document.createElement('div');
-      toast.textContent = `✅ Usuário "${user.name}" excluído com sucesso!`;
-      toast.style.cssText = `
-        position: fixed; top: 70px; right: 20px; z-index: 10002;
-        background: var(--color-negative); color: white; padding: 12px 20px;
-        border-radius: 8px; font-weight: 500; animation: slideIn 0.3s ease-out;
-      `;
-      document.body.appendChild(toast);
-      
-      setTimeout(() => {
-        toast.style.animation = 'fadeOut 0.3s ease-out';
-        setTimeout(() => document.body.removeChild(toast), 300);
-      }, 3000);
+    if (confirm(`Deseja excluir o usuário "${user.nome}"?\n\nCPF: ${user.cpf}\nEmail: ${user.email}\n\nEsta ação não pode ser desfeita.`)) {
+      try {
+        const { error } = await supabase
+          .from('users')
+          .delete()
+          .eq('id', id);
+        
+        if (error) throw error;
+        
+        // Recarregar dados
+        await loadData();
+        
+        // Feedback visual
+        showToast(`Usuário "${user.nome}" excluído com sucesso!`, 'success');
+      } catch (error) {
+        console.error('Erro ao excluir usuário:', error);
+        showToast('Erro ao excluir usuário', 'error');
+      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (editingUser) {
-      // Editar usuário existente
-      setUsers(users.map(user => 
-        user.id === editingUser.id 
-          ? { ...editingUser, ...formData }
-          : user
-      ));
-    } else {
-      // Adicionar novo usuário
-      const newUser: User = {
-        id: Date.now().toString(),
-        ...formData
-      };
-      setUsers([...users, newUser]);
+    try {
+      if (editingUser) {
+        // Editar usuário existente
+        const { error } = await supabase
+          .from('users')
+          .update(formData)
+          .eq('id', editingUser.id);
+        
+        if (error) throw error;
+        
+        // Atualizar corretoras vinculadas
+        await updateUserBrokerages(editingUser.id);
+        
+      } else {
+        // Adicionar novo usuário
+        const { data: newUser, error } = await supabase
+          .from('users')
+          .insert([{
+            ...formData,
+            is_active: true
+          }])
+          .select()
+          .single();
+        
+        if (error) throw error;
+        
+        // Vincular corretoras
+        if (newUser && selectedBrokerages.length > 0) {
+          await updateUserBrokerages(newUser.id);
+        }
+      }
+      
+      // Recarregar dados
+      await loadData();
+      setIsModalOpen(false);
+      showToast(editingUser ? 'Usuário atualizado com sucesso!' : 'Usuário criado com sucesso!', 'success');
+      
+    } catch (error) {
+      console.error('Erro ao salvar usuário:', error);
+      showToast('Erro ao salvar usuário', 'error');
     }
-    
-    setIsModalOpen(false);
-    setEditingUser(null);
+  };
+
+  const updateUserBrokerages = async (userId: string) => {
+    try {
+      // Remover vinculações antigas
+      await supabase
+        .from('user_brokerages')
+        .delete()
+        .eq('user_id', userId);
+      
+      // Adicionar novas vinculações
+      if (selectedBrokerages.length > 0) {
+        const newBrokerages = selectedBrokerages.map(brokerageId => ({
+          user_id: userId,
+          brokerage_id: brokerageId,
+          role: 'trader'
+        }));
+        
+        await supabase
+          .from('user_brokerages')
+          .insert(newBrokerages);
+      }
+    } catch (error) {
+      console.error('Erro ao atualizar corretoras:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,13 +231,48 @@ export default function UserManagement() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleBrokerageToggle = (brokerageId: string) => {
+    setSelectedBrokerages(prev => 
+      prev.includes(brokerageId)
+        ? prev.filter(id => id !== brokerageId)
+        : [...prev, brokerageId]
+    );
+  };
+
+  const showToast = (message: string, type: 'success' | 'error') => {
+    const toast = document.createElement('div');
+    toast.textContent = `${type === 'success' ? '✅' : '❌'} ${message}`;
+    toast.style.cssText = `
+      position: fixed; top: 70px; right: 20px; z-index: 10002;
+      background: var(--color-${type === 'success' ? 'positive' : 'negative'}); 
+      color: white; padding: 12px 20px;
+      border-radius: 8px; font-weight: 500; animation: slideIn 0.3s ease-out;
+    `;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.animation = 'fadeOut 0.3s ease-out';
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 3000);
+  };
+
+  if (loading) {
+    return (
+      <div className="card">
+        <div className="loading-container">
+          <p>Carregando usuários...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="card">
       <div className="settings-header">
-        <div className="settings-header-main">
-          <h2>Gerenciamento de Usuários</h2>
-          <p className="settings-subtitle">
-            Cadastre e gerencie usuários que terão acesso ao sistema
+        <div className="settings-header-main" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <h2 style={{ margin: 0 }}>Gerenciamento de Usuários</h2>
+          <p className="settings-subtitle" style={{ textAlign: 'left', margin: 0 }}>
+            Total de {users.length} usuários cadastrados
           </p>
         </div>
         <div className="settings-actions">
@@ -144,8 +298,7 @@ export default function UserManagement() {
               <th>Nome</th>
               <th>CPF</th>
               <th>Endereço</th>
-              <th>Telefone</th>
-              <th>Email</th>
+              <th>Contato</th>
               <th>Corretoras</th>
               <th>Ações</th>
             </tr>
@@ -153,12 +306,16 @@ export default function UserManagement() {
           <tbody>
             {users.map(user => (
               <tr key={user.id}>
-                <td><strong>{user.name}</strong></td>
+                <td><strong>{user.nome}</strong></td>
                 <td>{user.cpf}</td>
-                <td>{user.address}</td>
-                <td>{user.phone}</td>
-                <td>{user.email}</td>
-                <td>{getBrokerageNames(user.corretoras)}</td>
+                <td>{user.endereco}</td>
+                <td>
+                  <div style={{ lineHeight: '1.4' }}>
+                    <div>{user.telefone}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{user.email}</div>
+                  </div>
+                </td>
+                <td>{getUserBrokerages(user.id)}</td>
                 <td>
                   <div className="action-buttons">
                     <button 
@@ -174,6 +331,7 @@ export default function UserManagement() {
                     <button 
                       className="btn btn-danger btn-sm"
                       onClick={() => handleDeleteUser(user.id)}
+                      disabled={user.id === currentUser?.id}
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <polyline points="3,6 5,6 21,6"></polyline>
@@ -192,94 +350,142 @@ export default function UserManagement() {
       {/* Modal para adicionar/editar usuário */}
       {isModalOpen && (
         <div className="modal-overlay">
-          <div className="modal">
+          <div className="modal position-modal">
+            {/* Header */}
             <div className="modal-header">
-              <h3>{editingUser ? 'Editar Usuário' : 'Adicionar Usuário'}</h3>
-              <button className="modal-close" onClick={() => setIsModalOpen(false)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="modal-title-section">
+                <h2 className="modal-title">{editingUser ? 'Editar Usuário' : 'Novo Usuário'}</h2>
+                <span className="modal-subtitle">
+                  {editingUser ? `Modificar dados de ${editingUser.nome}` : 'Cadastrar novo usuário no sistema'}
+                </span>
+              </div>
+              <button className="modal-close" onClick={() => setIsModalOpen(false)} type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               </button>
             </div>
             
+            {/* Body */}
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Nome Completo</label>
+                {/* Campos principais horizontais */}
+                <div className="form-row horizontal-close-fields">
+                  <div className="field-group flex-1">
+                    <label className="field-label">Nome Completo</label>
                     <input
                       type="text"
-                      className="form-control"
-                      name="name"
-                      value={formData.name}
+                      className="form-input"
+                      name="nome"
+                      value={formData.nome}
                       onChange={handleChange}
+                      placeholder="Digite o nome completo"
                       required
                     />
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">CPF</label>
+                  <div className="field-group flex-1">
+                    <label className="field-label">CPF</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-input"
                       name="cpf"
                       value={formData.cpf}
                       onChange={handleChange}
+                      placeholder="000.000.000-00"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Endereço Completo</label>
+                {/* Campo endereço em linha separada */}
+                <div className="field-group full-width-field">
+                  <label className="field-label">Endereço Completo</label>
                   <input
                     type="text"
-                    className="form-control"
-                    name="address"
-                    value={formData.address}
+                    className="form-input"
+                    name="endereco"
+                    value={formData.endereco}
                     onChange={handleChange}
+                    placeholder="Rua, número, complemento, bairro, cidade - estado"
                     required
                   />
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Telefone</label>
+                {/* Contato em linha horizontal */}
+                <div className="form-row horizontal-close-fields">
+                  <div className="field-group flex-1">
+                    <label className="field-label">Telefone</label>
                     <input
                       type="tel"
-                      className="form-control"
-                      name="phone"
-                      value={formData.phone}
+                      className="form-input"
+                      name="telefone"
+                      value={formData.telefone}
                       onChange={handleChange}
+                      placeholder="(00) 00000-0000"
                       required
                     />
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">Email</label>
+                  <div className="field-group flex-1">
+                    <label className="field-label">Email</label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-input"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      placeholder="email@exemplo.com"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="modal-actions">
-                  <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>
-                    Cancelar
-                  </button>
-                  <button type="submit" className="btn btn-primary">
-                    {editingUser ? 'Salvar Alterações' : 'Adicionar Usuário'}
-                  </button>
+                {/* Corretoras Vinculadas */}
+                <div className="field-group full-width-field">
+                  <label className="field-label">Corretoras Vinculadas</label>
+                  <div className="checkbox-group" style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                    gap: '12px',
+                    marginTop: '8px'
+                  }}>
+                    {brokerages.map(brokerage => (
+                      <label key={brokerage.id} className="checkbox-label" style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: '8px 12px',
+                        backgroundColor: 'var(--bg-secondary)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}>
+                        <input
+                          type="checkbox"
+                          checked={selectedBrokerages.includes(brokerage.id)}
+                          onChange={() => handleBrokerageToggle(brokerage.id)}
+                          style={{ marginRight: '8px' }}
+                        />
+                        <span style={{ fontSize: '13px' }}>{brokerage.nome}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </form>
+            </div>
+
+            {/* Footer */}
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>
+                Cancelar
+              </button>
+              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+                {editingUser ? 'Salvar Alterações' : 'Adicionar Usuário'}
+              </button>
             </div>
           </div>
         </div>
       )}
     </div>
   );
-} 
+}

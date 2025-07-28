@@ -5,6 +5,7 @@ import { Position, Option, Transaction, User, Brokerage } from '@/types';
 import { supabaseService } from '@/services/supabaseService';
 import { supabase } from '@/lib/supabase'; // Corrigir import
 import { createLocalDate, correctDateIfNeeded } from '@/utils/dateUtils';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SupabaseDataContextType {
   // Posições
@@ -73,6 +74,8 @@ export const useSupabaseData = () => {
 };
 
 export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
+  const { user: authUser } = useAuth();
+  
   // Estados principais - carregados do Supabase
   const [positions, setPositions] = useState<Position[]>([]);
   const [options, setOptions] = useState<Option[]>([]);
@@ -85,6 +88,7 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   // Estados de controle
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastFetch, setLastFetch] = useState<number>(0);
 
   // Função para limpar posições órfãs (sem transações correspondentes)
   const cleanOrphanedPositions = async () => {
@@ -328,44 +332,78 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Função para carregar dados do Supabase
-  const fetchData = async () => {
+  const fetchData = async (forceRefresh = false) => {
+    // Cache de 30 segundos para evitar recarregamentos desnecessários
+    const now = Date.now();
+    if (!forceRefresh && lastFetch && (now - lastFetch) < 30000) {
+      console.log('📦 Usando dados em cache (menos de 30s desde última busca)');
+      setLoading(false);
+      return;
+    }
+    
     setLoading(true);
     setError(null);
     
     try {
       console.log('📡 Carregando dados do Supabase...');
+      const startTime = Date.now();
       
-      // Carregar todos os dados em paralelo
+      // Carregar dados críticos primeiro (usuários e corretoras)
+      const [loadedUsers, loadedBrokerages] = await Promise.all([
+        supabaseService.getUsers(),
+        supabaseService.getBrokerages()
+      ]);
+      
+      setUsers(loadedUsers);
+      setBrokerages(loadedBrokerages);
+      
+      // Depois carregar dados de trading em paralelo
       const [
         loadedPositions,
         loadedOptions,
-        loadedTransactions,
-        loadedUsers,
-        loadedBrokerages
+        loadedTransactions
       ] = await Promise.all([
         supabaseService.getPositions(),
         supabaseService.getOptions(),
-        supabaseService.getTransactions(),
-        supabaseService.getUsers(),
-        supabaseService.getBrokerages()
+        supabaseService.getTransactions()
       ]);
 
       setPositions(loadedPositions);
       setOptions(loadedOptions);
       setTransactions(loadedTransactions);
-      setUsers(loadedUsers);
-      setBrokerages(loadedBrokerages);
 
-      // Sincronizar contadores de ID com os dados existentes
-      await supabaseService.syncTransactionIdCounter();
+      // Sincronizar contadores de ID em background (não bloquear)
+      supabaseService.syncTransactionIdCounter().catch(err => 
+        console.warn('⚠️ Erro ao sincronizar contador de IDs:', err)
+      );
+      
+      const loadTime = Date.now() - startTime;
+      console.log(`✅ Dados carregados em ${loadTime}ms`);
+      setLastFetch(Date.now());
 
-      // Definir usuário e corretora padrão se disponível
-      if (loadedUsers.length > 0 && !currentUser) {
-        setCurrentUser(loadedUsers[0]);
+      // Definir usuário atual baseado no usuário autenticado
+      if (authUser && loadedUsers.length > 0) {
+        const loggedUser = loadedUsers.find(u => u.id === authUser.id);
+        if (loggedUser && (!currentUser || currentUser.id !== loggedUser.id)) {
+          setCurrentUser(loggedUser);
+          console.log('👤 Usuário atual definido:', loggedUser.nome);
+        }
       }
       
+      // Definir corretora padrão se disponível e ainda não selecionada
       if (loadedBrokerages.length > 0 && !selectedBrokerage) {
-        setSelectedBrokerage(loadedBrokerages[0]);
+        // Verificar se há uma corretora salva no localStorage
+        const savedBrokerageId = typeof window !== 'undefined' ? localStorage.getItem('selectedBrokerageId') : null;
+        if (savedBrokerageId) {
+          const savedBrokerage = loadedBrokerages.find(b => b.id === savedBrokerageId);
+          if (savedBrokerage) {
+            setSelectedBrokerage(savedBrokerage);
+          } else {
+            setSelectedBrokerage(loadedBrokerages[0]);
+          }
+        } else {
+          setSelectedBrokerage(loadedBrokerages[0]);
+        }
       }
 
       console.log('✅ Dados carregados do Supabase:', {
@@ -386,8 +424,15 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
         );
       }, 5000); // Executar após 5 segundos para dar tempo da aplicação carregar completamente
       
-    } catch (err) {
+    } catch (err: any) {
       console.error('❌ Erro ao carregar dados do Supabase:', err);
+      console.error('Detalhes do erro:', {
+        message: err?.message,
+        code: err?.code,
+        details: err?.details,
+        hint: err?.hint,
+        stack: err?.stack
+      });
       setError(err instanceof Error ? err.message : 'Erro desconhecido');
     } finally {
       setLoading(false);
@@ -398,6 +443,17 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     fetchData();
   }, []);
+  
+  // Atualizar currentUser quando authUser mudar
+  useEffect(() => {
+    if (authUser && users.length > 0) {
+      const loggedUser = users.find(u => u.id === authUser.id);
+      if (loggedUser && (!currentUser || currentUser.id !== loggedUser.id)) {
+        setCurrentUser(loggedUser);
+        console.log('👤 Usuário atual atualizado:', loggedUser.nome);
+      }
+    }
+  }, [authUser, users]);
 
   // ================================
   // FUNÇÕES PARA POSIÇÕES

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { UserProvider } from '@/contexts/UserContext';
 import { HybridDataProvider } from '@/contexts/HybridDataContext';
-import OnboardingCheck from '@/components/Layout/OnboardingCheck';
 
 // Remover imports dos arquivos que foram deletados
 // if (process.env.NODE_ENV === 'development') {
@@ -37,12 +37,13 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <UserProvider>
-          <HybridDataProvider>
-            {children}
-            <OnboardingCheck />
-          </HybridDataProvider>
-        </UserProvider>
+        <AuthProvider>
+          <UserProvider>
+            <HybridDataProvider>
+              {children}
+            </HybridDataProvider>
+          </UserProvider>
+        </AuthProvider>
       </body>
     </html>
   );

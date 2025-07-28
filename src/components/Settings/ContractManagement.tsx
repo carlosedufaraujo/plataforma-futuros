@@ -359,11 +359,10 @@ export default function ContractManagement() {
   return (
     <div className="card">
       <div className="settings-header">
-        <div className="settings-header-main">
-          <h2>Gerenciamento de Contratos</h2>
-          <p className="settings-subtitle">
-            Criar, editar e gerenciar contratos futuros disponíveis para trading
-            {backendType === 'supabase' && <span className="backend-badge">Supabase</span>}
+        <div className="settings-header-main" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <h2 style={{ margin: 0 }}>Gerenciamento de Contratos</h2>
+          <p className="settings-subtitle" style={{ textAlign: 'left', margin: 0 }}>
+            Total de {contracts.length} contratos cadastrados
           </p>
         </div>
         <div className="settings-actions">
@@ -483,7 +482,7 @@ export default function ContractManagement() {
       {/* Modal para criar/editar contrato */}
       {showModal && (
         <div className="modal-overlay">
-          <div className="modal contract-modal">
+          <div className="modal position-modal" style={{ width: '600px' }}>
             {/* Header */}
             <div className="modal-header">
               <div className="modal-title-section">

@@ -1188,21 +1188,19 @@ export default function PosicoesPage({ selectedPeriod }: PosicoesPageProps) {
       {/* Modal de Detalhes das Posições */}
       {isDetailsModalOpen && selectedConsolidated && (
         <div className="modal-overlay">
-          <div className="modal position-details-modal">
+          <div className="modal position-modal" style={{ width: '800px', maxWidth: '95vw' }}>
             {/* Header */}
             <div className="modal-header">
               <div className="modal-title-section">
                 <h2 className="modal-title">Análise Detalhada da Posição</h2>
-                <div className="modal-subtitle">
-                  <div className="asset-info">
-                    <span className="asset-code">{selectedConsolidated.contract}</span>
-                    <span className="asset-name">{selectedConsolidated.product}</span>
-                  </div>
-                </div>
+                <span className="modal-subtitle">
+                  {selectedConsolidated.contract} - {selectedConsolidated.product}
+                </span>
               </div>
               <button 
                 className="modal-close" 
                 onClick={() => setIsDetailsModalOpen(false)}
+                type="button"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1213,93 +1211,166 @@ export default function PosicoesPage({ selectedPeriod }: PosicoesPageProps) {
 
             {/* Body */}
             <div className="modal-body">
-              {/* Métricas Financeiras */}
-              <div className="financial-metrics">
-                <div className="metrics-grid">
-                  <div className="metric-card">
-                    <div className="metric-label">Posições Ativas</div>
-                    <div className="metric-value">{selectedConsolidated.positions.length}</div>
+              {/* Cards de Resumo Superior */}
+              <div className="position-analysis-grid">
+                {/* Card Principal - Resumo da Posição */}
+                <div className="analysis-card primary-card">
+                  <div className="card-header">
+                    <div className="card-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M3 3h18v18H3zM3 9h18M9 21V9"></path>
+                      </svg>
+                    </div>
+                    <h3 className="card-title">Resumo da Posição</h3>
                   </div>
-                  
-                  <div className="metric-card">
-                    <div className="metric-label">Quantidade Líquida</div>
-                    <div className="metric-value">
-                      {selectedConsolidated.netQuantity}
-                      <span className={`direction-badge ${selectedConsolidated.netDirection.toLowerCase()}`}>
+                  <div className="card-content">
+                    <div className="metric-row">
+                      <span className="metric-label">Direção</span>
+                      <span className={`badge badge-${selectedConsolidated.netDirection.toLowerCase()}`}>
                         {selectedConsolidated.netDirection}
                       </span>
                     </div>
-                  </div>
-                  
-                  <div className="metric-card">
-                    <div className="metric-label">Preço Médio de Entrada</div>
-                    <div className="metric-value">
-                      {selectedConsolidated.weightedEntryPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    <div className="metric-row">
+                      <span className="metric-label">Quantidade Líquida</span>
+                      <span className="metric-value">{Math.abs(selectedConsolidated.netQuantity)} contratos</span>
                     </div>
-                  </div>
-                  
-                  <div className="metric-card">
-                    <div className="metric-label">Preço Atual</div>
-                    <div className="metric-value">
-                      {selectedConsolidated.currentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    <div className="metric-row">
+                      <span className="metric-label">Posições Ativas</span>
+                      <span className="metric-value">{selectedConsolidated.positions.length}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Análise de Resultado */}
-                <div className="pnl-analysis">
-                  {(() => {
-                    const contractSize = selectedConsolidated.contract.startsWith('BGI') ? 330 : 450;
-                    const priceDiff = selectedConsolidated.currentPrice - selectedConsolidated.weightedEntryPrice;
-                    const multiplier = selectedConsolidated.netDirection === 'COMPRA' ? 1 : -1;
-                    const unrealizedPnL = multiplier * priceDiff * Math.abs(selectedConsolidated.netQuantity) * contractSize;
-                    const pnlPercentage = (priceDiff / selectedConsolidated.weightedEntryPrice) * 100 * multiplier;
-                    const totalExposure = selectedConsolidated.weightedEntryPrice * Math.abs(selectedConsolidated.netQuantity) * contractSize;
-                    
-                    return (
-                      <>
-                        <div className="pnl-card">
-                          <div className="pnl-header">
-                            <h4 className="pnl-title">Resultado Não Realizado</h4>
-                          </div>
-                          <div className="pnl-content">
-                            <div className={`pnl-amount ${unrealizedPnL >= 0 ? 'positive' : 'negative'}`}>
-                              {unrealizedPnL < 0 ? '-' : ''}
-                              R$ {Math.abs(unrealizedPnL).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                            </div>
-                            <div className={`pnl-percentage ${pnlPercentage >= 0 ? 'positive' : 'negative'}`}>
-                              {pnlPercentage < 0 ? '-' : ''}{Math.abs(pnlPercentage).toFixed(2)}%
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="exposure-metrics">
-                          <div className="exposure-item">
-                            <span className="exposure-label">Exposição Total</span>
-                            <span className="exposure-value">
-                              {totalExposure.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                {/* Card de Preços */}
+                <div className="analysis-card">
+                  <div className="card-header">
+                    <div className="card-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"></polyline>
+                        <polyline points="16,7 22,7 22,13"></polyline>
+                      </svg>
+                    </div>
+                    <h3 className="card-title">Análise de Preços</h3>
+                  </div>
+                  <div className="card-content">
+                    <div className="price-comparison">
+                      <div className="price-item">
+                        <span className="price-label">Preço Médio</span>
+                        <span className="price-value">
+                          {selectedConsolidated.weightedEntryPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        </span>
+                      </div>
+                      <div className="price-divider">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                      </div>
+                      <div className="price-item">
+                        <span className="price-label">Preço Atual</span>
+                        <span className="price-value current">
+                          {selectedConsolidated.currentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="price-variation">
+                      {(() => {
+                        const variation = selectedConsolidated.currentPrice - selectedConsolidated.weightedEntryPrice;
+                        const percentage = (variation / selectedConsolidated.weightedEntryPrice) * 100;
+                        return (
+                          <>
+                            <span className="variation-label">Variação</span>
+                            <span className={`variation-value ${variation >= 0 ? 'positive' : 'negative'}`}>
+                              {variation >= 0 ? '+' : ''}{percentage.toFixed(2)}%
                             </span>
-                          </div>
-                          <div className="exposure-item">
-                            <span className="exposure-label">Variação por Ponto</span>
-                            <span className="exposure-value">
-                              {(Math.abs(selectedConsolidated.netQuantity) * contractSize).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                            </span>
-                          </div>
-                          <div className="exposure-item">
-                            <span className="exposure-label">Tamanho do Contrato</span>
-                            <span className="exposure-value">{contractSize.toLocaleString()} kg</span>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })()}
+                          </>
+                        );
+                      })()}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Tabela de Posições Individuais */}
-              <div className="positions-details">
-                <h3 className="section-title">Histórico de Posições Individuais</h3>
+              {/* Card de P&L Principal */}
+              {(() => {
+                const contractSize = selectedConsolidated.contract.startsWith('BGI') ? 330 : 450;
+                const priceDiff = selectedConsolidated.currentPrice - selectedConsolidated.weightedEntryPrice;
+                const multiplier = selectedConsolidated.netDirection === 'COMPRA' ? 1 : -1;
+                const unrealizedPnL = multiplier * priceDiff * Math.abs(selectedConsolidated.netQuantity) * contractSize;
+                const pnlPercentage = (priceDiff / selectedConsolidated.weightedEntryPrice) * 100 * multiplier;
+                const totalExposure = selectedConsolidated.weightedEntryPrice * Math.abs(selectedConsolidated.netQuantity) * contractSize;
+                
+                return (
+                  <div className="pnl-analysis-card">
+                    <div className="pnl-main">
+                      <div className="pnl-header-section">
+                        <h3 className="pnl-title">Resultado Não Realizado</h3>
+                        <div className={`pnl-status ${unrealizedPnL >= 0 ? 'profit' : 'loss'}`}>
+                          {unrealizedPnL >= 0 ? 'Lucro' : 'Prejuízo'}
+                        </div>
+                      </div>
+                      <div className="pnl-value-section">
+                        <div className={`pnl-amount ${unrealizedPnL >= 0 ? 'positive' : 'negative'}`}>
+                          {unrealizedPnL >= 0 ? '+' : '-'}
+                          R$ {Math.abs(unrealizedPnL).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </div>
+                        <div className={`pnl-percentage ${pnlPercentage >= 0 ? 'positive' : 'negative'}`}>
+                          {pnlPercentage >= 0 ? '+' : ''}{pnlPercentage.toFixed(2)}%
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="pnl-metrics">
+                      <div className="metric-card">
+                        <div className="metric-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                          </svg>
+                        </div>
+                        <div className="metric-info">
+                          <span className="metric-title">Exposição Total</span>
+                          <span className="metric-value">
+                            {totalExposure.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="metric-card">
+                        <div className="metric-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                          </svg>
+                        </div>
+                        <div className="metric-info">
+                          <span className="metric-title">Variação por Ponto</span>
+                          <span className="metric-value">
+                            {(Math.abs(selectedConsolidated.netQuantity) * contractSize).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="metric-card">
+                        <div className="metric-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                          </svg>
+                        </div>
+                        <div className="metric-info">
+                          <span className="metric-title">Tamanho do Contrato</span>
+                          <span className="metric-value">{contractSize} {selectedConsolidated.contract.startsWith('BGI') ? 'arrobas' : 'sacos'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Seção: Histórico de Posições */}
+              <div className="positions-table-section">
+                <div className="table-header">
+                  <h3 className="table-title">Posições Individuais</h3>
+                  <span className="table-subtitle">{selectedConsolidated.positions.length} posições ativas</span>
+                </div>
                 <DataTable
                   headers={['ID', 'Data/Hora', 'Direção', 'Quantidade', 'Preço de Entrada', 'P&L Individual', 'Status']}
                   data={selectedConsolidated.positions
@@ -1353,26 +1424,21 @@ export default function PosicoesPage({ selectedPeriod }: PosicoesPageProps) {
             {/* Footer */}
             <div className="modal-footer">
               <button 
+                type="button"
                 className="btn btn-secondary" 
                 onClick={() => setIsDetailsModalOpen(false)}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
                 Fechar
               </button>
               <button 
+                type="button"
                 className="btn btn-primary"
                 onClick={() => {
                   setIsDetailsModalOpen(false);
                   handleEditConsolidatedPosition(selectedConsolidated);
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                </svg>
-                Editar Posições
+                Gerenciar Posições
               </button>
             </div>
           </div>

@@ -5,11 +5,14 @@ import ContractManagement from '@/components/Settings/ContractManagement';
 import UserManagement from '@/components/Settings/UserManagement';
 import BrokerageManagement from '@/components/Settings/BrokerageManagement';
 import TabNavigation from '@/components/Common/TabNavigation';
+import AdminDashboard from '@/components/Admin/AdminDashboard';
+import { useAuth } from '@/contexts/AuthContext';
 
-type SettingsTabType = 'usuarios' | 'corretoras' | 'api' | 'referencias' | 'contratos';
+type SettingsTabType = 'admin' | 'usuarios' | 'corretoras' | 'api' | 'referencias' | 'contratos';
 
 export default function ConfiguracoesPage() {
-  const [activeTab, setActiveTab] = useState<SettingsTabType>('usuarios');
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState<SettingsTabType>(user?.role === 'admin' ? 'admin' : 'usuarios');
 
   const handleTestConnection = () => {
     console.log('Testando conexão...');
@@ -17,6 +20,15 @@ export default function ConfiguracoesPage() {
   };
 
   const tabs = [
+    ...(user?.role === 'admin' ? [{ 
+      id: 'admin' as const, 
+      label: 'Painel Admin',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+        </svg>
+      )
+    }] : []),
     { 
       id: 'usuarios', 
       label: 'Usuários',
@@ -74,6 +86,9 @@ export default function ConfiguracoesPage() {
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'admin':
+        return <AdminDashboard />;
+        
       case 'usuarios':
         return <UserManagement />;
       

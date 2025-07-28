@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, Brokerage } from '@/types';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 interface CurrentUserSession {
   user: User | null;
@@ -42,6 +44,8 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
+  const { user: authUser } = useAuth();
+  
   // Estado inicial vazio - dados virão do localStorage ou backend
   const [currentSession, setCurrentSession] = useState<CurrentUserSession>({
     user: null,
@@ -55,24 +59,42 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // Função para buscar dados do usuário do backend
   const fetchUserData = async () => {
+    if (!authUser) return;
+    
     setLoading(true);
     setError(null);
     
     try {
-      // TODO: Implementar chamadas reais para API
-      // const userRes = await fetch('/api/auth/me');
-      // const brokeragesRes = await fetch('/api/brokerages');
+      // Buscar corretoras associadas ao usuário
+      const { data: userBrokerages, error: ubError } = await supabase
+        .from('user_brokerages')
+        .select('*, brokerages(*)')
+        .eq('user_id', authUser.id);
       
-      console.log('📡 Buscando dados do usuário...');
-      console.log('⚠️  Sistema limpo - aguardando dados reais');
+      if (ubError) throw ubError;
       
-      // Por enquanto, aguardar implementação do backend
-      // setCurrentSession({
-      //   user: await userRes.json(),
-      //   selectedBrokerage: null,
-      //   availableBrokerages: await brokeragesRes.json(),
-      //   lastTransaction: null
-      // });
+      const brokerages = userBrokerages?.map(ub => ub.brokerages).filter(Boolean) || [];
+      
+      // Buscar última transação
+      const { data: lastTx } = await supabase
+        .from('transactions')
+        .select('*')
+        .eq('user_id', authUser.id)
+        .order('date', { ascending: false })
+        .limit(1)
+        .single();
+      
+      setCurrentSession({
+        user: authUser,
+        selectedBrokerage: brokerages[0] || null,
+        availableBrokerages: brokerages,
+        lastTransaction: lastTx || null
+      });
+      
+      console.log('✅ Dados do usuário carregados:', {
+        user: authUser.nome,
+        brokerages: brokerages.length
+      });
       
     } catch (err) {
       setError('Erro ao carregar dados do usuário');
@@ -82,10 +104,20 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
-  // Carregar dados na inicialização
+  // Carregar dados quando o usuário autenticado mudar
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    if (authUser) {
+      setCurrentSession(prev => ({ ...prev, user: authUser }));
+      fetchUserData();
+    } else {
+      setCurrentSession({
+        user: null,
+        selectedBrokerage: null,
+        availableBrokerages: [],
+        lastTransaction: null
+      });
+    }
+  }, [authUser]);
 
   const setCurrentUser = (user: User) => {
     setCurrentSession(prev => ({

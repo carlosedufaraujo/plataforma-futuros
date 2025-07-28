@@ -1,69 +1,32 @@
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/types/database';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// Usar diretamente as variáveis de ambiente
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://kdfevkbwohcajcwrqzor.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkZmV2a2J3b2hjYWpjd3Jxem9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzODcsImV4cCI6MjA2ODg5MTM4N30.4nBjKi3rdpfbYmxeoa8GELdBLq8JY6ym68cJX7jpaus';
 
-// Debug completo das variáveis
-console.log('🔍 DEBUG: Variáveis de ambiente no Cloudflare:');
-console.log('NEXT_PUBLIC_SUPABASE_URL:', supabaseUrl || 'UNDEFINED');
-console.log('NEXT_PUBLIC_SUPABASE_ANON_KEY:', supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'UNDEFINED');
-
-// Validação mais rigorosa
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️ Variáveis do Supabase não configuradas, usando localStorage como fallback');
-  console.log('URL:', supabaseUrl ? '✅ Configurada' : '❌ Não encontrada');
-  console.log('ANON_KEY:', supabaseAnonKey ? '✅ Configurada' : '❌ Não encontrada');
-}
-
-// Verificar se as variáveis não são placeholders
-const isValidUrl = supabaseUrl && supabaseUrl !== 'your_supabase_project_url' && supabaseUrl.includes('supabase.co');
-const isValidKey = supabaseAnonKey && supabaseAnonKey !== 'your_supabase_anon_key' && supabaseAnonKey.startsWith('eyJ');
-
-if (!isValidUrl || !isValidKey) {
-  console.warn('⚠️ Variáveis do Supabase inválidas ou são placeholders');
-}
-
-// Criar cliente apenas se as variáveis forem válidas
-let supabase: any = null;
-let supabaseAdmin: any = null;
-
-if (isValidUrl && isValidKey) {
-  try {
-    supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-      },
-      db: {
-        schema: 'public'
-      },
-      global: {
-        headers: {
-          'X-Client-Info': 'acex-trading-platform'
-        }
-      }
-    });
-
-    // Cliente para operações administrativas (server-side)
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (serviceRoleKey && serviceRoleKey.startsWith('eyJ')) {
-      supabaseAdmin = createClient<Database>(
-        supabaseUrl, 
-        serviceRoleKey,
-        {
-          auth: {
-            autoRefreshToken: false,
-            persistSession: false
-          }
-        }
-      );
-    }
-
-    console.log('✅ Cliente Supabase criado com sucesso');
-  } catch (error) {
-    console.error('❌ Erro ao criar cliente Supabase:', error);
+// Criar cliente com configuração simplificada
+const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
   }
+});
+
+// Cliente admin
+let supabaseAdmin: any = null;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (serviceRoleKey) {
+  supabaseAdmin = createClient<Database>(
+    supabaseUrl, 
+    serviceRoleKey,
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
+    }
+  );
 }
 
 export { supabase, supabaseAdmin };
