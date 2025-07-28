@@ -104,28 +104,43 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (email: string, password: string) => {
     try {
+      console.log('🔑 Tentando fazer login com:', email);
+      
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('❌ Erro no login:', error);
+        throw error;
+      }
+
+      console.log('✅ Login realizado, dados da sessão:', data);
 
       if (data.user) {
         const userData = await fetchUserData(data.user.id);
         if (userData) {
+          console.log('✅ Dados do usuário carregados, redirecionando...');
           setUser(userData);
-          router.push('/');
+          // Aguardar um pouco antes do redirecionamento para garantir que o estado foi atualizado
+          setTimeout(() => {
+            router.push('/');
+          }, 100);
+        } else {
+          throw new Error('Usuário não encontrado no banco de dados');
         }
       }
     } catch (error: any) {
-      console.error('Erro no login:', error);
+      console.error('❌ Erro no login:', error);
       throw error;
     }
   };
 
   const signUp = async (email: string, password: string, userData: Partial<User>) => {
     try {
+      console.log('📝 Tentando criar conta para:', email);
+      
       // 1. Criar conta no Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
@@ -138,7 +153,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
       });
 
-      if (authError) throw authError;
+      if (authError) {
+        console.error('❌ Erro na criação da conta auth:', authError);
+        throw authError;
+      }
+
+      console.log('✅ Conta auth criada:', authData.user?.id);
 
       // 2. Criar registro na tabela users
       if (authData.user) {
@@ -151,19 +171,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             email: userData.email,
             telefone: userData.telefone,
             endereco: userData.endereco,
-            is_active: true
+            is_active: true,
+            role: 'trader',
+            created_at: new Date().toISOString()
           });
 
         if (userError) {
-          // Se falhar, tentar deletar a conta auth criada
-          console.error('Erro ao criar usuário no banco:', userError);
-          throw userError;
+          console.error('❌ Erro ao criar usuário no banco:', userError);
+          // Não tentar deletar a conta auth no cliente - isso requer permissões admin
+          throw new Error(`Erro ao criar perfil do usuário: ${userError.message}`);
         }
 
+        console.log('✅ Usuário criado no banco com sucesso');
         toast.success('Cadastro realizado com sucesso!');
       }
     } catch (error: any) {
-      console.error('Erro no cadastro:', error);
+      console.error('❌ Erro no cadastro:', error);
       throw error;
     }
   };

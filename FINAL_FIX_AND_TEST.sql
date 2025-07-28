@@ -1,0 +1,2 @@
+ERROR:  23514: new row for relation "users" violates check constraint "users_role_check"
+DETAIL:  Failing row contains (7f2dab2b-6772-46a7-9913-28247d0e6485, Angelo Caiado, 222.222.222-22, angelocaiado@rialmaagropecuaria.com.br, null, null, t, 2025-07-28 23:35:46.82244+00, 2025-07-28 23:35:46.82244+00, user).

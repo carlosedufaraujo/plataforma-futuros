@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'react-hot-toast';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { signIn, signUp, user, loading: authLoading } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   
@@ -19,6 +20,31 @@ export default function LoginPage() {
     telefone: '',
     endereco: ''
   });
+
+  // Redirecionar se já estiver logado
+  useEffect(() => {
+    if (!authLoading && user) {
+      console.log('👤 Usuário já logado, redirecionando...');
+      router.push('/');
+    }
+  }, [user, authLoading, router]);
+
+  // Mostrar loading enquanto verifica autenticação
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-primary">
+        <div className="text-center">
+          <div className="spinner mx-auto mb-4"></div>
+          <p className="text-secondary">Verificando autenticação...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Se já estiver logado, não renderizar nada (vai redirecionar)
+  if (user) {
+    return null;
+  }
 
   // Formatar CPF
   const formatCPF = (value: string) => {
@@ -61,53 +87,19 @@ export default function LoginPage() {
 
     try {
       if (isLogin) {
-        // Login
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: formData.email,
-          password: formData.password
-        });
-
-        if (error) throw error;
-
+        // Login usando AuthContext
+        await signIn(formData.email, formData.password);
         toast.success('Login realizado com sucesso!');
-        router.push('/');
       } else {
-        // Registro
-        // 1. Criar conta no Supabase Auth
-        const { data: authData, error: authError } = await supabase.auth.signUp({
+        // Registro usando AuthContext
+        await signUp(formData.email, formData.password, {
+          nome: formData.nome,
+          cpf: formData.cpf.replace(/\D/g, ''),
           email: formData.email,
-          password: formData.password,
-          options: {
-            data: {
-              nome: formData.nome,
-              cpf: formData.cpf
-            }
-          }
+          telefone: formData.telefone,
+          endereco: formData.endereco
         });
-
-        if (authError) throw authError;
-
-        // 2. Criar registro na tabela users
-        if (authData.user) {
-          const { error: userError } = await supabase
-            .from('users')
-            .insert({
-              id: authData.user.id,
-              nome: formData.nome,
-              cpf: formData.cpf.replace(/\D/g, ''),
-              email: formData.email,
-              telefone: formData.telefone,
-              endereco: formData.endereco
-            });
-
-          if (userError) {
-            console.error('Erro ao criar usuário:', userError);
-            // Se falhar, deletar a conta auth criada
-            await supabase.auth.admin.deleteUser(authData.user.id);
-            throw userError;
-          }
-        }
-
+        
         toast.success('Cadastro realizado com sucesso! Faça login para continuar.');
         setIsLogin(true);
         setFormData({
