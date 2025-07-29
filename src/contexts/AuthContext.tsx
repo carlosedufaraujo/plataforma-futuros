@@ -25,6 +25,22 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Função helper para query com timeout
+const queryUserWithTimeout = async (userId: string, timeoutMs = 3000) => {
+  console.log(`🔍 [AUTH] Buscando usuário ${userId} com timeout de ${timeoutMs}ms...`);
+  
+  return Promise.race([
+    supabase
+      .from('users')
+      .select('*')
+      .eq('id', userId)
+      .single(),
+    new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Timeout na query de usuário')), timeoutMs)
+    )
+  ]);
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -62,23 +78,55 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (session?.user && mounted) {
           console.log('👤 [AUTH] Usuário encontrado, buscando dados...', session.user.email);
           
-          const { data: userData, error: userError } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', session.user.id)
-            .single();
+          try {
+            // Query com timeout específico
+            const result = await queryUserWithTimeout(session.user.id, 3000);
+            const { data: userData, error: userError } = result as any;
             
-          console.log('📊 [AUTH] Resultado busca usuário:', { 
-            hasUserData: !!userData, 
-            error: userError?.message 
-          });
-            
-          if (userError) {
-            console.error('❌ [AUTH] Erro ao buscar usuário:', userError);
-            // Não é erro crítico - usuário pode não existir na tabela ainda
-          } else if (userData && mounted) {
-            console.log('✅ [AUTH] Usuário carregado:', userData.nome);
-            setUser({ ...userData, role: userData.role || 'trader' });
+            console.log('📊 [AUTH] Resultado busca usuário:', { 
+              hasUserData: !!userData, 
+              error: userError?.message 
+            });
+              
+            if (userError) {
+              console.error('❌ [AUTH] Erro ao buscar usuário:', userError);
+              // Se erro de permissão, continuar sem dados do usuário
+              if (userError.message?.includes('permission') || userError.message?.includes('policy')) {
+                console.log('🔒 [AUTH] Erro de permissão - usuário sem dados na tabela users');
+                // Criar usuário básico baseado na sessão
+                if (mounted) {
+                  setUser({
+                    id: session.user.id,
+                    nome: session.user.email?.split('@')[0] || 'Usuário',
+                    email: session.user.email || '',
+                    role: 'trader'
+                  });
+                }
+              }
+            } else if (userData && mounted) {
+              console.log('✅ [AUTH] Usuário carregado:', userData.nome);
+              setUser({ ...userData, role: userData.role || 'trader' });
+            } else if (mounted) {
+              console.log('⚠️ [AUTH] Usuário não encontrado na tabela, criando usuário básico');
+              // Criar usuário básico se não existir na tabela
+              setUser({
+                id: session.user.id,
+                nome: session.user.email?.split('@')[0] || 'Usuário',
+                email: session.user.email || '',
+                role: 'trader'
+              });
+            }
+          } catch (queryError: any) {
+            console.error('💥 [AUTH] Erro na query de usuário:', queryError.message);
+            if (mounted) {
+              // Em caso de erro, criar usuário básico
+              setUser({
+                id: session.user.id,
+                nome: session.user.email?.split('@')[0] || 'Usuário',
+                email: session.user.email || '',
+                role: 'trader'
+              });
+            }
           }
         } else {
           console.log('ℹ️ [AUTH] Nenhuma sessão ativa encontrada');
@@ -107,17 +155,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (event === 'SIGNED_IN' && session?.user) {
           console.log('✅ [AUTH] Login detectado, buscando dados do usuário...');
           
-          const { data: userData, error: userError } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', session.user.id)
-            .single();
+          try {
+            // Query com timeout específico
+            const result = await queryUserWithTimeout(session.user.id, 3000);
+            const { data: userData, error: userError } = result as any;
             
-          if (userError) {
-            console.error('❌ [AUTH] Erro ao buscar usuário após login:', userError);
-          } else if (userData && mounted) {
-            console.log('✅ [AUTH] Usuário definido após login:', userData.nome);
-            setUser({ ...userData, role: userData.role || 'trader' });
+            if (userError) {
+              console.error('❌ [AUTH] Erro ao buscar usuário após login:', userError);
+              // Criar usuário básico em caso de erro
+              if (mounted) {
+                setUser({
+                  id: session.user.id,
+                  nome: session.user.email?.split('@')[0] || 'Usuário',
+                  email: session.user.email || '',
+                  role: 'trader'
+                });
+              }
+            } else if (userData && mounted) {
+              console.log('✅ [AUTH] Usuário definido após login:', userData.nome);
+              setUser({ ...userData, role: userData.role || 'trader' });
+            } else if (mounted) {
+              // Usuário não existe na tabela, criar básico
+              console.log('⚠️ [AUTH] Criando usuário básico após login');
+              setUser({
+                id: session.user.id,
+                nome: session.user.email?.split('@')[0] || 'Usuário',
+                email: session.user.email || '',
+                role: 'trader'
+              });
+            }
+          } catch (queryError: any) {
+            console.error('💥 [AUTH] Erro na query após login:', queryError.message);
+            if (mounted) {
+              setUser({
+                id: session.user.id,
+                nome: session.user.email?.split('@')[0] || 'Usuário',
+                email: session.user.email || '',
+                role: 'trader'
+              });
+            }
           }
         } else if (event === 'SIGNED_OUT') {
           console.log('👋 [AUTH] Logout detectado');
@@ -154,19 +230,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     console.log('✅ [AUTH] Login bem-sucedido');
     
     if (data.user) {
-      const { data: userData, error: userError } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', data.user.id)
-        .single();
+      try {
+        // Query com timeout específico
+        const result = await queryUserWithTimeout(data.user.id, 3000);
+        const { data: userData, error: userError } = result as any;
 
-      if (userError) {
-        console.error('❌ [AUTH] Usuário não encontrado na tabela users:', userError);
-        throw new Error('Usuário não encontrado no banco de dados');
+        if (userError) {
+          console.error('❌ [AUTH] Usuário não encontrado na tabela users:', userError);
+          // Em vez de falhar, criar usuário básico
+          setUser({
+            id: data.user.id,
+            nome: data.user.email?.split('@')[0] || 'Usuário',
+            email: data.user.email || '',
+            role: 'trader'
+          });
+        } else {
+          console.log('✅ [AUTH] Dados do usuário carregados:', userData.nome);
+          setUser({ ...userData, role: userData.role || 'trader' });
+        }
+      } catch (queryError: any) {
+        console.error('💥 [AUTH] Erro na query de login:', queryError.message);
+        // Criar usuário básico em caso de erro
+        setUser({
+          id: data.user.id,
+          nome: data.user.email?.split('@')[0] || 'Usuário',
+          email: data.user.email || '',
+          role: 'trader'
+        });
       }
-      
-      console.log('✅ [AUTH] Dados do usuário carregados:', userData.nome);
-      setUser({ ...userData, role: userData.role || 'trader' });
     }
   };
 
@@ -200,10 +291,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (insertError) {
         console.error('❌ [AUTH] Erro ao inserir usuário na tabela:', insertError);
-        throw insertError;
+        // Não falhar o cadastro por isso
+        console.log('⚠️ [AUTH] Continuando sem inserir na tabela users');
+      } else {
+        console.log('✅ [AUTH] Usuário inserido na tabela com sucesso');
       }
-      
-      console.log('✅ [AUTH] Usuário inserido na tabela com sucesso');
     }
   };
 
