@@ -44,6 +44,9 @@ export default function UserManagement() {
     email: ''
   });
 
+  // Verificar se usuário é admin
+  const isAdmin = currentUser?.role === 'admin';
+
   // Carregar dados do Supabase
   useEffect(() => {
     loadData();
@@ -53,11 +56,14 @@ export default function UserManagement() {
     try {
       setLoading(true);
       
-      // Carregar usuários
-      const { data: usersData, error: usersError } = await supabase
-        .from('users')
-        .select('*')
-        .order('nome');
+      // Carregar usuários (admin vê todos, trader vê só a si mesmo)
+      let usersQuery = supabase.from('users').select('*');
+      
+      if (!isAdmin && currentUser?.id) {
+        usersQuery = usersQuery.eq('id', currentUser.id);
+      }
+      
+      const { data: usersData, error: usersError } = await usersQuery.order('nome');
       
       if (usersError) throw usersError;
       
@@ -69,11 +75,16 @@ export default function UserManagement() {
       
       if (brokeragesError) throw brokeragesError;
       
-      // Carregar vinculações
-      const { data: userBrokeragesData, error: ubError } = await supabase
+      // Carregar vinculações (admin vê todas, trader vê só as suas)
+      let userBrokeragesQuery = supabase
         .from('user_brokerages')
-        .select('*, brokerages(nome)')
-        .order('user_id');
+        .select('*, brokerages(nome)');
+      
+      if (!isAdmin && currentUser?.id) {
+        userBrokeragesQuery = userBrokeragesQuery.eq('user_id', currentUser.id);
+      }
+      
+      const { data: userBrokeragesData, error: ubError } = await userBrokeragesQuery.order('user_id');
       
       if (ubError) throw ubError;
       
@@ -270,82 +281,142 @@ export default function UserManagement() {
     <div className="card">
       <div className="settings-header">
         <div className="settings-header-main" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <h2 style={{ margin: 0 }}>Gerenciamento de Usuários</h2>
+          <h2 style={{ margin: 0 }}>
+            {isAdmin ? 'Gerenciamento de Usuários' : 'Meu Perfil'}
+          </h2>
           <p className="settings-subtitle" style={{ textAlign: 'left', margin: 0 }}>
-            Total de {users.length} usuários cadastrados
+            {isAdmin 
+              ? `Total de ${users.length} usuários cadastrados`
+              : 'Visualize e edite suas informações pessoais'
+            }
           </p>
         </div>
         <div className="settings-actions">
-          <button 
-            className="btn btn-primary btn-header-action"
-            onClick={handleAddUser}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <line x1="19" y1="8" x2="19" y2="14"></line>
-              <line x1="22" y1="11" x2="16" y2="11"></line>
-            </svg>
-            Novo Usuário
-          </button>
+          {isAdmin && (
+            <button 
+              className="btn btn-primary btn-header-action"
+              onClick={handleAddUser}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <line x1="19" y1="8" x2="19" y2="14"></line>
+                <line x1="22" y1="11" x2="16" y2="11"></line>
+              </svg>
+              Novo Usuário
+            </button>
+          )}
+          {!isAdmin && users.length > 0 && (
+            <button 
+              className="btn btn-primary btn-header-action"
+              onClick={() => handleEditUser(users[0])}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Editar Perfil
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="data-table-container">
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>Endereço</th>
-              <th>Contato</th>
-              <th>Corretoras</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(user => (
-              <tr key={user.id}>
-                <td><strong>{user.nome}</strong></td>
-                <td>{user.cpf}</td>
-                <td>{user.endereco}</td>
-                <td>
-                  <div style={{ lineHeight: '1.4' }}>
-                    <div>{user.telefone}</div>
-                    <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{user.email}</div>
-                  </div>
-                </td>
-                <td>{getUserBrokerages(user.id)}</td>
-                <td>
-                  <div className="action-buttons">
-                    <button 
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => handleEditUser(user)}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
-                      Editar
-                    </button>
-                    <button 
-                      className="btn btn-danger btn-sm"
-                      onClick={() => handleDeleteUser(user.id)}
-                      disabled={user.id === currentUser?.id}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="3,6 5,6 21,6"></polyline>
-                        <path d="M19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
-                      </svg>
-                      Excluir
-                    </button>
-                  </div>
-                </td>
+      {isAdmin ? (
+        <div className="data-table-container">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Contato</th>
+                <th>Corretoras</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {users.map(user => (
+                <tr key={user.id}>
+                  <td><strong>{user.nome}</strong></td>
+                  <td>{user.cpf}</td>
+                  <td>{user.endereco}</td>
+                  <td>
+                    <div style={{ lineHeight: '1.4' }}>
+                      <div>{user.telefone}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{user.email}</div>
+                    </div>
+                  </td>
+                  <td>{getUserBrokerages(user.id)}</td>
+                  <td>
+                    <div className="action-buttons">
+                      <button 
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => handleEditUser(user)}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Editar
+                      </button>
+                      <button 
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDeleteUser(user.id)}
+                        disabled={user.id === currentUser?.id}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="3,6 5,6 21,6"></polyline>
+                          <path d="M19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
+                        </svg>
+                        Excluir
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="user-profile-container" style={{ padding: '20px 0' }}>
+          {users.length > 0 && (
+            <div className="profile-card" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '20px',
+              padding: '20px',
+              backgroundColor: 'var(--color-surface)',
+              borderRadius: '8px',
+              border: '1px solid var(--color-border)'
+            }}>
+              <div className="profile-field">
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>Nome:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{users[0].nome}</p>
+              </div>
+              <div className="profile-field">
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>CPF:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{users[0].cpf}</p>
+              </div>
+              <div className="profile-field">
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>Email:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{users[0].email}</p>
+              </div>
+              <div className="profile-field">
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>Telefone:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{users[0].telefone}</p>
+              </div>
+              <div className="profile-field" style={{ gridColumn: 'span 2' }}>
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>Endereço:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{users[0].endereco}</p>
+              </div>
+              <div className="profile-field" style={{ gridColumn: 'span 2' }}>
+                <label style={{ fontWeight: 600, color: 'var(--color-text-secondary)' }}>Corretoras Vinculadas:</label>
+                <p style={{ margin: '4px 0 0 0', fontWeight: 500 }}>{getUserBrokerages(users[0].id)}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Modal para adicionar/editar usuário */}
       {isModalOpen && (

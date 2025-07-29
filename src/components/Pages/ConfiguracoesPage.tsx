@@ -12,7 +12,7 @@ type SettingsTabType = 'admin' | 'usuarios' | 'corretoras' | 'api' | 'referencia
 
 export default function ConfiguracoesPage() {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState<SettingsTabType>(user?.role === 'admin' ? 'admin' : 'usuarios');
+  const [activeTab, setActiveTab] = useState<SettingsTabType>(user?.role === 'admin' ? 'admin' : 'contratos');
 
   const handleTestConnection = () => {
     console.log('Testando conexão...');
@@ -29,7 +29,7 @@ export default function ConfiguracoesPage() {
         </svg>
       )
     }] : []),
-    { 
+    ...(user?.role === 'admin' ? [{ 
       id: 'usuarios', 
       label: 'Usuários',
       icon: (
@@ -38,8 +38,8 @@ export default function ConfiguracoesPage() {
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       )
-    },
-    { 
+    }] : []),
+    ...(user?.role === 'admin' ? [{ 
       id: 'corretoras', 
       label: 'Corretoras',
       icon: (
@@ -48,7 +48,7 @@ export default function ConfiguracoesPage() {
           <polyline points="9,22 9,12 15,12 15,22"></polyline>
         </svg>
       )
-    },
+    }] : []),
     { 
       id: 'api', 
       label: 'API',
