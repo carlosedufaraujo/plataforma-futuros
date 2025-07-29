@@ -10,7 +10,6 @@ export default function LoginPage() {
   const { signIn, signUp, user, loading: authLoading } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [pageReady, setPageReady] = useState(false);
   
   // Estados do formulário
   const [formData, setFormData] = useState({
@@ -22,56 +21,20 @@ export default function LoginPage() {
     endereco: ''
   });
 
-  // TIMEOUT INDEPENDENTE - Força page ready após 4 segundos no máximo
-  useEffect(() => {
-    console.log('🚀 [LOGIN] Página de login iniciada');
-    console.log('📊 [LOGIN] AuthLoading inicial:', authLoading);
-    
-    // Timeout de segurança independente do AuthContext
-    const pageTimeout = setTimeout(() => {
-      console.log('⏰ [LOGIN] TIMEOUT PRÓPRIO! Forçando página pronta após 4s');
-      setPageReady(true);
-    }, 4000);
-
-    // Verificar estado periodicamente
-    const checkInterval = setInterval(() => {
-      console.log('🔍 [LOGIN] Estado atual - authLoading:', authLoading, 'user:', user ? 'EXISTS' : 'NULL');
-      
-      // Se authLoading for false ou user existir, página está pronta
-      if (!authLoading || user) {
-        console.log('✅ [LOGIN] Página pronta por estado normal');
-        setPageReady(true);
-        clearInterval(checkInterval);
-        clearTimeout(pageTimeout);
-      }
-    }, 1000);
-
-    return () => {
-      clearTimeout(pageTimeout);
-      clearInterval(checkInterval);
-    };
-  }, [authLoading, user]);
-
   // Redirecionar se já estiver logado
   useEffect(() => {
     if (user && !authLoading) {
-      console.log('👤 [LOGIN] Usuário já logado, redirecionando...');
       router.push('/');
     }
   }, [user, authLoading, router]);
 
-  // Mostrar loading apenas se a página não estiver pronta E ainda estiver carregando auth
-  const shouldShowLoading = !pageReady && authLoading;
-
-  console.log('🎯 [LOGIN] Render - pageReady:', pageReady, 'authLoading:', authLoading, 'shouldShowLoading:', shouldShowLoading);
-
-  if (shouldShowLoading) {
+  // Mostrar loading enquanto verifica autenticação
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-primary">
         <div className="text-center">
           <div className="spinner mx-auto mb-4"></div>
           <p className="text-secondary">Verificando autenticação...</p>
-          <p className="text-xs text-neutral mt-2">Máximo 4 segundos...</p>
         </div>
       </div>
     );
@@ -79,7 +42,6 @@ export default function LoginPage() {
 
   // Se já estiver logado, não renderizar nada (vai redirecionar)
   if (user) {
-    console.log('🚪 [LOGIN] Usuário logado, não renderizando form');
     return null;
   }
 
@@ -120,24 +82,14 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🔑 [LOGIN] Iniciando processo de', isLogin ? 'login' : 'cadastro');
     setLoading(true);
-
-    // Timeout de segurança para o formulário - nunca mais que 10 segundos
-    const formTimeout = setTimeout(() => {
-      console.log('⏰ [LOGIN] TIMEOUT DO FORMULÁRIO! Forçando loading=false após 10s');
-      setLoading(false);
-      toast.error('Tempo limite excedido. Tente novamente.');
-    }, 10000);
 
     try {
       if (isLogin) {
-        console.log('📝 [LOGIN] Fazendo login para:', formData.email);
         await signIn(formData.email, formData.password);
-        console.log('✅ [LOGIN] Login bem-sucedido');
         toast.success('Login realizado com sucesso!');
+        router.push('/');
       } else {
-        console.log('📝 [LOGIN] Criando conta para:', formData.email);
         await signUp(formData.email, formData.password, {
           nome: formData.nome,
           cpf: formData.cpf.replace(/\D/g, ''),
@@ -146,7 +98,6 @@ export default function LoginPage() {
           endereco: formData.endereco
         });
         
-        console.log('✅ [LOGIN] Cadastro bem-sucedido');
         toast.success('Cadastro realizado com sucesso! Faça login para continuar.');
         setIsLogin(true);
         setFormData({
@@ -159,16 +110,12 @@ export default function LoginPage() {
         });
       }
     } catch (error: any) {
-      console.error('❌ [LOGIN] Erro:', error);
+      console.error('Erro:', error);
       toast.error(error.message || 'Erro ao processar solicitação');
     } finally {
-      console.log('🔓 [LOGIN] Finalizando processo');
-      clearTimeout(formTimeout);
       setLoading(false);
     }
   };
-
-  console.log('🎨 [LOGIN] Renderizando formulário');
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary">
@@ -290,7 +237,7 @@ export default function LoginPage() {
             {loading ? (
               <div className="flex items-center justify-center">
                 <div className="spinner mr-2"></div>
-                Processando... (máx. 10s)
+                Processando...
               </div>
             ) : (
               isLogin ? 'Entrar' : 'Criar Conta'
@@ -308,11 +255,6 @@ export default function LoginPage() {
               ? 'Não tem uma conta? Cadastre-se' 
               : 'Já tem uma conta? Faça login'}
           </button>
-        </div>
-
-        {/* Debug info - removível em produção */}
-        <div className="mt-4 text-xs text-neutral text-center opacity-50">
-          Debug: pageReady={pageReady.toString()}, authLoading={authLoading.toString()}
         </div>
       </div>
     </div>
