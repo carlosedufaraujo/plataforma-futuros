@@ -30,73 +30,129 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Inicialização simples e direta
+  // Inicialização com logs detalhados e timeout de segurança
   useEffect(() => {
+    console.log('🚀 [AUTH] AuthProvider iniciado');
     let mounted = true;
+    
+    // TIMEOUT DE SEGURANÇA - nunca mais que 5 segundos loading
+    const forceTimeout = setTimeout(() => {
+      console.log('⏰ [AUTH] TIMEOUT FORÇADO! Definindo loading=false após 5s');
+      if (mounted) {
+        setLoading(false);
+      }
+    }, 5000);
     
     const initAuth = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
+        console.log('🔍 [AUTH] Iniciando verificação de sessão...');
+        
+        const { data: { session }, error } = await supabase.auth.getSession();
+        console.log('📊 [AUTH] Resultado getSession:', { 
+          hasSession: !!session, 
+          hasUser: !!session?.user, 
+          error: error?.message 
+        });
+        
+        if (error) {
+          console.error('❌ [AUTH] Erro na sessão:', error);
+          throw error;
+        }
         
         if (session?.user && mounted) {
-          const { data: userData } = await supabase
+          console.log('👤 [AUTH] Usuário encontrado, buscando dados...', session.user.email);
+          
+          const { data: userData, error: userError } = await supabase
             .from('users')
             .select('*')
             .eq('id', session.user.id)
             .single();
             
-          if (userData && mounted) {
+          console.log('📊 [AUTH] Resultado busca usuário:', { 
+            hasUserData: !!userData, 
+            error: userError?.message 
+          });
+            
+          if (userError) {
+            console.error('❌ [AUTH] Erro ao buscar usuário:', userError);
+            // Não é erro crítico - usuário pode não existir na tabela ainda
+          } else if (userData && mounted) {
+            console.log('✅ [AUTH] Usuário carregado:', userData.nome);
             setUser({ ...userData, role: userData.role || 'trader' });
           }
+        } else {
+          console.log('ℹ️ [AUTH] Nenhuma sessão ativa encontrada');
         }
       } catch (error) {
-        console.error('Auth init error:', error);
+        console.error('💥 [AUTH] Erro na inicialização:', error);
       } finally {
+        console.log('🔓 [AUTH] Definindo loading=false');
         if (mounted) {
+          clearTimeout(forceTimeout);
           setLoading(false);
         }
       }
     };
 
+    // Iniciar verificação
     initAuth();
 
     // Listener para mudanças de auth
+    console.log('👂 [AUTH] Configurando listener de mudanças...');
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('🔄 [AUTH] Estado mudou:', event, { hasSession: !!session });
         if (!mounted) return;
         
         if (event === 'SIGNED_IN' && session?.user) {
-          const { data: userData } = await supabase
+          console.log('✅ [AUTH] Login detectado, buscando dados do usuário...');
+          
+          const { data: userData, error: userError } = await supabase
             .from('users')
             .select('*')
             .eq('id', session.user.id)
             .single();
             
-          if (userData && mounted) {
+          if (userError) {
+            console.error('❌ [AUTH] Erro ao buscar usuário após login:', userError);
+          } else if (userData && mounted) {
+            console.log('✅ [AUTH] Usuário definido após login:', userData.nome);
             setUser({ ...userData, role: userData.role || 'trader' });
           }
         } else if (event === 'SIGNED_OUT') {
+          console.log('👋 [AUTH] Logout detectado');
           setUser(null);
         }
         
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
     );
 
     return () => {
+      console.log('🧹 [AUTH] Limpando AuthProvider...');
       mounted = false;
+      clearTimeout(forceTimeout);
       subscription.unsubscribe();
     };
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    console.log('🔑 [AUTH] Tentando login para:', email);
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    if (error) throw error;
+    if (error) {
+      console.error('❌ [AUTH] Erro no login:', error);
+      throw error;
+    }
 
+    console.log('✅ [AUTH] Login bem-sucedido');
+    
     if (data.user) {
       const { data: userData, error: userError } = await supabase
         .from('users')
@@ -104,19 +160,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .eq('id', data.user.id)
         .single();
 
-      if (userError) throw new Error('Usuário não encontrado no banco de dados');
+      if (userError) {
+        console.error('❌ [AUTH] Usuário não encontrado na tabela users:', userError);
+        throw new Error('Usuário não encontrado no banco de dados');
+      }
       
+      console.log('✅ [AUTH] Dados do usuário carregados:', userData.nome);
       setUser({ ...userData, role: userData.role || 'trader' });
     }
   };
 
   const signUp = async (email: string, password: string, userData: any) => {
+    console.log('📝 [AUTH] Tentando cadastro para:', email);
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
-    if (error) throw error;
+    if (error) {
+      console.error('❌ [AUTH] Erro no cadastro:', error);
+      throw error;
+    }
+
+    console.log('✅ [AUTH] Cadastro bem-sucedido');
 
     if (data.user) {
       const { error: insertError } = await supabase
@@ -131,17 +198,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           role: 'trader',
         });
 
-      if (insertError) throw insertError;
+      if (insertError) {
+        console.error('❌ [AUTH] Erro ao inserir usuário na tabela:', insertError);
+        throw insertError;
+      }
+      
+      console.log('✅ [AUTH] Usuário inserido na tabela com sucesso');
     }
   };
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    console.log('👋 [AUTH] Fazendo logout...');
     
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('❌ [AUTH] Erro no logout:', error);
+      throw error;
+    }
+    
+    console.log('✅ [AUTH] Logout bem-sucedido');
     setUser(null);
     router.push('/login');
   };
+
+  // Log do estado atual a cada render
+  console.log('📊 [AUTH] Estado atual:', { 
+    hasUser: !!user, 
+    userName: user?.nome || 'N/A', 
+    loading 
+  });
 
   return (
     <AuthContext.Provider value={{
