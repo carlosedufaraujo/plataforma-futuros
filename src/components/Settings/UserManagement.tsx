@@ -184,20 +184,46 @@ export default function UserManagement() {
         
       } else {
         // Adicionar novo usuário
-        const { data: newUser, error } = await supabase
-          .from('users')
-          .insert([{
-            ...formData,
-            is_active: true
-          }])
-          .select()
-          .single();
-        
-        if (error) throw error;
-        
-        // Vincular corretoras
-        if (newUser && selectedBrokerages.length > 0) {
-          await updateUserBrokerages(newUser.id);
+        try {
+          const { data: newUser, error } = await supabase
+            .from('users')
+            .insert([{
+              ...formData,
+              is_active: true
+            }])
+            .select()
+            .single();
+          
+          if (error) throw error;
+          
+          // Vincular corretoras
+          if (newUser && selectedBrokerages.length > 0) {
+            await updateUserBrokerages(newUser.id);
+          }
+        } catch (insertError: any) {
+          console.error('❌ Erro ao criar usuário:', insertError);
+          
+          // Se o erro foi no .single(), tentar sem ele
+          if (insertError.message?.includes('single') || insertError.code === 'PGRST116') {
+            console.log('🔄 Tentando inserção sem .single()...');
+            
+            const { data: newUserArray, error: retryError } = await supabase
+              .from('users')
+              .insert([{
+                ...formData,
+                is_active: true
+              }])
+              .select();
+            
+            if (retryError) throw retryError;
+            
+            const newUser = newUserArray?.[0];
+            if (newUser && selectedBrokerages.length > 0) {
+              await updateUserBrokerages(newUser.id);
+            }
+          } else {
+            throw insertError;
+          }
         }
       }
       

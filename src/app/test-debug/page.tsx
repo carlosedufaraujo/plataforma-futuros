@@ -49,7 +49,7 @@ export default function TestDebugPage() {
       const queryPromise = client
         .from('users')
         .select('count')
-        .single();
+        .limit(1);
         
       const timeoutPromise = new Promise((_, reject) => 
         setTimeout(() => reject(new Error('Timeout após 5 segundos')), 5000)
@@ -58,8 +58,8 @@ export default function TestDebugPage() {
       try {
         const result = await Promise.race([queryPromise, timeoutPromise]);
         addLog(`Query completada: ${JSON.stringify(result)}`);
-      } catch (err: any) {
-        addLog(`ERRO na query: ${err.message}`);
+      } catch (error: any) {
+        addLog(`Erro na query: ${error.message}`);
       }
       
       // 5. Testar fetch direto com POST

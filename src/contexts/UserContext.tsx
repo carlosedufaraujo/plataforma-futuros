@@ -76,13 +76,19 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       const brokerages = userBrokerages?.map(ub => ub.brokerages).filter(Boolean) || [];
       
       // Buscar última transação
-      const { data: lastTx } = await supabase
+      const { data: lastTxArray, error: txError } = await supabase
         .from('transactions')
         .select('*')
         .eq('user_id', authUser.id)
         .order('date', { ascending: false })
-        .limit(1)
-        .single();
+        .limit(1);
+      
+      // Pegar primeiro item do array ou null se não houver
+      const lastTx = lastTxArray?.[0] || null;
+      
+      if (txError) {
+        console.warn('⚠️ Erro ao buscar última transação:', txError.message);
+      }
       
       setCurrentSession({
         user: authUser,

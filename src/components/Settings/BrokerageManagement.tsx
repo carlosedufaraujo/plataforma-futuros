@@ -221,20 +221,46 @@ export default function BrokerageManagement() {
         
       } else {
         // Adicionar nova corretora
-        const { data: newBrokerage, error } = await supabase
-          .from('brokerages')
-          .insert([{
-            ...brokerageData,
-            is_active: true
-          }])
-          .select()
-          .single();
-        
-        if (error) throw error;
-        
-        // Vincular usuários
-        if (newBrokerage && selectedUsers.length > 0) {
-          await updateBrokerageUsers(newBrokerage.id);
+        try {
+          const { data: newBrokerage, error } = await supabase
+            .from('brokerages')
+            .insert([{
+              ...brokerageData,
+              is_active: true
+            }])
+            .select()
+            .single();
+          
+          if (error) throw error;
+          
+          // Vincular usuários
+          if (newBrokerage && selectedUsers.length > 0) {
+            await updateBrokerageUsers(newBrokerage.id);
+          }
+        } catch (insertError: any) {
+          console.error('❌ Erro ao criar corretora:', insertError);
+          
+          // Se o erro foi no .single(), tentar sem ele
+          if (insertError.message?.includes('single') || insertError.code === 'PGRST116') {
+            console.log('🔄 Tentando inserção sem .single()...');
+            
+            const { data: newBrokerageArray, error: retryError } = await supabase
+              .from('brokerages')
+              .insert([{
+                ...brokerageData,
+                is_active: true
+              }])
+              .select();
+            
+            if (retryError) throw retryError;
+            
+            const newBrokerage = newBrokerageArray?.[0];
+            if (newBrokerage && selectedUsers.length > 0) {
+              await updateBrokerageUsers(newBrokerage.id);
+            }
+          } else {
+            throw insertError;
+          }
         }
       }
       
