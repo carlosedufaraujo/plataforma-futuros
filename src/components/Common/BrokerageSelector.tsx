@@ -71,7 +71,8 @@ export default function BrokerageSelector() {
     }
   };
 
-  if (!currentUser || !user) {
+  // CORREÇÃO TEMPORÁRIA: Só verificar user do useAuth, ignorar currentUser
+  if (!user) {
     return (
       <div className="brokerage-selector">
         <div className="selector-content">
@@ -98,7 +99,7 @@ export default function BrokerageSelector() {
           <div className="selector-info">
             <span className="selector-label">Usuário</span>
             <span className="selector-value">
-              {currentUser.nome} {user.role === 'admin' && '(Admin)'}
+              {user.nome} {user.role === 'admin' && '(Admin)'}
             </span>
           </div>
         </div>
