@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   // Buscar dados do usuário no banco
   const fetchUserData = async (authUserId: string): Promise<User | null> => {
     try {
-      console.log('🔍 Buscando dados do usuário:', authUserId);
+      console.log('🔍 [fetchUserData] Iniciando busca para:', authUserId);
       
       const { data, error } = await supabase
         .from('users')
@@ -46,11 +46,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .single();
 
       if (error) {
-        console.error('❌ Erro ao buscar usuário:', error);
+        console.error('❌ [fetchUserData] Erro na query:', error);
+        console.error('❌ [fetchUserData] Error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
         return null;
       }
 
-      console.log('✅ Dados do usuário encontrados:', data);
+      console.log('✅ [fetchUserData] Dados encontrados:', data);
       
       // Garantir que o role está incluído
       const userData = {
@@ -58,9 +64,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         role: data.role || 'trader' // Default para trader se não tiver role
       };
 
+      console.log('✅ [fetchUserData] Dados processados:', userData);
       return userData;
     } catch (error) {
-      console.error('💥 Erro inesperado ao buscar dados do usuário:', error);
+      console.error('💥 [fetchUserData] Erro inesperado:', error);
       return null;
     }
   };
@@ -68,57 +75,107 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   // Verificar sessão ao carregar
   useEffect(() => {
     let mounted = true;
+    let timeoutId: NodeJS.Timeout;
+
+    console.log('🔄 [AuthProvider] useEffect iniciado');
+
+    // Timeout de segurança - se não resolver em 10 segundos, força loading=false
+    const safetyTimeout = setTimeout(() => {
+      if (mounted && loading) {
+        console.log('⏰ [AuthProvider] TIMEOUT DE SEGURANÇA - Forçando loading=false após 10s');
+        setLoading(false);
+      }
+    }, 10000);
 
     const checkSession = async () => {
       try {
-        console.log('🔄 Verificando sessão existente...');
+        console.log('🔄 [checkSession] Iniciando verificação de sessão...');
         
+        // Teste básico de conectividade primeiro
+        console.log('📡 [checkSession] Testando conectividade básica...');
+        const connectivityTest = await supabase.from('contracts').select('count').limit(1);
+        
+        if (connectivityTest.error) {
+          console.error('❌ [checkSession] Erro de conectividade básica:', connectivityTest.error);
+          if (mounted) {
+            setLoading(false);
+          }
+          return;
+        }
+        
+        console.log('✅ [checkSession] Conectividade básica OK');
+        
+        console.log('🔑 [checkSession] Chamando getSession...');
         const { data: { session }, error } = await supabase.auth.getSession();
         
+        console.log('📊 [checkSession] Resultado getSession:', {
+          session: session ? 'EXISTS' : 'NULL',
+          error: error ? error.message : 'NO_ERROR',
+          userId: session?.user?.id || 'NO_USER'
+        });
+        
         if (error) {
-          console.error('❌ Erro ao verificar sessão:', error);
+          console.error('❌ [checkSession] Erro em getSession:', error);
           if (mounted) {
+            console.log('🔓 [checkSession] Definindo loading=false devido a erro');
             setLoading(false);
           }
           return;
         }
 
         if (session?.user && mounted) {
-          console.log('👤 Sessão encontrada, buscando dados do usuário...');
+          console.log('👤 [checkSession] Sessão encontrada, buscando dados do usuário...');
+          console.log('👤 [checkSession] User ID:', session.user.id);
+          console.log('👤 [checkSession] User Email:', session.user.email);
+          
           const userData = await fetchUserData(session.user.id);
+          
           if (userData && mounted) {
+            console.log('✅ [checkSession] Dados do usuário carregados, definindo user state');
             setUser(userData);
-            console.log('✅ Estado do usuário atualizado');
+            console.log('✅ [checkSession] Estado do usuário atualizado');
+          } else {
+            console.log('❌ [checkSession] Falha ao carregar dados do usuário');
           }
         } else {
-          console.log('ℹ️ Nenhuma sessão ativa encontrada');
+          console.log('ℹ️ [checkSession] Nenhuma sessão ativa encontrada');
         }
       } catch (error) {
-        console.error('💥 Erro inesperado ao verificar sessão:', error);
+        console.error('💥 [checkSession] Erro inesperado:', error);
       } finally {
         if (mounted) {
-          console.log('🔓 Loading definido como false');
+          console.log('🔓 [checkSession] Definindo loading=false no finally');
           setLoading(false);
+          clearTimeout(safetyTimeout);
         }
       }
     };
 
-    checkSession();
+    // Iniciar verificação após pequeno delay
+    timeoutId = setTimeout(() => {
+      console.log('⏰ [AuthProvider] Iniciando checkSession após delay');
+      checkSession();
+    }, 100);
 
     // Escutar mudanças de autenticação
+    console.log('👂 [AuthProvider] Configurando listener de auth state change');
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('🔄 Mudança de estado auth:', event);
+      console.log('🔄 [AuthStateChange] Evento recebido:', event);
+      console.log('🔄 [AuthStateChange] Session:', session ? 'EXISTS' : 'NULL');
       
-      if (!mounted) return;
+      if (!mounted) {
+        console.log('⚠️ [AuthStateChange] Componente não está mounted, ignorando');
+        return;
+      }
 
       if (event === 'SIGNED_IN' && session?.user) {
-        console.log('✅ Usuário logado via state change');
+        console.log('✅ [AuthStateChange] Usuário logado via state change');
         const userData = await fetchUserData(session.user.id);
         if (userData && mounted) {
           setUser(userData);
         }
       } else if (event === 'SIGNED_OUT') {
-        console.log('🚪 Usuário deslogado');
+        console.log('🚪 [AuthStateChange] Usuário deslogado');
         if (mounted) {
           setUser(null);
           router.push('/login');
@@ -127,14 +184,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     return () => {
+      console.log('🧹 [AuthProvider] Cleanup executado');
       mounted = false;
+      clearTimeout(timeoutId);
+      clearTimeout(safetyTimeout);
       subscription.unsubscribe();
     };
   }, [router]);
 
   const signIn = async (email: string, password: string) => {
     try {
-      console.log('🔑 Tentando fazer login com:', email);
+      console.log('🔑 [signIn] Tentando fazer login com:', email);
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -142,12 +202,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
       if (error) {
-        console.error('❌ Erro no login:', error);
+        console.error('❌ [signIn] Erro no login:', error);
         toast.error(error.message || 'Erro ao fazer login');
         throw error;
       }
 
-      console.log('✅ Login realizado com sucesso');
+      console.log('✅ [signIn] Login realizado com sucesso');
       
       if (data.user) {
         const userData = await fetchUserData(data.user.id);
@@ -162,7 +222,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
       }
     } catch (error: any) {
-      console.error('💥 Erro no signIn:', error);
+      console.error('💥 [signIn] Erro:', error);
       toast.error(error.message || 'Erro ao fazer login');
       throw error;
     }
@@ -170,7 +230,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signUp = async (email: string, password: string, userData: Partial<User>) => {
     try {
-      console.log('📝 Tentando criar conta para:', email);
+      console.log('📝 [signUp] Tentando criar conta para:', email);
       
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -178,7 +238,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
       if (error) {
-        console.error('❌ Erro no signup:', error);
+        console.error('❌ [signUp] Erro no signup:', error);
         toast.error(error.message || 'Erro ao criar conta');
         throw error;
       }
@@ -202,16 +262,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           .insert([userRecord]);
 
         if (dbError) {
-          console.error('❌ Erro ao salvar dados do usuário:', dbError);
+          console.error('❌ [signUp] Erro ao salvar dados do usuário:', dbError);
           toast.error('Erro ao salvar dados do usuário');
           throw dbError;
         }
 
-        console.log('✅ Conta criada com sucesso');
+        console.log('✅ [signUp] Conta criada com sucesso');
         toast.success('Conta criada! Verifique seu email para confirmar.');
       }
     } catch (error: any) {
-      console.error('💥 Erro no signUp:', error);
+      console.error('💥 [signUp] Erro:', error);
       toast.error(error.message || 'Erro ao criar conta');
       throw error;
     }
@@ -219,21 +279,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signOut = async () => {
     try {
-      console.log('🚪 Fazendo logout...');
+      console.log('🚪 [signOut] Fazendo logout...');
       
       const { error } = await supabase.auth.signOut();
       
       if (error) {
-        console.error('❌ Erro no logout:', error);
+        console.error('❌ [signOut] Erro no logout:', error);
         throw error;
       }
 
       setUser(null);
-      console.log('✅ Logout realizado com sucesso');
+      console.log('✅ [signOut] Logout realizado com sucesso');
       toast.success('Logout realizado com sucesso!');
       router.push('/login');
     } catch (error: any) {
-      console.error('💥 Erro no signOut:', error);
+      console.error('💥 [signOut] Erro:', error);
       toast.error(error.message || 'Erro ao fazer logout');
       throw error;
     }
@@ -241,7 +301,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const refreshUser = async () => {
     try {
-      console.log('🔄 Atualizando dados do usuário...');
+      console.log('🔄 [refreshUser] Atualizando dados do usuário...');
       
       const { data: { user: authUser } } = await supabase.auth.getUser();
       
@@ -249,13 +309,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const userData = await fetchUserData(authUser.id);
         if (userData) {
           setUser(userData);
-          console.log('✅ Dados do usuário atualizados');
+          console.log('✅ [refreshUser] Dados do usuário atualizados');
         }
       }
     } catch (error) {
-      console.error('💥 Erro ao atualizar usuário:', error);
+      console.error('💥 [refreshUser] Erro:', error);
     }
   };
+
+  // Log do estado atual
+  console.log('📊 [AuthProvider] Estado atual:', {
+    user: user ? `${user.nome} (${user.email})` : 'NULL',
+    loading,
+    timestamp: new Date().toISOString()
+  });
 
   const value = {
     user,
