@@ -99,9 +99,12 @@ export default function AppLayout({
                   </svg>
                 </div>
                 <select 
+                  id="period-selector"
+                  name="period"
                   className="period-select"
                   value={selectedPeriod}
                   onChange={(e) => onPeriodChange(e.target.value)}
+                  aria-label="Selecionar período de análise"
                 >
                   <option value="30d" title="Últimos 30 dias">30 dias</option>
                   <option value="60d" title="Últimos 60 dias">60 dias</option>
