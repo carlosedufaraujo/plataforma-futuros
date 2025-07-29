@@ -35,52 +35,71 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const router = useRouter();
 
   // Buscar dados do usuário no banco
-  const fetchUserData = async (authUserId: string) => {
+  const fetchUserData = async (authUserId: string): Promise<User | null> => {
     try {
+      console.log('🔍 Buscando dados do usuário:', authUserId);
+      
       const { data, error } = await supabase
         .from('users')
         .select('*')
         .eq('id', authUserId)
         .single();
 
-      if (error) throw error;
+      if (error) {
+        console.error('❌ Erro ao buscar usuário:', error);
+        return null;
+      }
 
+      console.log('✅ Dados do usuário encontrados:', data);
+      
       // Garantir que o role está incluído
       const userData = {
         ...data,
-        role: data.role || 'trader'
-      } as User;
-
-      console.log('👤 Dados do usuário carregados:', {
-        id: userData.id,
-        nome: userData.nome,
-        email: userData.email,
-        role: userData.role
-      });
+        role: data.role || 'trader' // Default para trader se não tiver role
+      };
 
       return userData;
     } catch (error) {
-      console.error('Erro ao buscar dados do usuário:', error);
+      console.error('💥 Erro inesperado ao buscar dados do usuário:', error);
       return null;
     }
   };
 
   // Verificar sessão ao carregar
   useEffect(() => {
+    let mounted = true;
+
     const checkSession = async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
+        console.log('🔄 Verificando sessão existente...');
         
-        if (session?.user) {
-          const userData = await fetchUserData(session.user.id);
-          if (userData) {
-            setUser(userData);
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('❌ Erro ao verificar sessão:', error);
+          if (mounted) {
+            setLoading(false);
           }
+          return;
+        }
+
+        if (session?.user && mounted) {
+          console.log('👤 Sessão encontrada, buscando dados do usuário...');
+          const userData = await fetchUserData(session.user.id);
+          if (userData && mounted) {
+            setUser(userData);
+            console.log('✅ Estado do usuário atualizado');
+          }
+        } else {
+          console.log('ℹ️ Nenhuma sessão ativa encontrada');
         }
       } catch (error) {
-        console.error('Erro ao verificar sessão:', error);
+        console.error('💥 Erro inesperado ao verificar sessão:', error);
       } finally {
-        setLoading(false);
+        if (mounted) {
+          console.log('🔓 Loading definido como false');
+          setLoading(false);
+        }
       }
     };
 
@@ -88,18 +107,29 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     // Escutar mudanças de autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('🔄 Mudança de estado auth:', event);
+      
+      if (!mounted) return;
+
       if (event === 'SIGNED_IN' && session?.user) {
+        console.log('✅ Usuário logado via state change');
         const userData = await fetchUserData(session.user.id);
-        if (userData) {
+        if (userData && mounted) {
           setUser(userData);
         }
       } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-        router.push('/login');
+        console.log('🚪 Usuário deslogado');
+        if (mounted) {
+          setUser(null);
+          router.push('/login');
+        }
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, [router]);
 
   const signIn = async (email: string, password: string) => {
@@ -113,26 +143,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       if (error) {
         console.error('❌ Erro no login:', error);
+        toast.error(error.message || 'Erro ao fazer login');
         throw error;
       }
 
-      console.log('✅ Login realizado, dados da sessão:', data);
-
+      console.log('✅ Login realizado com sucesso');
+      
       if (data.user) {
         const userData = await fetchUserData(data.user.id);
         if (userData) {
-          console.log('✅ Dados do usuário carregados, redirecionando...');
           setUser(userData);
-          // Aguardar um pouco antes do redirecionamento para garantir que o estado foi atualizado
+          toast.success('Login realizado com sucesso!');
+          
+          // Redirecionamento após um pequeno delay
           setTimeout(() => {
             router.push('/');
-          }, 100);
-        } else {
-          throw new Error('Usuário não encontrado no banco de dados');
+          }, 500);
         }
       }
     } catch (error: any) {
-      console.error('❌ Erro no login:', error);
+      console.error('💥 Erro no signIn:', error);
+      toast.error(error.message || 'Erro ao fazer login');
       throw error;
     }
   };
@@ -141,94 +172,102 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       console.log('📝 Tentando criar conta para:', email);
       
-      // 1. Criar conta no Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: {
-            nome: userData.nome,
-            cpf: userData.cpf
-          }
-        }
+        password
       });
 
-      if (authError) {
-        console.error('❌ Erro na criação da conta auth:', authError);
-        throw authError;
+      if (error) {
+        console.error('❌ Erro no signup:', error);
+        toast.error(error.message || 'Erro ao criar conta');
+        throw error;
       }
 
-      console.log('✅ Conta auth criada:', authData.user?.id);
+      if (data.user) {
+        // Criar entrada na tabela users
+        const userRecord = {
+          id: data.user.id,
+          email: data.user.email!,
+          nome: userData.nome || '',
+          cpf: userData.cpf || '',
+          telefone: userData.telefone || '',
+          endereco: userData.endereco || '',
+          role: 'trader', // Novo usuário sempre começa como trader
+          ativo: true,
+          createdAt: new Date().toISOString()
+        };
 
-      // 2. Criar registro na tabela users
-      if (authData.user) {
-        const { error: userError } = await supabase
+        const { error: dbError } = await supabase
           .from('users')
-          .insert({
-            id: authData.user.id,
-            nome: userData.nome,
-            cpf: userData.cpf,
-            email: userData.email,
-            telefone: userData.telefone,
-            endereco: userData.endereco,
-            is_active: true,
-            role: 'trader',
-            created_at: new Date().toISOString()
-          });
+          .insert([userRecord]);
 
-        if (userError) {
-          console.error('❌ Erro ao criar usuário no banco:', userError);
-          // Não tentar deletar a conta auth no cliente - isso requer permissões admin
-          throw new Error(`Erro ao criar perfil do usuário: ${userError.message}`);
+        if (dbError) {
+          console.error('❌ Erro ao salvar dados do usuário:', dbError);
+          toast.error('Erro ao salvar dados do usuário');
+          throw dbError;
         }
 
-        console.log('✅ Usuário criado no banco com sucesso');
-        toast.success('Cadastro realizado com sucesso!');
+        console.log('✅ Conta criada com sucesso');
+        toast.success('Conta criada! Verifique seu email para confirmar.');
       }
     } catch (error: any) {
-      console.error('❌ Erro no cadastro:', error);
+      console.error('💥 Erro no signUp:', error);
+      toast.error(error.message || 'Erro ao criar conta');
       throw error;
     }
   };
 
   const signOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
+      console.log('🚪 Fazendo logout...');
       
+      const { error } = await supabase.auth.signOut();
+      
+      if (error) {
+        console.error('❌ Erro no logout:', error);
+        throw error;
+      }
+
       setUser(null);
-      toast.success('Logout realizado com sucesso');
+      console.log('✅ Logout realizado com sucesso');
+      toast.success('Logout realizado com sucesso!');
       router.push('/login');
     } catch (error: any) {
-      console.error('Erro no logout:', error);
-      toast.error('Erro ao fazer logout');
+      console.error('💥 Erro no signOut:', error);
+      toast.error(error.message || 'Erro ao fazer logout');
+      throw error;
     }
   };
 
   const refreshUser = async () => {
     try {
+      console.log('🔄 Atualizando dados do usuário...');
+      
       const { data: { user: authUser } } = await supabase.auth.getUser();
       
       if (authUser) {
         const userData = await fetchUserData(authUser.id);
         if (userData) {
           setUser(userData);
+          console.log('✅ Dados do usuário atualizados');
         }
       }
     } catch (error) {
-      console.error('Erro ao atualizar usuário:', error);
+      console.error('💥 Erro ao atualizar usuário:', error);
     }
   };
 
+  const value = {
+    user,
+    loading,
+    signIn,
+    signUp,
+    signOut,
+    refreshUser
+  };
+
   return (
-    <AuthContext.Provider value={{
-      user,
-      loading,
-      signIn,
-      signUp,
-      signOut,
-      refreshUser
-    }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
