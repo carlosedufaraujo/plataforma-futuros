@@ -40,7 +40,7 @@ UNION ALL
 SELECT '4. POLÍTICAS TRANSACTIONS' as categoria,
        '📋 ' || policyname as info,
        'Comando: ' || cmd as detalhe,
-       'Using: ' || COALESCE(substring(quals, 1, 50), 'N/A') as extra
+       'Using: ' || COALESCE(substring(qual, 1, 50), 'N/A') as extra
 FROM pg_policies 
 WHERE tablename = 'transactions' AND schemaname = 'public'
 
