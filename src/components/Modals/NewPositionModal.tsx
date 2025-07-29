@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Position } from '@/types';
+import { supabase } from '@/lib/supabase';
 
 interface Contract {
   id: string;
@@ -55,11 +56,6 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
   const loadContracts = async () => {
     try {
       setLoadingContracts(true);
-      const { createClient } = require('@supabase/supabase-js');
-      const supabase = createClient(
-        'https://kdfevkbwohcajcwrqzor.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkZmV2a2J3b2hjYWpjd3Jxem9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzODcsImV4cCI6MjA2ODg5MTM4N30.4nBjKi3rdpfbYmxeoa8GELdBLq8JY6ym68cJX7jpaus'
-      );
       
       const { data, error } = await supabase
         .from('contracts')

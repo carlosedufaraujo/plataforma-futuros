@@ -470,8 +470,11 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   
   const addPosition = async (positionData: Omit<Position, 'id'>) => {
     try {
+      // Usar currentUser ou authUser como fallback (problema de timing)
+      const activeUser = currentUser || authUser;
+      
       // Verificar se há usuário e corretora selecionados
-      if (!currentUser) {
+      if (!activeUser) {
         throw new Error('Nenhum usuário selecionado');
       }
       
@@ -497,7 +500,7 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
 
       const newPosition = await supabaseService.createPosition({
         ...positionData,
-        user_id: currentUser.id,
+        user_id: activeUser.id,
         brokerage_id: selectedBrokerage.id,
         contract_id: contractId
       });
@@ -506,7 +509,7 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
 
       // Criar transação correspondente
       const transaction: Omit<Transaction, 'id'> = {
-        userId: currentUser.id,
+        userId: activeUser.id,
         brokerageId: selectedBrokerage.id,
         date: createLocalDate(),
         contract: positionData.contract,
@@ -558,6 +561,9 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
     const position = positions.find(p => p.id === id);
     if (!position) return;
 
+    // Usar currentUser ou authUser como fallback (problema de timing)
+    const activeUser = currentUser || authUser;
+
     try {
       const contractSize = position.contract.startsWith('BGI') ? 330 : 450;
       const pnl = (position.direction === 'COMPRA' ? 1 : -1) * 
@@ -574,7 +580,7 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
 
       // Criar transação de fechamento
       const closeTransaction: Omit<Transaction, 'id'> = {
-        userId: currentUser?.id || 'default-user',
+        userId: activeUser?.id || 'default-user',
         brokerageId: selectedBrokerage?.id || 'default-brokerage',
         date: createLocalDate(),
         contract: position.contract,
@@ -636,10 +642,13 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   // ================================
   
   const addOption = async (optionData: Omit<Option, 'id'>) => {
+    // Usar currentUser ou authUser como fallback (problema de timing)
+    const activeUser = currentUser || authUser;
+    
     try {
       const newOption = await supabaseService.createOption({
         ...optionData,
-        user_id: currentUser?.id || 'default-user',
+        user_id: activeUser?.id || 'default-user',
         brokerage_id: selectedBrokerage?.id || 'default-brokerage'
       });
 
@@ -652,11 +661,14 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addMultipleOptions = async (optionsData: Omit<Option, 'id' | 'user_id' | 'contract_id'>[]) => {
+    // Usar currentUser ou authUser como fallback (problema de timing)
+    const activeUser = currentUser || authUser;
+    
     try {
       const promises = optionsData.map(optionData => 
         supabaseService.createOption({
           ...optionData,
-          user_id: currentUser?.id || 'default-user',
+          user_id: activeUser?.id || 'default-user',
           brokerage_id: selectedBrokerage?.id || 'default-brokerage',
           contract_id: `contract_${Date.now()}`
         })
@@ -700,6 +712,9 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
   // ================================
   
   const addTransaction = async (transactionData: Omit<Transaction, 'id'>) => {
+    // Usar currentUser ou authUser como fallback (problema de timing)
+    const activeUser = currentUser || authUser;
+    
     try {
       console.log('🔥 CONTEXTO SUPABASE: addTransaction chamada com dados:', transactionData);
       
@@ -846,7 +861,7 @@ export const SupabaseDataProvider = ({ children }: { children: ReactNode }) => {
             console.log('✅ Confirmado: nenhuma posição existe - criando nova');
             
             const positionData: Omit<Position, 'id'> = {
-                          user_id: correctedTransactionData.userId || currentUser?.id || '2dc60bee-5466-4f7e-8e1d-00cf91ee6e97',
+              user_id: correctedTransactionData.userId || activeUser?.id || '2dc60bee-5466-4f7e-8e1d-00cf91ee6e97',
             brokerage_id: correctedTransactionData.brokerageId || selectedBrokerage?.id || '6b75b1d7-8cea-4823-9c2f-2ff236d32da6',
               contract: correctedTransactionData.contract,
               direction: correctedTransactionData.type === 'COMPRA' ? 'COMPRA' : 'VENDA',
