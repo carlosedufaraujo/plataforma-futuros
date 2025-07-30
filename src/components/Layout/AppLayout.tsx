@@ -32,11 +32,17 @@ export default function AppLayout({
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleFloatingAction = () => {
+    // Disparar evento para abrir modal de nova posição
+    const event = new CustomEvent('openNewPositionModal');
+    window.dispatchEvent(event);
+  };
+
   const getPageTitle = (page: PageType) => {
     const titles = {
       rentabilidade: 'Dashboard',
       posicoes: 'Posições',
-      opcoes: 'Opções',
+      opcoes: 'Opções',  
       performance: 'Performance',
       configuracoes: 'Configurações'
     };
@@ -91,7 +97,7 @@ export default function AppLayout({
             {currentPage !== 'configuracoes' && (
               <div className="period-filter">
                 <div className="filter-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -101,10 +107,10 @@ export default function AppLayout({
                 <select 
                   id="period-selector"
                   name="period"
+                  aria-label="Seletor de período"
                   className="period-select"
                   value={selectedPeriod}
                   onChange={(e) => onPeriodChange(e.target.value)}
-                  aria-label="Selecionar período de análise"
                 >
                   <option value="30d" title="Últimos 30 dias">30 dias</option>
                   <option value="60d" title="Últimos 60 dias">60 dias</option>
@@ -113,31 +119,19 @@ export default function AppLayout({
                   <option value="1y" title="Último ano">1 ano</option>
                   <option value="all" title="Desde o início">Todo período</option>
                 </select>
-                <div className="filter-chevron">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="6,9 12,15 18,9"></polyline>
-                  </svg>
-                </div>
               </div>
             )}
           </div>
         </div>
 
-        <main className="page-content">
-          {children}
-        </main>
+        {children}
+        
+        {/* Botão flutuante - só mostrar em páginas que fazem sentido */}
+        {(currentPage === 'posicoes' || currentPage === 'rentabilidade' || currentPage === 'performance') && (
+          <FloatingActionButton onClick={handleFloatingAction} />
+        )}
+        <ModalManager />
       </div>
-
-      {/* Botão Flutuante para Nova Posição */}
-      <FloatingActionButton 
-        onClick={() => {
-          // Dispatch do evento customizado para abrir modal Nova Posição
-          const event = new CustomEvent('openNewPositionModal');
-          window.dispatchEvent(event);
-        }}
-      />
-
-      <ModalManager />
     </div>
   );
 } 

@@ -248,59 +248,104 @@ export default function PerformancePage({ selectedPeriod }: PerformancePageProps
   );
 
   const renderOverview = () => (
-    <div className="performance-grid">
-      {/* Métricas Principais */}
-      <div className="performance-card overview-metrics">
-        <h3>Métricas Principais</h3>
-        <div className="metrics-grid">
-          <div className="metric-item">
+    <div>
+      {/* Cards Horizontais de Métricas */}
+      <div className="performance-metrics-horizontal">
+        <div className="metric-card-horizontal">
+          <div className="metric-icon">
+            <DollarSign size={24} />
+          </div>
+          <div className="metric-content">
             <div className={`metric-value ${performanceData.totalResult >= 0 ? 'positive' : 'negative'}`}>
               {performanceData.totalResult >= 0 ? '+' : ''}
               {Math.abs(performanceData.totalResult).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </div>
             <div className="metric-label">Resultado Total</div>
           </div>
-          <div className="metric-item">
-            <div className="metric-value">{performanceData.totalContracts}</div>
-            <div className="metric-label">Total de Contratos</div>
+        </div>
+
+        <div className="metric-card-horizontal">
+          <div className="metric-icon">
+            <BarChart3 size={24} />
           </div>
-          <div className="metric-item">
+          <div className="metric-content">
+            <div className="metric-value">{performanceData.totalContracts}</div>
+            <div className="metric-label">Total Contratos</div>
+          </div>
+        </div>
+
+        <div className="metric-card-horizontal">
+          <div className="metric-icon">
+            <TrendingUp size={24} />
+          </div>
+          <div className="metric-content">
             <div className={`metric-value ${performanceData.winRate >= 50 ? 'positive' : 'negative'}`}>
               {performanceData.winRate.toFixed(0)}%
             </div>
             <div className="metric-label">Win Rate</div>
           </div>
-          <div className="metric-item">
-            <div className="metric-value">
-              {performanceData.maxExposure.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-            </div>
-            <div className="metric-label">Exposição Máxima</div>
+        </div>
+
+        <div className="metric-card-horizontal">
+          <div className="metric-icon">
+            <Target size={24} />
           </div>
-          <div className="metric-item">
+          <div className="metric-content">
             <div className={`metric-value ${performanceData.roi >= 0 ? 'positive' : 'negative'}`}>
               {performanceData.roi >= 0 ? '+' : ''}{performanceData.roi.toFixed(1)}%
             </div>
             <div className="metric-label">ROI Período</div>
           </div>
-          <div className="metric-item">
-            <div className="metric-value">{performanceData.avgHoldingDays} dias</div>
-            <div className="metric-label">Holding Médio</div>
-          </div>
         </div>
       </div>
 
-      {/* Performance Acumulada */}
-      <div className="performance-card cumulative-performance">
-        <h3>Performance Acumulada</h3>
-        <div className="performance-chart">
-          <p>Gráfico de performance acumulada seria renderizado aqui</p>
-          <div className="chart-placeholder">
-            <div className="placeholder-text">
-              {performanceData.cumulativePerformance.length > 0 
-                ? `${performanceData.cumulativePerformance.length} pontos de dados` 
-                : 'Sem dados suficientes'}
-            </div>
+      {/* Tabela de Performance por Contrato */}
+      <div className="enhanced-table">
+        <div className="table-header">
+          <div className="table-title">
+            <BarChart3 size={16} />
+            Performance por Contrato
           </div>
+        </div>
+        
+        <div className="table-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Contrato</th>
+                <th>Resultado</th>
+                <th>Contratos</th>
+                <th>Win Rate</th>
+                <th>Exposição</th>
+                <th>Última Operação</th>
+              </tr>
+            </thead>
+            <tbody>
+              {performanceData.assetPerformance.length > 0 ? (
+                performanceData.assetPerformance.map((asset, index) => (
+                  <tr key={index}>
+                    <td><strong>{asset.asset}</strong></td>
+                    <td className={asset.result >= 0 ? 'value-positive' : 'value-negative'}>
+                      {asset.result >= 0 ? '+' : ''}
+                      {Math.abs(asset.result).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </td>
+                    <td>{asset.contracts}</td>
+                    <td className={asset.winRate >= 50 ? 'value-positive' : 'value-negative'}>
+                      {asset.winRate.toFixed(1)}%
+                    </td>
+                    <td>{asset.exposure.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                    <td className="value-neutral">Hoje às 14:32</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: 'center', padding: '40px', color: 'var(--text-secondary)' }}>
+                    Nenhum dado de performance disponível
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

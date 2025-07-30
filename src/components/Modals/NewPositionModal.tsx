@@ -295,12 +295,17 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
   return (
     <div className="modal-overlay">
       <div className="modal position-modal">
-        {/* Header */}
-        <div className="modal-header">
+        {/* Header Melhorado com Gradiente */}
+        <div className="position-modal-header">
           <div className="modal-title-section">
-            <h2 className="modal-title">{editingPosition ? 'Editar Posição' : 'Nova Posição'}</h2>
+            <h2 className="position-modal-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+              {editingPosition ? 'Editar Posição' : 'Nova Posição'}
+            </h2>
             <span className="modal-subtitle">
-              {selectedContract ? `${selectedContract.symbol} - ${selectedContract.name}` : 'Selecione um contrato'}
+              {selectedContract ? `${selectedContract.symbol} - ${selectedContract.name}` : 'Configure os dados da operação'}
             </span>
           </div>
           <button className="modal-close" onClick={onClose} type="button">
@@ -344,7 +349,12 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
             {/* Seleção de Contrato */}
             <div className="form-row">
               <div className="field-group full-width">
-                <label className="field-label">Contrato</label>
+                <label className="field-label">
+                  Contrato
+                  <span className="field-hint">
+                    (digite para autocomplete)
+                  </span>
+                </label>
                 <div className="contract-input-container">
                   <input
                     type="text"
@@ -361,7 +371,7 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
                     onBlur={() => {
                       setTimeout(() => setShowSuggestions(false), 200);
                     }}
-                    placeholder="Digite o símbolo (ex: BGIF25, CCMK25)"
+                    placeholder="🔍 Digite símbolo (BGI, CCM) ou nome (Milho, Boi Gordo)"
                     disabled={loadingContracts}
                   />
                   

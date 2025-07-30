@@ -179,18 +179,18 @@ export default function BrokerageSelector() {
         .brokerage-selector {
           display: flex;
           flex-direction: column;
-          gap: 12px;
-          margin: 20px 0;
+          gap: 8px;
+          margin: 12px 0;
         }
 
         .selector-content {
           display: flex;
           align-items: center;
-          gap: 12px;
-          padding: 12px 16px;
+          gap: 8px;
+          padding: 8px 12px;
           background: var(--bg-secondary);
           border: 1px solid var(--border-color);
-          border-radius: 8px;
+          border-radius: 6px;
           transition: all 0.2s ease;
         }
 
@@ -215,14 +215,14 @@ export default function BrokerageSelector() {
         }
 
         .selector-label {
-          font-size: 11px;
+          font-size: 9px;
           color: var(--text-secondary);
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
         .selector-value {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
           color: var(--text-primary);
         }
