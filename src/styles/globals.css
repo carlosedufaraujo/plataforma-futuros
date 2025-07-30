@@ -31,21 +31,63 @@ body {
 }
 
 /* =================================
-   VARIÁVEIS DE TEMA
+   VARIÁVEIS DE TEMA - DESIGN MINIMALISTA ACEX
    ================================= */
 :root {
-  /* Modo Escuro (padrão) */
+  /* ===== SISTEMA DE ESPAÇAMENTO ULTRA COMPACTO ===== */
+  /* Antigo Sistema (Comentado para referência)
+  --spacing-xs-old: 8px;
+  --spacing-sm-old: 16px;
+  --spacing-md-old: 24px;
+  --spacing-lg-old: 32px;
+  --spacing-xl-old: 48px;
+  */
+  
+  /* Novo Sistema - Redução de ~60% */
+  --spacing-xs: 4px;   /* Ultra micro */
+  --spacing-sm: 6px;   /* Pequeno */
+  --spacing-md: 10px;  /* Médio */
+  --spacing-lg: 14px;  /* Grande */
+  --spacing-xl: 20px;  /* Extra grande */
+  
+  /* ===== TIPOGRAFIA COMPACTA ===== */
+  --text-xs: 10px;     /* Labels, captions */
+  --text-sm: 11px;     /* Texto secundário */
+  --text-base: 12px;   /* Texto padrão */
+  --text-md: 13px;     /* Texto corpo */
+  --text-lg: 14px;     /* Subtítulos */
+  --text-xl: 16px;     /* Títulos */
+  --text-2xl: 18px;    /* Valores grandes */
+  
+  /* ===== DIMENSÕES DE COMPONENTES ===== */
+  --input-height: 32px;    /* Era 48px */
+  --button-height: 28px;   /* Era 40px */
+  --header-height: 44px;   /* Era 64px */
+  --sidebar-width: 220px;  /* Era 280px */
+  --card-padding: 10px;    /* Era 24px */
+  
+  /* ===== TRANSIÇÕES RÁPIDAS ===== */
+  --transition-fast: all 0.1s ease;
+  --transition-base: all 0.2s ease;
+  --transition-slow: all 0.3s ease;
+  
+  /* ===== ANIMAÇÕES ===== */
+  --animation-fadeIn: fadeIn 0.2s ease-out;
+  --animation-slideUp: slideUp 0.3s ease-out;
+  --animation-scaleIn: scaleIn 0.2s ease-out;
+  
+  /* ===== CORES BASE (Modo Escuro) ===== */
   --bg-primary: #0f0f0f;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #141414;
   --bg-hover: #252525;
   --border-color: #2a2a2a;
+  --border-color-light: #3a3a3a;
   --text-primary: #e0e0e0;
   --text-secondary: #888888;
   --text-bright: #ffffff;
-  --sidebar-width: 250px; /* Reduzido de 280px */
   
-  /* Cores semânticas */
+  /* ===== CORES SEMÂNTICAS ===== */
   --color-positive: #10b981;
   --color-negative: #ef4444;
   --color-neutral: #6b7280;
@@ -77,10 +119,10 @@ body {
 }
 
 /* =================================
-   SIDEBAR
+   SIDEBAR - DESIGN MINIMALISTA ACEX
    ================================= */
 .sidebar {
-  width: var(--sidebar-width);
+  width: var(--sidebar-width); /* 220px */
   background: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
   display: flex;
@@ -147,11 +189,11 @@ body {
 }
 
 /* =================================
-   NAVEGAÇÃO
+   NAVEGAÇÃO - DESIGN MINIMALISTA ACEX
    ================================= */
 .nav-menu {
   flex: 1;
-  padding: 8px 0 32px 0; /* Reduzido */
+  padding: var(--spacing-sm) 0 var(--spacing-xl) 0; /* Ultra compacto */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -161,28 +203,38 @@ body {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px; /* Reduzido de 12px */
-  padding: 8px 20px; /* Reduzido de 10px 24px */
+  gap: var(--spacing-sm); /* 6px */
+  padding: var(--spacing-sm) var(--spacing-md); /* 6px 10px */
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: var(--transition-fast);
   cursor: pointer;
   border: none;
   background: none;
   width: 100%;
   text-align: left;
-  font-size: 13px; /* Reduzido de 14px */
+  font-size: var(--text-sm); /* 11px */
+  font-weight: 500;
   position: relative;
+  border-radius: 4px;
+  margin: 0 var(--spacing-xs);
 }
 
 .nav-item:hover {
   background: var(--bg-hover);
   color: var(--text-primary);
+  transform: translateX(2px);
 }
 
 .nav-item.active {
-  background: var(--bg-hover);
-  color: var(--text-bright);
+  background: var(--color-info-bg);
+  color: var(--color-info);
+  border-left: 2px solid var(--color-info);
+  padding-left: var(--spacing-sm);
+}
+
+.nav-item.active .nav-icon {
+  color: var(--color-info);
 }
 
 .nav-item.active::before {
@@ -191,14 +243,16 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: 2px; /* Mais fino */
   background: var(--color-info);
+  border-radius: 0 2px 2px 0;
 }
 
 .nav-icon {
-  width: 18px; /* Reduzido de 20px */
-  height: 18px;
+  width: 14px; /* Design minimalista ACEX */
+  height: 14px;
   flex-shrink: 0;
+  transition: var(--transition-fast);
 }
 
 /* =================================
@@ -3127,6 +3181,87 @@ td .btn {
 }
 
 /* =================================
+   ANIMAÇÕES MINIMALISTAS ACEX
+   ================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -4px, 0);
+  }
+  70% {
+    transform: translate3d(0, -2px, 0);
+  }
+  90% {
+    transform: translate3d(0, -1px, 0);
+  }
+}
+
+/* Classes de utilidade para animações */
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* =================================
    RESPONSIVIDADE GERAL
    ================================= */
 @media (max-width: 1024px) {
@@ -3260,4 +3395,29 @@ td .btn {
 /* =================================
    MELHORIAS ESPECÍFICAS PARA TABS
    ================================= */
+
+
+
+/* =================================
+   ANIMAÇÕES MINIMALISTAS ACEX
+   ================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Classes de utilidade */
+.animate-fadeIn { animation: fadeIn 0.2s ease-out; }
+.animate-slideUp { animation: slideUp 0.3s ease-out; }
+.animate-scaleIn { animation: scaleIn 0.2s ease-out; }
 
