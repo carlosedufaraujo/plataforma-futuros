@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
+import { User } from '@/types';
 
 interface Brokerage {
   id: string;
@@ -18,13 +19,6 @@ interface Brokerage {
   impostos: number;
   is_active: boolean;
   created_at: string;
-}
-
-interface User {
-  id: string;
-  nome: string;
-  email: string;
-  cpf: string;
 }
 
 interface UserBrokerage {
@@ -229,7 +223,7 @@ export default function BrokerageManagement() {
               is_active: true
             }])
             .select()
-            .single();
+            .maybeSingle();
           
           if (error) throw error;
           
@@ -240,9 +234,8 @@ export default function BrokerageManagement() {
         } catch (insertError: any) {
           console.error('❌ Erro ao criar corretora:', insertError);
           
-          // Se o erro foi no .single(), tentar sem ele
+          // Se o erro foi no .maybeSingle(), tentar sem ele
           if (insertError.message?.includes('single') || insertError.code === 'PGRST116') {
-            console.log('🔄 Tentando inserção sem .single()...');
             
             const { data: newBrokerageArray, error: retryError } = await supabase
               .from('brokerages')

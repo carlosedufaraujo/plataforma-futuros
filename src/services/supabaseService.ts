@@ -40,9 +40,10 @@ export class SupabaseService {
         endereco: userData.endereco
       })
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('Erro ao criar usuário');
     return this.mapUserFromDB(data);
   }
 
@@ -58,9 +59,10 @@ export class SupabaseService {
       })
       .eq('id', id)
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('Usuário não encontrado');
     return this.mapUserFromDB(data);
   }
 
@@ -104,9 +106,10 @@ export class SupabaseService {
         impostos: brokerageData.impostos
       })
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('Erro ao criar corretora');
     return this.mapBrokerageFromDB(data);
   }
 
@@ -130,7 +133,7 @@ export class SupabaseService {
     return data.map(this.mapPositionFromDB);
   }
 
-  async createPosition(positionData: Omit<Position, 'id'>): Promise<Position> {
+  async createPosition(positionData: Omit<Position, 'id'> & { id?: string }): Promise<Position> {
     const client = this.checkSupabase();
     
     console.log('📊 Criando posição no Supabase:', positionData);
@@ -141,6 +144,7 @@ export class SupabaseService {
     const { data, error } = await client
       .from('positions')
       .insert({
+        // Não incluir ID - deixar Supabase gerar UUID
         user_id: positionData.user_id,
         brokerage_id: positionData.brokerage_id,
         contract_id: positionData.contract_id || null,
@@ -162,7 +166,7 @@ export class SupabaseService {
         unrealized_pnl: positionData.unrealized_pnl || 0
       })
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) {
       console.error('❌ Erro ao inserir posição no Supabase:', error);
@@ -197,9 +201,10 @@ export class SupabaseService {
       .update(mappedUpdates)
       .eq('id', id)
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('Posição não encontrada');
     return this.mapPositionFromDB(data);
   }
 
@@ -291,7 +296,7 @@ export class SupabaseService {
       .from('transactions')
       .insert(insertData)
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) {
       console.error('❌ Erro ao criar transação:', error);
@@ -324,7 +329,7 @@ export class SupabaseService {
       .from('transactions')
       .update(dbUpdates)
       .select()
-      .single();
+      .maybeSingle();
 
     // Se o ID parece ser um custom_id (formato TX0001), buscar por custom_id
     if (id.match(/^TX\d{4}$/)) {
@@ -337,6 +342,7 @@ export class SupabaseService {
     const { data, error } = await query;
     
     if (error) throw error;
+    if (!data) throw new Error('Transação não encontrada');
     return this.mapTransactionFromDB(data);
   }
 
@@ -398,9 +404,10 @@ export class SupabaseService {
         fees: optionData.fees
       })
       .select()
-      .single();
+      .maybeSingle();
     
     if (error) throw error;
+    if (!data) throw new Error('Erro ao criar opção');
     return this.mapOptionFromDB(data);
   }
 

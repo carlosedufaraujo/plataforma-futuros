@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { User } from '@/hooks/useAccessControl';
+import { User } from '@/types';
 
 interface UserSelectionModalProps {
   isOpen: boolean;

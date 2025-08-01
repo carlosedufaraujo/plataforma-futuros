@@ -9,7 +9,7 @@ import AnalysisModal from '@/components/Modals/AnalysisModal';
 import SettingsModal from '@/components/Modals/SettingsModal';
 import BrokerageRegistrationModal from '@/components/Modals/BrokerageRegistrationModal';
 import UserRegistrationModal from '@/components/Modals/UserRegistrationModal';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 
 interface ModalState {
   newPosition: boolean;
@@ -19,7 +19,7 @@ interface ModalState {
 }
 
 export default function ModalManager() {
-  const { addPosition, addOption } = useHybridData();
+  const { addPosition, addOption } = useData();
   const [modals, setModals] = useState<ModalState>({
     newPosition: false,
     newOption: false,
@@ -118,7 +118,6 @@ export default function ModalManager() {
   };
 
   const handleUserRegistration = (userData: any) => {
-    console.log('✅ Usuário cadastrado:', userData);
     closeModal('userRegistration');
     
     // Feedback visual para o usuário
@@ -138,7 +137,6 @@ export default function ModalManager() {
   };
 
   const handleBrokerageRegistration = (brokerageData: any) => {
-    console.log('✅ Corretora cadastrada:', brokerageData);
     closeModal('brokerageRegistration');
     
     // Feedback visual para o usuário

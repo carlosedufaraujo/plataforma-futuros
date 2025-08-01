@@ -6,7 +6,6 @@ import { localStorageService } from '@/services/localStorage';
 import { User, Brokerage, Position, Transaction } from '@/types';
 
 export const seedExampleData = () => {
-  console.log('🌱 Populando dados de exemplo...');
 
   // Usuários de exemplo
   const exampleUsers: User[] = [
@@ -168,12 +167,6 @@ export const seedExampleData = () => {
   localStorageService.saveCurrentUser(exampleUsers[0]);
   localStorageService.saveSelectedBrokerage(exampleBrokerages[0]);
 
-  console.log('✅ Dados de exemplo salvos com sucesso!');
-  console.log('📊 Resumo:');
-  console.log(`   - ${exampleUsers.length} usuários`);
-  console.log(`   - ${exampleBrokerages.length} corretoras`);
-  console.log(`   - ${examplePositions.length} posições`);
-  console.log(`   - ${exampleTransactions.length} transações`);
   
   return {
     users: exampleUsers,

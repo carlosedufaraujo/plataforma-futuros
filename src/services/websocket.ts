@@ -33,13 +33,11 @@ class WebSocketService {
     if (!this.socket) return;
 
     this.socket.on('connect', () => {
-      console.log('WebSocket conectado');
       this.isConnecting = false;
       this.reconnectAttempts = 0;
     });
 
     this.socket.on('disconnect', (reason) => {
-      console.log('WebSocket desconectado:', reason);
       this.isConnecting = false;
     });
 
@@ -50,7 +48,6 @@ class WebSocketService {
     });
 
     this.socket.on('reconnect', (attemptNumber) => {
-      console.log(`WebSocket reconectado após ${attemptNumber} tentativas`);
     });
 
     this.socket.on('reconnect_error', (error) => {

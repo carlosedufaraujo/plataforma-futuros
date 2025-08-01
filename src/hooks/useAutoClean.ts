@@ -5,7 +5,6 @@ export const useAutoClean = () => {
 
   useEffect(() => {
     const executeAutoClean = () => {
-      console.log('🔍 Auto-limpeza iniciada...');
 
       const keys = ['acex_positions', 'acex_options', 'acex_transactions', 'acex_users', 'acex_brokerages'];
       let foundMockData = false;
@@ -42,12 +41,10 @@ export const useAutoClean = () => {
       });
 
       if (!foundMockData) {
-        console.log('✅ Sistema já limpo');
         return;
       }
 
       // Executar limpeza
-      console.log('🧹 Removendo dados mock:', itemsFound);
       
       const allKeys = [...keys, 'acex_current_user', 'acex_selected_brokerage', 'acex_id_counters'];
       allKeys.forEach(key => localStorage.removeItem(key));

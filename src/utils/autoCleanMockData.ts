@@ -7,7 +7,6 @@ export const autoCleanMockData = () => {
   // Só executar no cliente
   if (typeof window === 'undefined') return;
 
-  console.log('🔍 Verificando dados mock para limpeza automática...');
 
   const keys = ['acex_positions', 'acex_options', 'acex_transactions', 'acex_users', 'acex_brokerages'];
   let foundMockData = false;
@@ -41,48 +40,39 @@ export const autoCleanMockData = () => {
           });
         }
       } catch (e) {
-        console.log(`Erro ao verificar ${key}:`, e.message);
       }
     }
   });
 
   // Se não há dados mock, não fazer nada
   if (!foundMockData) {
-    console.log('✅ Sistema limpo - nenhum dado mock encontrado');
     return false;
   }
 
   // Executar limpeza automática
-  console.log('🧹 EXECUTANDO LIMPEZA AUTOMÁTICA DE DADOS MOCK...');
-  console.log('📋 Itens encontrados:', itemsToRemove);
 
   // Remover todos os dados ACEX
   const allKeys = [...keys, 'acex_current_user', 'acex_selected_brokerage', 'acex_id_counters'];
   
   allKeys.forEach(key => {
     localStorage.removeItem(key);
-    console.log(`🗑️ ${key} removido`);
   });
 
   // Verificar se limpeza foi bem-sucedida
   let remainingData = false;
   Object.keys(localStorage).forEach(key => {
     if (key.startsWith('acex_')) {
-      console.log(`❌ Ainda existe: ${key}`);
       remainingData = true;
     }
   });
 
   if (!remainingData) {
-    console.log('✅ LIMPEZA AUTOMÁTICA CONCLUÍDA COM SUCESSO!');
-    console.log(`📊 Removidos: ${itemsToRemove.join(', ')}`);
     
     // Mostrar notificação visual
     showCleanupNotification(itemsToRemove.length);
     
     return true;
   } else {
-    console.log('⚠️ Alguns dados ainda existem após limpeza');
     return false;
   }
 };

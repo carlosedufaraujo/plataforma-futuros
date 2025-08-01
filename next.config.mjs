@@ -18,10 +18,7 @@ console.log('Is Cloudflare Build:', isCloudflarePages || isCloudflareBuild);
 const nextConfig = {
   // Configuração MINIMALISTA - apenas o essencial
   
-  // Experimental - desabilitar funcionalidades que podem causar conflito
-  experimental: {
-    appDir: true,
-  },
+  // Remover experimental.appDir - não é mais necessário no Next.js 14
   
   // Output para Cloudflare Pages (somente quando necessário)
   ...(isCloudflarePages || isCloudflareBuild ? {
@@ -39,12 +36,12 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   
-  // Desabilitar checagem de tipos no build para desenvolvimento
+  // Habilitar checagem de tipos e linting
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 

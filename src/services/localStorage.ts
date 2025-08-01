@@ -101,14 +101,12 @@ class LocalStorageService {
   savePositions(positions: Position[]): boolean {
     const success = this.setItem(STORAGE_KEYS.POSITIONS, positions);
     if (success) {
-      console.log(`💾 ${positions.length} posições salvas no localStorage`);
     }
     return success;
   }
 
   loadPositions(): Position[] {
     const positions = this.getItem<Position[]>(STORAGE_KEYS.POSITIONS, []);
-    console.log(`📂 ${positions.length} posições carregadas do localStorage`);
     return positions;
   }
 
@@ -119,14 +117,12 @@ class LocalStorageService {
   saveOptions(options: Option[]): boolean {
     const success = this.setItem(STORAGE_KEYS.OPTIONS, options);
     if (success) {
-      console.log(`💾 ${options.length} opções salvas no localStorage`);
     }
     return success;
   }
 
   loadOptions(): Option[] {
     const options = this.getItem<Option[]>(STORAGE_KEYS.OPTIONS, []);
-    console.log(`📂 ${options.length} opções carregadas do localStorage`);
     return options;
   }
 
@@ -137,14 +133,12 @@ class LocalStorageService {
   saveTransactions(transactions: Transaction[]): boolean {
     const success = this.setItem(STORAGE_KEYS.TRANSACTIONS, transactions);
     if (success) {
-      console.log(`💾 ${transactions.length} transações salvas no localStorage`);
     }
     return success;
   }
 
   loadTransactions(): Transaction[] {
     const transactions = this.getItem<Transaction[]>(STORAGE_KEYS.TRANSACTIONS, []);
-    console.log(`📂 ${transactions.length} transações carregadas do localStorage`);
     return transactions;
   }
 
@@ -155,14 +149,12 @@ class LocalStorageService {
   saveUsers(users: User[]): boolean {
     const success = this.setItem(STORAGE_KEYS.USERS, users);
     if (success) {
-      console.log(`💾 ${users.length} usuários salvos no localStorage`);
     }
     return success;
   }
 
   loadUsers(): User[] {
     const users = this.getItem<User[]>(STORAGE_KEYS.USERS, []);
-    console.log(`📂 ${users.length} usuários carregados do localStorage`);
     return users;
   }
 
@@ -173,14 +165,12 @@ class LocalStorageService {
   saveBrokerages(brokerages: Brokerage[]): boolean {
     const success = this.setItem(STORAGE_KEYS.BROKERAGES, brokerages);
     if (success) {
-      console.log(`💾 ${brokerages.length} corretoras salvas no localStorage`);
     }
     return success;
   }
 
   loadBrokerages(): Brokerage[] {
     const brokerages = this.getItem<Brokerage[]>(STORAGE_KEYS.BROKERAGES, []);
-    console.log(`📂 ${brokerages.length} corretoras carregadas do localStorage`);
     return brokerages;
   }
 
@@ -191,7 +181,6 @@ class LocalStorageService {
   saveCurrentUser(user: User | null): boolean {
     const success = this.setItem(STORAGE_KEYS.CURRENT_USER, user);
     if (success && user) {
-      console.log(`💾 Usuário atual salvo: ${user.nome}`);
     }
     return success;
   }
@@ -199,7 +188,6 @@ class LocalStorageService {
   loadCurrentUser(): User | null {
     const user = this.getItem<User | null>(STORAGE_KEYS.CURRENT_USER, null);
     if (user) {
-      console.log(`📂 Usuário atual carregado: ${user.nome}`);
     }
     return user;
   }
@@ -211,7 +199,6 @@ class LocalStorageService {
   saveSelectedBrokerage(brokerage: Brokerage | null): boolean {
     const success = this.setItem(STORAGE_KEYS.SELECTED_BROKERAGE, brokerage);
     if (success && brokerage) {
-      console.log(`💾 Corretora selecionada salva: ${brokerage.nome}`);
     }
     return success;
   }
@@ -219,7 +206,6 @@ class LocalStorageService {
   loadSelectedBrokerage(): Brokerage | null {
     const brokerage = this.getItem<Brokerage | null>(STORAGE_KEYS.SELECTED_BROKERAGE, null);
     if (brokerage) {
-      console.log(`📂 Corretora selecionada carregada: ${brokerage.nome}`);
     }
     return brokerage;
   }
@@ -236,7 +222,6 @@ class LocalStorageService {
       Object.values(STORAGE_KEYS).forEach(key => {
         this.removeItem(key);
       });
-      console.log('🗑️ Todos os dados foram limpos do localStorage');
       return true;
     } catch (error) {
       console.error('Erro ao limpar dados:', error);
@@ -284,7 +269,6 @@ class LocalStorageService {
       if (data.currentUser) this.saveCurrentUser(data.currentUser);
       if (data.selectedBrokerage) this.saveSelectedBrokerage(data.selectedBrokerage);
 
-      console.log('📥 Backup importado com sucesso');
       return true;
     } catch (error) {
       console.error('Erro ao importar backup:', error);

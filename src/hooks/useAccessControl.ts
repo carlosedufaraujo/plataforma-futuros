@@ -1,15 +1,10 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import { User } from '@/types';
 
-export interface User {
-  id: string;
-  nome: string;
-  email: string;
-  cpf: string;
-  telefone: string;
-  endereco: string;
-}
+// Re-export User for backwards compatibility
+export type { User } from '@/types';
 
 export interface UserPermission {
   userId: string;

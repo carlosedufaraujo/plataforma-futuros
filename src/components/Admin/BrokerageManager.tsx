@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Building, Phone, Mail } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { Brokerage } from '@/types';
 
 export default function BrokerageManager() {
-  const { brokerages, addBrokerage, updateBrokerage, deleteBrokerage, selectedBrokerage, setSelectedBrokerage } = useHybridData();
+  const { brokerages, addBrokerage, updateBrokerage, deleteBrokerage, selectedBrokerage, setSelectedBrokerage } = useData();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBrokerage, setEditingBrokerage] = useState<Brokerage | null>(null);
   const [formData, setFormData] = useState({

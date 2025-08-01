@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Download, Upload, Trash2, Database, RefreshCw } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { localStorageService } from '@/services/localStorage';
 
 export default function DataManager() {
@@ -11,7 +11,7 @@ export default function DataManager() {
   const {
     positions, options, transactions, users, brokerages,
     clearAllData, exportData, importData, fetchData
-  } = useHybridData();
+  } = useData();
   
   const [exportedData, setExportedData] = useState('');
   const [importedData, setImportedData] = useState('');

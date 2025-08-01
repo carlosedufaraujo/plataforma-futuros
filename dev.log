@@ -5,189 +5,885 @@
 🔧 Next.js Config - Variáveis de Ambiente:
 NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
+🔍 Build Environment:
+CF_PAGES: undefined
+CF_PAGES_BRANCH: undefined
+ESLINT_CONFIG_FILE: undefined
+Is Cloudflare Build: false
+📋 Next.js Config Final: { output: undefined, trailingSlash: undefined, distDir: undefined }
 🔧 Next.js Config - Variáveis de Ambiente:
 NEXT_PUBLIC_SUPABASE_URL: https://kdfevkbwohcajcwrqzor.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY: SET
-   ▲ Next.js 15.4.2
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.100.64:3000
-   - Environments: .env.local
+🔍 Build Environment:
+CF_PAGES: undefined
+CF_PAGES_BRANCH: undefined
+ESLINT_CONFIG_FILE: undefined
+Is Cloudflare Build: false
+📋 Next.js Config Final: { output: undefined, trailingSlash: undefined, distDir: undefined }
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3000
+  - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 1302ms
+ ✓ Ready in 1494ms
  ○ Compiling / ...
- ✓ Compiled / in 3.2s (841 modules)
- GET / 200 in 3515ms
- ✓ Compiled in 417ms (832 modules)
- GET / 200 in 67ms
- ✓ Compiled in 305ms (832 modules)
- GET / 200 in 42ms
- ✓ Compiled in 418ms (832 modules)
- GET / 200 in 48ms
- ✓ Compiled /_not-found in 110ms (823 modules)
- GET /_next/static/css/app/layout.css?v=1753665728056 404 in 194ms
- ✓ Compiled in 400ms (837 modules)
- GET / 200 in 44ms
- ✓ Compiled in 332ms (837 modules)
- ⨯ Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js'
-    at <unknown> (.next/server/app/page.js:973:27)
-    at Object.<anonymous> (.next/server/app/page.js:979:3) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
-  page: '/'
-}
+ ✓ Compiled / in 1241ms (777 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 1440ms
+ ✓ Compiled /favicon.ico in 245ms (441 modules)
+ GET /favicon.ico 200 in 284ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 545ms (780 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 668ms
+ ✓ Compiled /favicon.ico in 44ms (442 modules)
+ GET /favicon.ico 200 in 83ms
+ ✓ Compiled in 211ms (810 modules)
+ ✓ Compiled in 279ms (777 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 127ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 25ms
+ ✓ Compiled /favicon.ico in 59ms (441 modules)
+ GET /favicon.ico 200 in 99ms
+ ✓ Compiled in 373ms (807 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /favicon.ico 200 in 95ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 147ms
+ ✓ Compiled in 239ms (807 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 376ms
+ GET /favicon.ico 200 in 14ms
+ ✓ Compiled in 138ms (366 modules)
+ GET /favicon.ico 200 in 20ms
+ ✓ Compiled in 356ms (777 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 111ms
+ ✓ Compiled /favicon.ico in 43ms (441 modules)
+ GET /favicon.ico 200 in 79ms
+ ✓ Compiled in 176ms (807 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /favicon.ico 200 in 32ms
+ GET / 200 in 105ms
+ GET /favicon.ico 200 in 11ms
+ GET /favicon.ico 200 in 4ms
+ ✓ Compiled in 142ms (366 modules)
+ GET /favicon.ico 200 in 13ms
+ ✓ Compiled in 225ms (366 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 23ms
+ ✓ Compiled in 205ms (366 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 30ms
+ GET /favicon.ico 200 in 4ms
+ ✓ Compiled in 116ms (366 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 30ms
+ GET /favicon.ico 200 in 6ms
+ ✓ Compiled in 298ms (807 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 150ms
+ GET /favicon.ico 200 in 9ms
+ ✓ Compiled in 324ms (777 modules)
+ ✓ Compiled /_not-found in 135ms (766 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753873959953 404 in 220ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753873960139 404 in 10ms
+ ✓ Compiled /favicon.ico in 39ms (442 modules)
+ GET /favicon.ico 200 in 69ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 86ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753873965831 404 in 11ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/chunks/main-app.js?v=1753873965831 404 in 14ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 15ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 16ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753873970984 404 in 12ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/chunks/app-pages-internals.js 404 in 15ms
+ GET /_next/static/chunks/main-app.js?v=1753873970984 404 in 16ms
+ ✓ Compiled in 260ms (810 modules)
+ ✓ Compiled in 231ms (366 modules)
+ ✓ Compiled in 353ms (366 modules)
+ ✓ Compiled in 177ms (366 modules)
+ ✓ Compiled in 234ms (366 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 142ms
+ ✓ Compiled /_not-found in 209ms (780 modules)
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753876346332 404 in 289ms
+ GET /_next/static/chunks/main-app.js?v=1753876346332 404 in 275ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 272ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET / 200 in 60ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/css/app/layout.css?v=1753876350832 404 in 13ms
+📊 [AUTH] Estado atual: { hasUser: false, userName: 'N/A', loading: true }
+ GET /_next/static/chunks/main-app.js?v=1753876350832 404 in 14ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 13ms
+ ✓ Compiled in 159ms (366 modules)
+ ✓ Compiled in 275ms (777 modules)
+ ✓ Compiled in 146ms (777 modules)
+ ✓ Compiled in 333ms (777 modules)
+ ✓ Compiled in 195ms (777 modules)
+ ✓ Compiled in 142ms (777 modules)
+ ✓ Compiled in 155ms (777 modules)
+ ✓ Compiled in 149ms (366 modules)
+ ✓ Compiled in 1624ms (366 modules)
+ ✓ Compiled in 1512ms (366 modules)
+ ✓ Compiled in 884ms (366 modules)
+ ✓ Compiled in 608ms (366 modules)
+ ✓ Compiled in 2.9s (366 modules)
+ ✓ Compiled in 691ms (366 modules)
+ ✓ Compiled in 114ms (366 modules)
+ ✓ Compiled in 2.7s (366 modules)
+ ✓ Compiled in 13.3s (366 modules)
+ ✓ Compiled in 349ms (777 modules)
+ ✓ Compiled in 211ms (777 modules)
+ ✓ Compiled in 210ms (777 modules)
+ ✓ Compiled in 157ms (777 modules)
+ ✓ Compiled in 218ms (777 modules)
+ ✓ Compiled in 165ms (777 modules)
+ ✓ Compiled in 190ms (777 modules)
+ ✓ Compiled in 162ms (777 modules)
+ ✓ Compiled in 82ms (366 modules)
+ ✓ Compiled in 100ms (366 modules)
+ ✓ Compiled in 197ms (777 modules)
+ ✓ Compiled in 139ms (777 modules)
+ ✓ Compiled in 147ms (366 modules)
+ ✓ Compiled in 123ms (366 modules)
+ ✓ Compiled in 108ms (366 modules)
+ ✓ Compiled in 109ms (366 modules)
+ ✓ Compiled in 85ms (366 modules)
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(auth)/PosicoesPage.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/app/(auth)/PosicoesPage.tsx[0m:293:1]
+ [2m293[0m |         try {
+ [2m294[0m |           // Verificar se é uma posição consolidada
+ [2m295[0m |           if ((positionToClose as any)._isConsolidated) {
+ [2m296[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           contract: positionToClose.contract,
+ [2m297[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           quantity: closeData.quantity,
+     : [31;1m`[0m[31;1m---[0m[33;1m                  ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m298[0m |               closePrice: closeData.closePrice
+ [2m299[0m |             });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+    ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:68:1]
+ [2m68[0m |           try {
+ [2m69[0m |             
+ [2m70[0m |             const { data: { session }, error } = await supabase.auth.getSession();
+ [2m71[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           hasSession: !!session, 
+ [2m72[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           hasUser: !!session?.user, 
+    : [31;1m`[0m[31;1m---[0m[33;1m                 ^[0m
+    : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m73[0m |               error: error?.message 
+ [2m74[0m |             });
+ [2m75[0m |             
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:246:1]
+ [2m246[0m |       };
+ [2m247[0m |     
+ [2m248[0m |       // Log do estado atual a cada render
+ [2m249[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m     hasUser: !!user, 
+ [2m250[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m     userName: user?.nome || 'N/A', 
+     : [31;1m`[0m[31;1m---[0m[33;1m            ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m251[0m |         loading 
+ [2m252[0m |       });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:246:1]
+ [2m246[0m |       };
+ [2m247[0m |     
+ [2m248[0m |       // Log do estado atual a cada render
+ [2m249[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m     hasUser: !!user, 
+ [2m250[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m     userName: user?.nome || 'N/A', 
+     : [31;1m`[0m[31;1m---[0m[33;1m            ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m251[0m |         loading 
+ [2m252[0m |       });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:246:1]
+ [2m246[0m |       };
+ [2m247[0m |     
+ [2m248[0m |       // Log do estado atual a cada render
+ [2m249[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m     hasUser: !!user, 
+ [2m250[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m     userName: user?.nome || 'N/A', 
+     : [31;1m`[0m[31;1m---[0m[33;1m            ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m251[0m |         loading 
+ [2m252[0m |       });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:241:1]
+ [2m241[0m |       };
+ [2m242[0m |     
+ [2m243[0m |       // Log do estado atual a cada render
+ [2m244[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m     hasUser: !!user, 
+ [2m245[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m     userName: user?.nome || 'N/A', 
+     : [31;1m`[0m[31;1m---[0m[33;1m            ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m246[0m |         loading 
+ [2m247[0m |       });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/contexts/AuthContext.tsx
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/contexts/AuthContext.tsx[0m:241:1]
+ [2m241[0m |       };
+ [2m242[0m |     
+ [2m243[0m |       // Log do estado atual a cada render
+ [2m244[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m     hasUser: !!user, 
+ [2m245[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m     userName: user?.nome || 'N/A', 
+     : [31;1m`[0m[31;1m---[0m[33;1m            ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m246[0m |         loading 
+ [2m247[0m |       });
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/contexts/AuthContext.tsx
+./src/contexts/DataProvider.tsx
+ ⨯ ./src/hooks/useNetPositions.ts
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/hooks/useNetPositions.ts[0m:408:1]
+ [2m408[0m |           
+ [2m409[0m |           // 🚨 LOG ESPECÍFICO PARA BGIN
+ [2m410[0m |           if (contract.includes('BGIN')) {
+ [2m411[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           data: t.date || t.createdAt,
+ [2m412[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           tipo: t.type,
+     : [31;1m`[0m[31;1m---[0m[33;1m              ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m413[0m |               quantidade: t.quantity,
+ [2m414[0m |               preco: t.price
+ [2m415[0m |             })));
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/hooks/useNetPositions.ts
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/hooks/useNetPositions.ts
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/hooks/useNetPositions.ts[0m:567:1]
+ [2m567[0m |     
+ [2m568[0m |       // 🎯 NOVA FUNÇÃO: Detectar P&L parciais já realizados para aba Performance
+ [2m569[0m |       const getPartialPnLForPerformance = useMemo(() => {
+ [2m570[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m       bginTransacoes: transactionsToUse.filter(t => t.contract.includes('BGIN')),
+ [2m571[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m       totalBginTransacoes: transactionsToUse.filter(t => t.contract.includes('BGIN')).length
+     : [31;1m`[0m[31;1m---[0m[33;1m                         ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m572[0m |         });
+ [2m573[0m |         
+ [2m574[0m |         const partialPnLEntries: any[] = [];
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/hooks/useNetPositions.ts
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ⨯ ./src/hooks/useNetPositions.ts
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/hooks/useNetPositions.ts[0m:577:1]
+ [2m577[0m |             
+ [2m578[0m |             // 🚨 LOG ESPECÍFICO PARA BGIN
+ [2m579[0m |             if (contract.includes('BGIN')) {
+ [2m580[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m             data: t.date || t.createdAt,
+ [2m581[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m             tipo: t.type,
+     : [31;1m`[0m[31;1m---[0m[33;1m                ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m582[0m |                 quantidade: t.quantity,
+ [2m583[0m |                 preco: t.price
+ [2m584[0m |               })));
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/hooks/useNetPositions.ts
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
  ○ Compiling /_error ...
- ✓ Compiled /_error in 718ms (1151 modules)
- GET / 500 in 1110ms
- GET / 200 in 68ms
- GET / 200 in 9ms
- GET / 200 in 102ms
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app-paths-manifest.json'
-}
- GET /_next/static/chunks/app/page.js 500 in 4857ms
- GET /_next/static/chunks/webpack.js?v=1753665752774 500 in 4866ms
- GET /_next/static/chunks/app-pages-internals.js 500 in 4859ms
- GET /_next/static/chunks/app/layout.js 500 in 4877ms
- GET /_next/static/chunks/main-app.js?v=1753665752774 500 in 4884ms
- GET /_next/static/css/app/layout.css?v=1753665752774 500 in 4885ms
-<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback.pack.gz: Error: invalid code lengths set
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/cache/webpack/client-development-fallback/0.pack.gz'
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json',
+ ⨯ ./src/hooks/useNetPositions.ts
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/hooks/useNetPositions.ts[0m:577:1]
+ [2m577[0m |             
+ [2m578[0m |             // 🚨 LOG ESPECÍFICO PARA BGIN
+ [2m579[0m |             if (contract.includes('BGIN')) {
+ [2m580[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m             data: t.date || t.createdAt,
+ [2m581[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m             tipo: t.type,
+     : [31;1m`[0m[31;1m---[0m[33;1m                ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m582[0m |                 quantidade: t.quantity,
+ [2m583[0m |                 preco: t.price
+ [2m584[0m |               })));
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/hooks/useNetPositions.ts
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ GET / 500 in 1253ms
+ GET / 500 in 6ms
+ ⨯ ./src/hooks/useNetPositions.ts
+Error: 
+  [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4m/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/src/hooks/useNetPositions.ts[0m:585:1]
+ [2m585[0m |             
+ [2m586[0m |             
+ [2m587[0m |             // 🚨 DEBUG: Mostrar todas as transações do contrato
+ [2m588[0m | [31;1m,[0m[31;1m-[0m[31;1m>[0m           data: new Date(t.date || t.createdAt).toLocaleString('pt-BR'),
+ [2m589[0m | [31;1m|[0m[31;1m-[0m[31;1m>[0m           tipo: t.type,
+     : [31;1m`[0m[31;1m---[0m[33;1m              ^[0m
+     : [31;1m`[0m[31;1m---[0m[31;1m-[0m [31;1mThis is the expression part of an expression statement[0m
+ [2m590[0m |               quantidade: t.quantity,
+ [2m591[0m |               preco: `R$ ${t.price.toFixed(2)}`,
+ [2m592[0m |               id: t.id
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/hooks/useNetPositions.ts
+./src/app/(auth)/PosicoesPage.tsx
+./src/components/layouts/AppWrapper.tsx
+./src/app/page.tsx
+ ✓ Compiled /_error in 365ms (1000 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 198ms
+ ✓ Compiled /_not-found in 317ms (989 modules)
+ GET /_next/static/css/app/layout.css?v=1753977670047 404 in 193ms
+ GET /_next/static/chunks/main-app.js?v=1753977670047 404 in 167ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 167ms
+ ✓ Compiled /favicon.ico in 69ms (482 modules)
+ GET /favicon.ico 200 in 103ms
+ ✓ Compiled in 119ms (551 modules)
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1401:15)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at __webpack_require__.f.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:203:28)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:116:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:167:22)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/page.js:109:27361
+    at Object.<anonymous> (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/page.js:109:27414)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at requirePage (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js:109:84)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:98:84
+    at async loadComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:710:36)
+    at async DevServer.findPageComponents (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:1969:32)
+    at async DevServer.pipeImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:816:17)
+    at async /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js'
+  ],
   page: '/'
 }
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1401:15)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at __webpack_require__.f.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:203:28)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:116:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:167:22)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/pages/_document.js:1:335
+    at Object.<anonymous> (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/pages/_document.js:1:376)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at requirePage (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js:109:84)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js'
+  ]
 }
- GET / 500 in 91ms
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- GET /_next/static/chunks/fallback/webpack.js?ts=1753669509855 500 in 64ms
- GET /_next/static/chunks/fallback/main.js?ts=1753669509855 500 in 62ms
- GET /_next/static/chunks/fallback/pages/_app.js?ts=1753669509855 500 in 61ms
- GET /_next/static/chunks/fallback/pages/_error.js?ts=1753669509855 500 in 61ms
- GET /_next/static/chunks/fallback/react-refresh.js?ts=1753669509855 500 in 63ms
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json',
+Error: Cannot find module './948.js'
+Require stack:
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1401:15)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at __webpack_require__.f.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:203:28)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:116:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:167:22)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/page.js:109:27361
+    at Object.<anonymous> (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/page.js:109:27414)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at requirePage (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js:109:84)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:98:84
+    at async loadComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:710:36)
+    at async DevServer.findPageComponents (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:1917:24)
+    at async DevServer.renderToResponseImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:1969:32)
+    at async DevServer.pipeImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:816:17)
+    at async /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js'
+  ],
   page: '/'
 }
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js
+- /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1401:15)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at __webpack_require__.f.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:203:28)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:116:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js:167:22)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/pages/_document.js:1:335
+    at Object.<anonymous> (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/pages/_document.js:1:376)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1487:12)
+    at mod.require (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16)
+    at requirePage (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js:109:84)
+    at /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/webpack-runtime.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/app/favicon.ico/route.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/require.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/build/utils.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/fallback-build-manifest.json'
+    at readFileSync (node:fs:441:20)
+    at loadManifest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-manifest.js:35:54)
+    at loadManifestWithRetries (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-components.js:40:51)
+    at async loadDefaultErrorComponentsImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/load-default-error-components.js:30:24)
+    at async DevServer.getFallbackErrorComponents (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:594:16)
+    at async DevServer.renderErrorToResponseImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:2210:40)
+    at async pipe.req.req (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:2063:30)
+    at async DevServer.pipeImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/base-server.js:920:25)
+    at async /Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async requestHandlerImpl (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/router-server.js:389:24)
+    at async Server.requestListener (/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/node_modules/next/dist/server/lib/start-server.js:141:13) {
   errno: -2,
   code: 'ENOENT',
   syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
+  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/fallback-build-manifest.json'
 }
- GET / 500 in 54ms
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/carloseduardo/Library/Mobile Documents/com~apple~CloudDocs/1. Business/CEAC Agropecuária e Mercantil Ltda/Aplicações/boi-gordo-investimentos2/.next/server/next-font-manifest.json'
-}
- GET /_next/static/chunks/fallback/webpack.js?ts=1753669513087 500 in 65ms
- GET /_next/static/chunks/fallback/main.js?ts=1753669513087 500 in 64ms
- GET /_next/static/chunks/fallback/pages/_app.js?ts=1753669513087 500 in 64ms
- GET /_next/static/chunks/fallback/pages/_error.js?ts=1753669513087 500 in 64ms
- GET /_next/static/chunks/fallback/react-refresh.js?ts=1753669513087 500 in 64ms
-[?25h
+ GET / 500 in 468ms
+ GET / 500 in 213ms
+ GET / 404 in 236ms
+ GET /favicon.ico 404 in 9ms
+ GET / 404 in 232ms
+ GET / 404 in 216ms
+ GET / 404 in 220ms
+ GET / 404 in 217ms
+ GET / 404 in 216ms
+ GET / 404 in 214ms
+ GET / 404 in 211ms
+ GET / 404 in 215ms
+ GET / 404 in 211ms
+ GET / 404 in 207ms
+ GET / 404 in 207ms
+ GET / 404 in 211ms
+ GET / 404 in 206ms
+ GET / 404 in 212ms
+ GET / 404 in 211ms
+ GET / 404 in 214ms
+ GET / 404 in 215ms
+ GET / 404 in 214ms
+ GET / 404 in 217ms
+ GET / 404 in 215ms
+ GET / 404 in 205ms
+ GET / 404 in 207ms
+ GET / 404 in 210ms
+ GET / 404 in 210ms
+ GET / 404 in 206ms
+ GET / 404 in 206ms
+ GET / 404 in 181ms
+ ✓ Compiled in 419ms (1038 modules)
+ ✓ Compiled in 162ms (1043 modules)
+ ✓ Compiled in 440ms (1084 modules)
+ ✓ Compiled in 85ms (575 modules)
+ GET / 404 in 451ms
+ GET / 404 in 422ms
+ GET / 404 in 422ms
+ GET / 404 in 423ms
+ ✓ Compiled in 193ms (574 modules)
+ ✓ Compiled in 316ms (1053 modules)
+ ✓ Compiled in 93ms (574 modules)
+ ✓ Compiled in 87ms (574 modules)
+ ✓ Compiled in 109ms (574 modules)
+ ✓ Compiled in 83ms (574 modules)
+ ✓ Compiled in 269ms (574 modules)

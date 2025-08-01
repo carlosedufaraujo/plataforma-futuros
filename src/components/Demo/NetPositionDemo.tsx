@@ -2,10 +2,11 @@
 
 import React from 'react';
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
+import { useNetPositions } from '@/hooks/useNetPositions';
 
 export default function NetPositionDemo() {
-  const { positions } = useHybridData();
+  const { positions } = useData();
   const { netPositions, netStats, formatNetQuantity, getDirectionColor } = useNetPositions();
 
   return (
@@ -33,12 +34,12 @@ export default function NetPositionDemo() {
             
             <div className="stat-item">
               <span className="stat-label">Posições LONG</span>
-              <span className="stat-value positive">{netStats.longPositions}</span>
+              <span className="stat-value positive">{netStats.buyPositions}</span>
             </div>
             
             <div className="stat-item">
               <span className="stat-label">Posições SHORT</span>
-              <span className="stat-value negative">{netStats.shortPositions}</span>
+              <span className="stat-value negative">{netStats.sellPositions}</span>
             </div>
           </div>
         </div>
@@ -75,12 +76,12 @@ export default function NetPositionDemo() {
                     
                     <div className="detail-item">
                       <span className="detail-label">LONG:</span>
-                      <span className="detail-value positive">+{netPos.longQuantity}</span>
+                      <span className="detail-value positive">+{netPos.buyQuantity}</span>
                     </div>
                     
                     <div className="detail-item">
                       <span className="detail-label">SHORT:</span>
-                      <span className="detail-value negative">-{netPos.shortQuantity}</span>
+                      <span className="detail-value negative">-{netPos.sellQuantity}</span>
                     </div>
                     
                     <div className="detail-item">
@@ -140,8 +141,8 @@ export default function NetPositionDemo() {
             <div className="explanation-item">
               <strong>3. Determinação da Direção:</strong>
               <p>
-                • Se NET > 0: Posição LONG<br/>
-                • Se NET &lt; 0: Posição SHORT (quantidade com sinal negativo)<br/>
+                • Se NET {'>'} 0: Posição LONG<br/>
+                • Se NET {'<'} 0: Posição SHORT (quantidade com sinal negativo)<br/>
                 • Se NET = 0: Posição NEUTRA (não aparece na lista)
               </p>
             </div>

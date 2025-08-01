@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { Position, Transaction } from '@/types';
 
 export interface NetPosition {
@@ -21,14 +21,13 @@ export interface NetPosition {
 }
 
 export const useNetPositions = (filteredTransactions?: Transaction[]) => {
-  const { positions, transactions, calculateNetPosition, getAllNetPositions, isPositionNeutralized } = useHybridData();
+  const { positions, transactions, calculateNetPosition, getAllNetPositions, isPositionNeutralized } = useData();
   
   // Usar transações filtradas se fornecidas, senão usar todas
   const transactionsToUse = filteredTransactions || transactions;
 
   // ✅ MODELO CORRETO: Calcular posições líquidas seguindo especificações de commodities
   const netPositions = useMemo((): NetPosition[] => {
-    console.log('🎯 MODELO CORRETO: Calculando posições NET conforme especificações...');
     
     // Incluir TODAS as posições (EXECUTADA, EM_ABERTO, FECHADA) para cálculo NET
     const allPositions = positions.filter(p => 
@@ -36,20 +35,15 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
     );
     const contracts = [...new Set(allPositions.map(p => p.contract))];
     
-    console.log(`📊 Total de posições analisadas: ${allPositions.length}`);
-    console.log(`📋 Contratos únicos: ${contracts.length} - ${contracts.join(', ')}`);
     
     return contracts.map(contract => {
       const contractPositions = allPositions.filter(p => p.contract === contract);
       
-      console.log(`\n🎯 CONTRATO ${contract} (MODELO CORRETO):`);
-      console.log(`   Total de posições: ${contractPositions.length}`);
       
       // Verificar se há transações para este contrato para usar cálculo correto
       const contractTransactions = transactionsToUse.filter(t => t.contract === contract);
       
       if (contractTransactions.length > 0) {
-        console.log(`   📊 Usando transações para cálculo preciso (${contractTransactions.length} transações)`);
         
         // Usar a mesma lógica do recalculatePosition para consistência
         const sortedTransactions = [...contractTransactions].sort((a, b) => 
@@ -106,11 +100,9 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         const netQuantity = posicaoAtual;
         const netDirection = netQuantity > 0 ? 'COMPRA' : netQuantity < 0 ? 'VENDA' : 'NEUTRO';
         
-        console.log(`   ➡️  RESULTADO NET (MODELO): ${netQuantity} (${netDirection}) @ R$ ${precoMedioAtual.toFixed(2)}`);
         
         // FILTRAR POSIÇÕES NEUTRALIZADAS para aba Gestão
         if (netQuantity === 0) {
-          console.log(`   ✅ POSIÇÃO NEUTRALIZADA - removida da aba Gestão`);
           return null;
         }
         
@@ -128,8 +120,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         
         const exposure = precoMedioAtual * Math.abs(netQuantity) * contractSize;
         
-        console.log(`   💰 P&L Não Realizado: R$ ${unrealizedPnL.toFixed(2)}`);
-        console.log(`   📊 Exposição: R$ ${exposure.toFixed(2)}`);
         
         return {
           contract,
@@ -149,7 +139,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         
       } else {
         // Fallback: usar cálculo baseado em posições (método anterior)
-        console.log(`   ⚠️  Sem transações - usando cálculo baseado em posições`);
         
         let symbolSum = 0;
         let buyTotal = 0;
@@ -169,16 +158,13 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
             sellTotal += pos.quantity * pos.entry_price;
           }
           
-          console.log(`   ${pos.direction} ${pos.quantity} @ R$ ${pos.entry_price.toFixed(2)} = ${symbolQuantity} (${pos.status})`);
         });
         
         const netQuantity = symbolSum;
         const netDirection = netQuantity > 0 ? 'COMPRA' : netQuantity < 0 ? 'VENDA' : 'NEUTRO';
         
-        console.log(`   ➡️  RESULTADO NET (FALLBACK): ${netQuantity} (${netDirection})`);
         
         if (netQuantity === 0) {
-          console.log(`   ✅ POSIÇÃO NEUTRALIZADA - removida da aba Gestão`);
           return null;
         }
         
@@ -289,13 +275,11 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
 
   // 🚀 NOVA FUNÇÃO: Detectar P&L realizado (reduções parciais + fechamentos)
   const getRealizedPnL = useMemo(() => {
-    console.log('💰 P&L REALIZADO: Detectando reduções parciais e fechamentos...');
     
     const realizedPnLEntries: any[] = [];
     const contracts = [...new Set(transactionsToUse.map(t => t.contract))];
     
     contracts.forEach(contract => {
-      console.log(`\n🔍 ANALISANDO P&L REALIZADO: ${contract}`);
       
       const contractTransactions = transactionsToUse
         .filter(t => t.contract === contract)
@@ -306,7 +290,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         });
       
       if (contractTransactions.length < 2) {
-        console.log(`⏭️  Pulando ${contract}: apenas ${contractTransactions.length} transação(ões)`);
         return;
       }
       
@@ -322,7 +305,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         const preco = transaction.price;
         const tipo = transaction.type;
         
-        console.log(`  📝 Transação ${index + 1}: ${tipo} ${quantidade} @ R$ ${preco} (Saldo: ${saldoCorrente})`);
         
         // Detectar operações que geram P&L realizado
         if (tipo === 'COMPRA') {
@@ -342,7 +324,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
                 data: transaction.date || transaction.createdAt
               });
               
-              console.log(`    💰 P&L REALIZADO: ${quantidadeReduzida} contratos SHORT @ R$ ${precoMedioEntrada} → R$ ${preco} = R$ ${pnlOperacao.toFixed(2)}`);
             }
           }
           
@@ -371,7 +352,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
                 data: transaction.date || transaction.createdAt
               });
               
-              console.log(`    💰 P&L REALIZADO: ${quantidadeReduzida} contratos LONG @ R$ ${precoMedioEntrada} → R$ ${preco} = R$ ${pnlOperacao.toFixed(2)}`);
             }
           }
           
@@ -386,7 +366,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         
         // Detectar fechamento completo
         if (saldoCorrente === 0 && operacoesRealizadas.length > 0) {
-          console.log(`    ✅ FECHAMENTO COMPLETO DETECTADO: P&L Total = R$ ${pnlRealizado.toFixed(2)}`);
         }
       });
       
@@ -406,47 +385,28 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           saldoAtual: saldoCorrente
         });
         
-        console.log(`    📊 ENTRADA CRIADA: ${contract} - ${status} - P&L TOTAL: R$ ${pnlRealizado.toFixed(2)}`);
       }
     });
     
-    console.log(`💰 P&L REALIZADO: ${realizedPnLEntries.length} entradas encontradas`);
     return realizedPnLEntries;
   }, [transactionsToUse]);
 
   // 🚀 NOVA FUNÇÃO: Detectar neutralizações históricas cronológicas
   const getNeutralizedPositionsForPerformance = useMemo(() => {
-    console.log('🔍 PERFORMANCE: Detectando neutralizações históricas (LÓGICA CRONOLÓGICA)...');
-    console.log('🔍 DADOS DE ENTRADA:', {
-      totalTransacoes: transactionsToUse.length,
-      contratosUnicos: [...new Set(transactionsToUse.map(t => t.contract))]
-    });
     
     const neutralizedContracts: any[] = [];
     const contracts = [...new Set(transactionsToUse.map(t => t.contract))];
     
-    console.log(`📋 PERFORMANCE: Analisando ${contracts.length} contratos para neutralizações históricas:`, contracts);
     
     contracts.forEach(contract => {
-      console.log(`\n🔍 ANALISANDO NEUTRALIZAÇÕES HISTÓRICAS: ${contract}`);
       
       const contractTransactions = transactionsToUse.filter(t => t.contract === contract);
       
       if (contractTransactions.length < 2) {
-        console.log(`⏭️  Pulando ${contract}: apenas ${contractTransactions.length} transação(ões)`);
         return;
       }
       
-      // 🚨 LOG ESPECÍFICO PARA BGIN
-      if (contract.includes('BGIN')) {
-        console.log(`🚨 PROCESSANDO NEUTRALIZAÇÕES BGIN: ${contract}`);
-        console.log(`🚨 TRANSAÇÕES BGIN:`, contractTransactions.map(t => ({
-          data: t.date || t.createdAt,
-          tipo: t.type,
-          quantidade: t.quantity,
-          preco: t.price
-        })));
-      }
+      // 🚨 LOG ESPECÍFICO PARA BGIN (removido para produção)
       
       // Ordenar transações cronologicamente
       const sortedTransactions = contractTransactions.sort((a, b) => {
@@ -455,7 +415,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         return dateA.getTime() - dateB.getTime();
       });
       
-      console.log(`📊 ${contract}: Processando ${sortedTransactions.length} transações cronologicamente`);
       
       // 🔥 NOVA LÓGICA: Detectar neutralizações históricas
       let saldoCorrente = 0;
@@ -475,7 +434,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         const preco = transaction.price;
         const valorTransacao = quantidade * preco * contractSize;
         
-        console.log(`  📝 Transação ${index + 1}: ${transaction.type} ${quantidade} @ R$ ${preco} (Saldo antes: ${saldoCorrente})`);
         
         // Acumular dados para neutralização
         if (transaction.type === 'COMPRA') {
@@ -542,7 +500,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           saldoApos: saldoCorrente
         });
         
-        console.log(`    💰 Saldo após: ${saldoCorrente}, P&L acumulado: R$ ${pnlAcumulado.toFixed(2)}`);
         
         // 🎯 DETECTAR NEUTRALIZAÇÃO HISTÓRICA (TODAS as vezes que chega a zero)
         if (saldoCorrente === 0) {
@@ -559,14 +516,9 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           
           neutralizacoesDetectadas.push(neutralizacao);
           
-          console.log(`🎊 NEUTRALIZAÇÃO HISTÓRICA DETECTADA em ${contract} (${neutralizacoesDetectadas.length + 1}ª vez)!`);
-          console.log(`   📅 Data: ${neutralizacao.dataUltimaNeutralizacao}`);
-          console.log(`   💰 P&L: R$ ${neutralizacao.pnlNeutralizacao.toFixed(2)}`);
-          console.log(`   📊 Transações até neutralização: ${neutralizacao.indexNeutralizacao}`);
           
           // 🚨 LOG ESPECÍFICO BGIN
           if (contract.includes('BGIN')) {
-            console.log(`🚨 BGIN NEUTRALIZAÇÃO DETECTADA (${neutralizacoesDetectadas.length + 1}ª vez): P&L = R$ ${neutralizacao.pnlNeutralizacao.toFixed(2)}`);
           }
         }
       });
@@ -575,7 +527,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
       if (neutralizacoesDetectadas.length > 0) {
         const neutralizacao = neutralizacoesDetectadas[neutralizacoesDetectadas.length - 1]; // ÚLTIMA neutralização (mais recente)
         
-        console.log(`🎯 USANDO NEUTRALIZAÇÃO ${neutralizacoesDetectadas.length} de ${neutralizacoesDetectadas.length} para ${contract}`);
          
          const neutralizedPosition = {
            contract: contract,
@@ -597,77 +548,43 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
          };
          
          neutralizedContracts.push(neutralizedPosition);
-         console.log(`✅ PERFORMANCE: ${contract} adicionado com neutralização ${neutralizacoesDetectadas.length} - P&L: R$ ${neutralizacao.pnlNeutralizacao.toFixed(2)}, Saldo final atual: ${saldoCorrente}`);
-         console.log(`   📊 Total de neutralizações detectadas: ${neutralizacoesDetectadas.length}`);
-         console.log(`   📅 Datas das neutralizações:`, neutralizacoesDetectadas.map((n, i) => `${i+1}ª: ${n.dataUltimaNeutralizacao}`));
          
          // 🚨 LOG ESPECÍFICO BGIN
          if (contract.includes('BGIN')) {
-           console.log(`🚨 BGIN ADICIONADO À PERFORMANCE: P&L = R$ ${neutralizacao.pnlNeutralizacao.toFixed(2)}, Total neutralizações = ${neutralizacoesDetectadas.length}`);
          }
        } else {
-         console.log(`❌ PERFORMANCE: ${contract} não teve neutralização histórica - Saldo final: ${saldoCorrente}`);
        }
      });
     
-    console.log(`📊 PERFORMANCE: Posições neutralizadas encontradas: ${neutralizedContracts.length}`);
     if (neutralizedContracts.length > 0) {
-      console.log('🎊 PERFORMANCE: Posições neutralizadas detectadas:', neutralizedContracts.map(c => c.contract));
     }
     
     // 🚨 LOG ESPECÍFICO BGIN
     const bginNeutralizadas = neutralizedContracts.filter(c => c.contract.includes('BGIN'));
-    console.log('🚨 BGIN NEUTRALIZADAS DETECTADAS:', bginNeutralizadas.length, bginNeutralizadas.map(c => c.contract));
     
     return neutralizedContracts;
   }, [transactionsToUse, positions]);
 
   // 🎯 NOVA FUNÇÃO: Detectar P&L parciais já realizados para aba Performance
   const getPartialPnLForPerformance = useMemo(() => {
-    console.log('🎯 DETECTANDO P&L PARCIAIS para aba Performance...');
-    console.log('🎯 DADOS ESPECÍFICOS BGIN:', {
-      bginTransacoes: transactionsToUse.filter(t => t.contract.includes('BGIN')),
-      totalBginTransacoes: transactionsToUse.filter(t => t.contract.includes('BGIN')).length
-    });
     
     const partialPnLEntries: any[] = [];
     const contracts = [...new Set(transactionsToUse.map(t => t.contract))];
     
-    console.log(`📋 Analisando ${contracts.length} contratos para P&L parciais:`, contracts);
-    console.log('📋 FOCO BGIN:', contracts.filter(c => c.includes('BGIN')));
     
           contracts.forEach(contract => {
         const contractTransactions = transactionsToUse.filter(t => t.contract === contract);
         
-        // 🚨 LOG ESPECÍFICO PARA BGIN
-        if (contract.includes('BGIN')) {
-          console.log(`🚨 PROCESSANDO CONTRATO BGIN: ${contract}`);
-          console.log(`🚨 TRANSAÇÕES BGIN:`, contractTransactions.map(t => ({
-            data: t.date || t.createdAt,
-            tipo: t.type,
-            quantidade: t.quantity,
-            preco: t.price
-          })));
-        }
+        // 🚨 LOG ESPECÍFICO PARA BGIN - removido
         
         if (contractTransactions.length < 2) {
-          console.log(`⏭️  Pulando ${contract}: apenas ${contractTransactions.length} transação(ões)`);
           if (contract.includes('BGIN')) {
-            console.log(`🚨 BGIN PULADO: Precisa de pelo menos 2 transações para P&L parcial!`);
           }
           return;
         }
         
-        console.log(`\n🔍 Analisando P&L parciais para ${contract}: ${contractTransactions.length} transações`);
         
-        // 🚨 DEBUG: Mostrar todas as transações do contrato
-        console.log(`📋 ${contract} - TRANSAÇÕES COMPLETAS:`, contractTransactions.map(t => ({
-          data: new Date(t.date || t.createdAt).toLocaleString('pt-BR'),
-          tipo: t.type,
-          quantidade: t.quantity,
-          preco: `R$ ${t.price.toFixed(2)}`,
-          id: t.id
-        })));
+        // 🚨 DEBUG: Removido para produção
       
       // Usar mesma lógica do recalculatePosition para detectar P&L parciais
       const sortedTransactions = [...contractTransactions].sort((a, b) => 
@@ -686,13 +603,11 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
         const qtdOperacao = transacao.type === 'COMPRA' ? transacao.quantity : -transacao.quantity;
         const precoOperacao = transacao.price;
         
-        console.log(`   Operação ${index + 1}: ${transacao.type} ${Math.abs(qtdOperacao)} @ R$ ${precoOperacao.toFixed(2)}/${unidade}`);
         
         if (posicaoAtual === 0) {
           // ABERTURA DE POSIÇÃO
           posicaoAtual = qtdOperacao;
           precoMedioAtual = precoOperacao;
-          console.log(`   → ABERTURA: ${posicaoAtual > 0 ? '+' : ''}${posicaoAtual} @ R$ ${precoMedioAtual.toFixed(2)}/${unidade}`);
           
         } else if ((posicaoAtual > 0 && qtdOperacao > 0) || (posicaoAtual < 0 && qtdOperacao < 0)) {
           // REFORÇO DE POSIÇÃO
@@ -701,12 +616,9 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           const novaQuantidade = Math.abs(posicaoAtual + qtdOperacao);
           precoMedioAtual = novaQuantidade > 0 ? (valorAtual + valorNovo) / novaQuantidade : 0;
           posicaoAtual += qtdOperacao;
-          console.log(`   → REFORÇO: ${posicaoAtual > 0 ? '+' : ''}${posicaoAtual} @ R$ ${precoMedioAtual.toFixed(2)}/${unidade}`);
           
         } else if (Math.abs(qtdOperacao) <= Math.abs(posicaoAtual)) {
           // REDUÇÃO DE POSIÇÃO - GERA P&L PARCIAL!
-          console.log(`    🎯 REDUÇÃO DETECTADA: ${transacao.type} ${Math.abs(qtdOperacao)} sobre posição ${posicaoAtual > 0 ? 'COMPRA' : 'VENDA'} ${Math.abs(posicaoAtual)}`);
-          console.log(`       📊 Preços: Entrada R$ ${precoMedioAtual.toFixed(2)} → Saída R$ ${precoOperacao.toFixed(2)}`);
           
           const qtdReduzida = Math.abs(qtdOperacao);
           const pnlParcial = qtdReduzida * especificacao * (
@@ -715,7 +627,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
               (precoMedioAtual - precoOperacao)    // Posição SHORT comprando
           );
           
-          console.log(`       💰 Cálculo P&L: ${qtdReduzida} × ${especificacao} × (${posicaoAtual > 0 ? precoOperacao - precoMedioAtual : precoMedioAtual - precoOperacao}) = R$ ${pnlParcial.toFixed(2)}`);
           
           pnlAcumuladoParcial += pnlParcial;
           posicaoAtual += qtdOperacao;
@@ -732,9 +643,6 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
             transacao: transacao
           });
           
-          console.log(`   → REDUÇÃO: ${qtdReduzida} contratos realizados`);
-          console.log(`     💰 P&L PARCIAL: R$ ${pnlParcial.toFixed(2)} (diferença: R$ ${Math.abs(precoOperacao - precoMedioAtual).toFixed(2)}/${unidade})`);
-          console.log(`     ⚡ Posição restante: ${posicaoAtual > 0 ? '+' : ''}${posicaoAtual} @ R$ ${precoMedioAtual.toFixed(2)}/${unidade}`);
           
         } else {
           // INVERSÃO DE POSIÇÃO - TAMBÉM GERA P&L
@@ -763,15 +671,11 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           posicaoAtual = qtdNovaPosition;
           precoMedioAtual = precoOperacao;
           
-          console.log(`   → INVERSÃO: ${qtdFechamento} contratos fechados`);
-          console.log(`     💰 P&L FECHAMENTO: R$ ${pnlFechamento.toFixed(2)}`);
-          console.log(`     🔄 Nova posição: ${posicaoAtual > 0 ? '+' : ''}${posicaoAtual} @ R$ ${precoMedioAtual.toFixed(2)}/${unidade}`);
         }
       });
       
       // 🎯 CORRIGIDO: Incluir na Performance se há operações de redução/inversão (independente do P&L)
       if (operacoesParciais.length > 0) {
-        console.log(`🎯 ${contract}: INCLUINDO na Performance - ${operacoesParciais.length} operação(ões) parcial(is), P&L: R$ ${pnlAcumuladoParcial.toFixed(2)}`);
         // Calcular total de contratos liquidados parcialmente
         const contratosLiquidados = operacoesParciais.reduce((total, op) => total + op.contratos, 0);
         
@@ -805,34 +709,19 @@ export const useNetPositions = (filteredTransactions?: Transaction[]) => {
           realizationDate: operacoesParciais[operacoesParciais.length - 1]?.data?.toISOString()
         });
         
-        console.log(`✅ P&L PARCIAL REGISTRADO: ${contract}`);
-        console.log(`   📊 Total P&L Parcial: R$ ${pnlAcumuladoParcial.toFixed(2)}`);
-        console.log(`   🎯 ${operacoesParciais.length} operação(ões) parcial(is)`);
-        console.log(`   📋 Contratos liquidados: ${contratosLiquidados}`);
-        console.log(`   ⚡ Posição ainda ativa: ${Math.abs(posicaoAtual)} ${posicaoAtual > 0 ? 'COMPRA' : 'VENDA'} @ R$ ${precoMedioAtual.toFixed(2)}`);
-        console.log(`   🎪 Status na Performance: ${posicaoAtual === 0 ? 'FECHADA' : 'P&L PARCIAL'}`);
       } else {
-        console.log(`⏭️  ${contract}: Sem operações parciais detectadas (P&L: ${pnlAcumuladoParcial.toFixed(2)}, Posição: ${posicaoAtual}, Operações: ${operacoesParciais.length})`);
         
         // 🚨 DEBUG ESPECÍFICO: Se não tem operações parciais, mostrar por quê
         if (sortedTransactions.length >= 2) {
-          console.log(`🤔 ${contract}: Debug - Por que não tem operações parciais?`);
-          console.log(`   📊 Total transações: ${sortedTransactions.length}`);
-          console.log(`   📋 Tipos: ${sortedTransactions.map(t => t.type).join(', ')}`);
-          console.log(`   💰 Preços: ${sortedTransactions.map(t => `R$ ${t.price.toFixed(2)}`).join(', ')}`);
-          console.log(`   📈 Quantidades: ${sortedTransactions.map(t => t.quantity).join(', ')}`);
         }
       }
     });
     
-    console.log(`\n📊 RESULTADO P&L PARCIAIS: ${partialPnLEntries.length} contratos com P&L parcial`);
     if (partialPnLEntries.length > 0) {
-      console.log('🎊 CONTRATOS COM P&L PARCIAL:', partialPnLEntries.map(p => `${p.contract}: R$ ${p.pnl.toFixed(2)}`));
     }
     
     // 🚨 LOG ESPECÍFICO BGIN
     const bginParciais = partialPnLEntries.filter(p => p.contract.includes('BGIN'));
-    console.log('🚨 BGIN P&L PARCIAIS DETECTADOS:', bginParciais.length, bginParciais.map(p => `${p.contract}: R$ ${p.pnl.toFixed(2)}`));
     
     return partialPnLEntries;
   }, [transactionsToUse]);

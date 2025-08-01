@@ -46,6 +46,12 @@ next-env.d.ts
 # OS
 Thumbs.db
 
+# Logs
+*.log
+logs/
+*.log.*
+.npm/
+
 # Backend
 backend/node_modules/
 backend/dist/
@@ -55,3 +61,33 @@ backend/.env
 frontend/node_modules/
 frontend/.next/
 frontend/out/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Build outputs
+out/
+build/
+dist/
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-*
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Screenshots and captures
+Captura de Tela*
+Screenshot*

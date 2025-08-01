@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { UserProvider } from '@/contexts/UserContext';
-import { HybridDataProvider } from '@/contexts/HybridDataContext';
+import { DataProvider } from '@/contexts/DataProvider';
 
 // Remover imports dos arquivos que foram deletados
 // if (process.env.NODE_ENV === 'development') {
@@ -38,11 +37,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <AuthProvider>
-          <UserProvider>
-            <HybridDataProvider>
-              {children}
-            </HybridDataProvider>
-          </UserProvider>
+          <DataProvider>
+            {children}
+          </DataProvider>
         </AuthProvider>
       </body>
     </html>

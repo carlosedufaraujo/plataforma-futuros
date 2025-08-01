@@ -3,7 +3,6 @@
 import { useTheme } from '@/hooks/useTheme';
 import { PageType } from '@/types';
 import BrokerageSelector from '@/components/Common/BrokerageSelector';
-import { useAuth } from '@/contexts/AuthContext';
 
 interface SidebarProps {
   currentPage: PageType;
@@ -12,7 +11,6 @@ interface SidebarProps {
 
 export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
   const { theme, toggleTheme } = useTheme();
-  const { signOut } = useAuth();
 
   const menuItems = [
     { 
@@ -115,7 +113,9 @@ export default function Sidebar({ currentPage, onPageChange }: SidebarProps) {
 
         <button 
           className="sidebar-action-btn"
-          onClick={signOut}
+          onClick={() => {
+            // Aqui seria implementada a lógica de logoff
+          }}
           title="Sair do sistema"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -34,7 +34,6 @@ export function getEnvConfig(): EnvConfig {
 
   // Log apenas em desenvolvimento
   if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    console.log('🔧 Configuração de ambiente:', {
       ...config,
       NEXT_PUBLIC_SUPABASE_ANON_KEY: config.NEXT_PUBLIC_SUPABASE_ANON_KEY.substring(0, 20) + '...'
     });

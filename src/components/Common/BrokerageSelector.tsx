@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Building, User, ChevronDown, Check } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { Brokerage } from '@/types';
 
 export default function BrokerageSelector() {
-  const { currentUser, selectedBrokerage, setSelectedBrokerage } = useHybridData();
+  const { currentUser, selectedBrokerage, setSelectedBrokerage } = useData();
   const { user } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [availableBrokerages, setAvailableBrokerages] = useState<Brokerage[]>([]);

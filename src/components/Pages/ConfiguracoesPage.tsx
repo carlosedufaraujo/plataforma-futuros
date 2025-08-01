@@ -5,31 +5,18 @@ import ContractManagement from '@/components/Settings/ContractManagement';
 import UserManagement from '@/components/Settings/UserManagement';
 import BrokerageManagement from '@/components/Settings/BrokerageManagement';
 import TabNavigation from '@/components/Common/TabNavigation';
-import AdminDashboard from '@/components/Admin/AdminDashboard';
-import { useAuth } from '@/contexts/AuthContext';
 
-type SettingsTabType = 'admin' | 'usuarios' | 'corretoras' | 'api' | 'referencias' | 'contratos';
+type SettingsTabType = 'usuarios' | 'corretoras' | 'api' | 'referencias' | 'contratos';
 
 export default function ConfiguracoesPage() {
-  const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState<SettingsTabType>(user?.role === 'admin' ? 'admin' : 'contratos');
+  const [activeTab, setActiveTab] = useState<SettingsTabType>('usuarios');
 
   const handleTestConnection = () => {
-    console.log('Testando conexão...');
     alert('Conexão testada com sucesso!');
   };
 
   const tabs = [
-    ...(user?.role === 'admin' ? [{ 
-      id: 'admin' as const, 
-      label: 'Painel Admin',
-      icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-        </svg>
-      )
-    }] : []),
-    ...(user?.role === 'admin' ? [{ 
+    { 
       id: 'usuarios', 
       label: 'Usuários',
       icon: (
@@ -38,8 +25,8 @@ export default function ConfiguracoesPage() {
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       )
-    }] : []),
-    ...(user?.role === 'admin' ? [{ 
+    },
+    { 
       id: 'corretoras', 
       label: 'Corretoras',
       icon: (
@@ -48,7 +35,7 @@ export default function ConfiguracoesPage() {
           <polyline points="9,22 9,12 15,12 15,22"></polyline>
         </svg>
       )
-    }] : []),
+    },
     { 
       id: 'api', 
       label: 'API',
@@ -86,9 +73,6 @@ export default function ConfiguracoesPage() {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'admin':
-        return <AdminDashboard />;
-        
       case 'usuarios':
         return <UserManagement />;
       
@@ -97,54 +81,137 @@ export default function ConfiguracoesPage() {
       
       case 'api':
         return (
-          <div className="config-section-card">
-            <div className="config-section-header">
-              <h2 className="config-section-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-                Configuração de APIs
-              </h2>
-            </div>
-            
-            <div className="config-section-content">
-              {/* Status Connection Card Compacto */}
-              <div className="config-compact-card">
-                <div className="compact-card-header">
-                  <h3>Status da Conexão</h3>
-                  <div className="status-indicator-group">
-                    <span className="status-dot active"></span>
-                    <span className="status-text">Conectado</span>
+          <div>
+            <div className="card">
+              <h2>Configuração de APIs</h2>
+              
+              <div className="api-sections">
+                <div className="api-section">
+                  <h3>Conexão Principal - B3 Market Data</h3>
+                  
+                  <div className="form-group">
+                    <label className="form-label">Status da Conexão</label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span className="status-indicator status-active"></span>
+                      <span>Conectado - Atualizado há 2 minutos</span>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="compact-form-grid">
-                  <div className="compact-field">
-                    <label>API B3</label>
-                    <span className="field-value">wss://api.b3.com.br/marketdata/v1</span>
+                  
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">URL da API</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        defaultValue="wss://api.b3.com.br/marketdata/v1"
+                        readOnly
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Timeout (ms)</label>
+                      <input 
+                        type="number" 
+                        className="form-control" 
+                        defaultValue="5000"
+                      />
+                    </div>
                   </div>
-                  <div className="compact-field">
-                    <label>Última Sync</label>
-                    <span className="field-value">14:32:15</span>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">API Key</label>
+                      <input 
+                        type="password" 
+                        className="form-control" 
+                        defaultValue="••••••••••••••••"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Frequência de Atualização</label>
+                      <select className="form-control">
+                        <option value="1000">1 segundo</option>
+                        <option value="5000">5 segundos</option>
+                        <option value="30000">30 segundos</option>
+                      </select>
+                    </div>
                   </div>
-                  <div className="compact-field">
-                    <label>Latência</label>
-                    <span className="field-value">127ms</span>
-                  </div>
-                  <div className="compact-field">
-                    <label>Contratos</label>
-                    <span className="field-value">BGI, CCM, SOJ</span>
-                  </div>
-                </div>
-                
-                <div className="compact-actions">
-                  <button className="btn-compact btn-primary" onClick={handleTestConnection}>
+                  
+                  <button className="btn btn-primary" onClick={handleTestConnection}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                    </svg>
                     Testar Conexão
                   </button>
-                  <button className="btn-compact btn-secondary">
-                    Reconectar
-                  </button>
+                </div>
+
+                <div className="api-section">
+                  <h3>Status da Última Atualização</h3>
+                  
+                  <div className="status-grid">
+                    <div className="status-item">
+                      <label>Última Sincronização:</label>
+                      <span className="status-value">26/01/2025 às 14:32:15</span>
+                    </div>
+                    <div className="status-item">
+                      <label>Contratos Atualizados:</label>
+                      <span className="status-value">BGI, CCM, SOJ, ICF</span>
+                    </div>
+                    <div className="status-item">
+                      <label>Próxima Atualização:</label>
+                      <span className="status-value">Em 3 minutos</span>
+                    </div>
+                    <div className="status-item">
+                      <label>Latência Média:</label>
+                      <span className="status-value">127ms</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="api-section">
+                  <h3>Dados Compartilhados</h3>
+                  
+                  <div className="data-sharing-grid">
+                    <div className="data-category">
+                      <h4>Preços em Tempo Real</h4>
+                      <ul>
+                        <li>• Preços de abertura, máxima, mínima e fechamento</li>
+                        <li>• Volume negociado por contrato</li>
+                        <li>• Oscilação percentual</li>
+                        <li>• Spread de compra e venda</li>
+                      </ul>
+                    </div>
+
+                    <div className="data-category">
+                      <h4>Informações de Mercado</h4>
+                      <ul>
+                        <li>• Posições em aberto por vencimento</li>
+                        <li>• Margem de garantia por contrato</li>
+                        <li>• Ajustes diários</li>
+                        <li>• Liquidez por série</li>
+                      </ul>
+                    </div>
+
+                    <div className="data-category">
+                      <h4>Dados Históricos</h4>
+                      <ul>
+                        <li>• Histórico de preços dos últimos 2 anos</li>
+                        <li>• Séries temporais de volume</li>
+                        <li>• Volatilidade histórica</li>
+                        <li>• Correlações entre contratos</li>
+                      </ul>
+                    </div>
+
+                    <div className="data-category">
+                      <h4>Alertas e Notificações</h4>
+                      <ul>
+                        <li>• Variações acima de 2%</li>
+                        <li>• Volumes anômalos</li>
+                        <li>• Aproximação de vencimentos</li>
+                        <li>• Atualizações de margem</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -4,9 +4,6 @@
  */
 
 export const clearSavedDataOnly = () => {
-  console.log('🧹 LIMPANDO APENAS DADOS SALVOS...');
-  console.log('⚠️  PRESERVANDO: Funcionalidades, código e configurações do sistema');
-  console.log('🗑️  REMOVENDO: Apenas dados de usuários, posições, transações e corretoras');
   
   try {
     // Chaves dos dados que serão limpos
@@ -46,8 +43,6 @@ export const clearSavedDataOnly = () => {
       }
     });
 
-    console.log('📦 Backup criado com sucesso!');
-    console.log(`📊 Total de itens no backup: ${totalItems}`);
 
     // Limpar os dados (salvar arrays vazios e nulls)
     const emptyData = {
@@ -86,16 +81,6 @@ export const clearSavedDataOnly = () => {
       ...emptyData
     }));
 
-    console.log('✅ DADOS LIMPOS COM SUCESSO!');
-    console.log('🔧 Sistema mantém todas as funcionalidades');
-    console.log('📊 Estado atual:');
-    console.log('   - Posições: 0');
-    console.log('   - Opções: 0');
-    console.log('   - Transações: 0');
-    console.log('   - Usuários: 0');
-    console.log('   - Corretoras: 0');
-    console.log('   - Usuário atual: Não definido');
-    console.log('   - Corretora atual: Não definida');
 
     return {
       success: true,
@@ -117,7 +102,6 @@ export const clearSavedDataOnly = () => {
 
 // Função para verificar o estado atual (sem modificar nada)
 export const checkCurrentDataState = () => {
-  console.log('🔍 ESTADO ATUAL DOS DADOS:');
   
   const dataKeys = [
     'acex_positions',
@@ -157,10 +141,8 @@ export const checkCurrentDataState = () => {
   });
 
   Object.entries(state).forEach(([key, value]) => {
-    console.log(`   ${key.replace('acex_', '')}: ${value}`);
   });
 
-  console.log(`\n📊 Total de itens salvos: ${totalItems}`);
 
   // Calcular tamanho do armazenamento
   let totalSize = 0;
@@ -170,7 +152,6 @@ export const checkCurrentDataState = () => {
     }
   }
 
-  console.log(`💾 Tamanho total localStorage: ${(totalSize / 1024).toFixed(2)} KB`);
 
   return {
     state,

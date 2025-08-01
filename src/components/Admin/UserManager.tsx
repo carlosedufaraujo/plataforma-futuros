@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, User, Mail, Phone } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { User as UserType } from '@/types';
 
 export default function UserManager() {
-  const { users, addUser, updateUser, deleteUser, currentUser, setCurrentUser } = useHybridData();
+  const { users, addUser, updateUser, deleteUser, currentUser, setCurrentUser } = useData();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserType | null>(null);
   const [formData, setFormData] = useState({

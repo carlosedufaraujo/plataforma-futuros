@@ -3,17 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
-
-interface User {
-  id: string;
-  nome: string;
-  cpf: string;
-  endereco: string;
-  telefone: string;
-  email: string;
-  is_active: boolean;
-  created_at: string;
-}
+import { User } from '@/types';
 
 interface Brokerage {
   id: string;
@@ -192,7 +182,7 @@ export default function UserManagement() {
               is_active: true
             }])
             .select()
-            .single();
+            .maybeSingle();
           
           if (error) throw error;
           
@@ -203,9 +193,8 @@ export default function UserManagement() {
         } catch (insertError: any) {
           console.error('❌ Erro ao criar usuário:', insertError);
           
-          // Se o erro foi no .single(), tentar sem ele
+          // Se o erro foi no .maybeSingle(), tentar sem ele
           if (insertError.message?.includes('single') || insertError.code === 'PGRST116') {
-            console.log('🔄 Tentando inserção sem .single()...');
             
             const { data: newUserArray, error: retryError } = await supabase
               .from('users')

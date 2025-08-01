@@ -11,7 +11,8 @@ interface Column {
 }
 
 interface DataTableProps {
-  columns: Column[];
+  columns?: Column[];
+  headers?: string[]; // Compatibilidade com código antigo
   data: any[];
   loading?: boolean;
   emptyMessage?: string;
@@ -22,8 +23,9 @@ interface DataTableProps {
 }
 
 export default function DataTable({ 
-  columns, 
-  data, 
+  columns = [], 
+  headers, // Compatibilidade com código antigo
+  data = [], 
   loading = false, 
   emptyMessage = "Nenhum dado encontrado",
   onSort,
@@ -31,6 +33,26 @@ export default function DataTable({
   sortDirection,
   className = ""
 }: DataTableProps) {
+  
+  // Converter headers para columns se necessário (compatibilidade)
+  let tableColumns = columns;
+  if ((!columns || columns.length === 0) && headers && headers.length > 0) {
+    tableColumns = headers.map((header, index) => ({
+      key: index.toString(),
+      header: header,
+      sortable: false
+    }));
+  }
+  
+  // Verificação de segurança
+  if (!tableColumns || !Array.isArray(tableColumns) || tableColumns.length === 0) {
+    console.error('DataTable: propriedade columns ou headers é obrigatória');
+    return (
+      <div className="error-state" style={{ padding: '20px', textAlign: 'center', color: 'var(--color-error)' }}>
+        ⚠️ Erro: Configuração de colunas ausente
+      </div>
+    );
+  }
   
   const handleHeaderClick = (column: Column) => {
     if (column.sortable && onSort) {
@@ -62,7 +84,7 @@ export default function DataTable({
       <table className="data-table">
         <thead>
           <tr>
-            {columns.map((column) => (
+            {tableColumns.map((column) => (
               <th 
                 key={column.key}
                 className={`
@@ -91,18 +113,28 @@ export default function DataTable({
         <tbody>
           {data.map((row, index) => (
             <tr key={row.id || index}>
-              {columns.map((column) => (
-                <td key={column.key} className={column.className || ''}>
-                  {column.render 
-                    ? column.render(row[column.key], row)
-                    : row[column.key] || '-'
-                  }
-                </td>
-              ))}
+              {headers && headers.length > 0 ? (
+                // Modo compatibilidade: renderizar diretamente os valores do array
+                row.map((cell: any, cellIndex: number) => (
+                  <td key={cellIndex}>
+                    {cell || '-'}
+                  </td>
+                ))
+              ) : (
+                // Modo novo: usar columns com render customizado
+                tableColumns.map((column) => (
+                  <td key={column.key} className={column.className || ''}>
+                    {column.render 
+                      ? column.render(row[column.key], row)
+                      : row[column.key] || '-'
+                    }
+                  </td>
+                ))
+              )}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-} 
+}

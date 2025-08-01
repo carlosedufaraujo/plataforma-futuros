@@ -69,7 +69,6 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
       }
       
       setContracts(data || []);
-      console.log('✅ Contratos carregados:', data?.length || 0);
     } catch (err) {
       console.error('❌ Erro ao conectar com Supabase:', err);
     } finally {
@@ -238,7 +237,6 @@ export default function NewPositionModal({ isOpen, onClose, onSubmit, editingPos
       pnl_percentage: undefined
     };
 
-    console.log('📊 Criando posição com contrato:', contract.symbol, contract.name);
     onSubmit(positionData);
 
     // Reset form

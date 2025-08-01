@@ -11,7 +11,6 @@ export default function AutoClearButton() {
     setResult(null);
 
     try {
-      console.log('🔍 INICIANDO LIMPEZA AUTOMÁTICA...');
       
       // 1. VERIFICAR DADOS ATUAIS
       const keys = ['acex_positions', 'acex_options', 'acex_transactions', 'acex_users', 'acex_brokerages'];
@@ -42,7 +41,6 @@ export default function AutoClearButton() {
               });
             }
           } catch (e) {
-            console.log(`Erro ao ler ${key}:`, e.message);
           }
         }
       }
@@ -54,24 +52,20 @@ export default function AutoClearButton() {
       }
 
       // 2. MOSTRAR O QUE FOI ENCONTRADO
-      console.log('📋 Dados mock encontrados:', itemsFound);
 
       // 3. LIMPEZA COMPLETA
-      console.log('🧹 Executando limpeza...');
       
       // Remover todos os dados ACEX
       const allKeys = [...keys, 'acex_current_user', 'acex_selected_brokerage', 'acex_id_counters'];
       
       allKeys.forEach(key => {
         localStorage.removeItem(key);
-        console.log(`🗑️ ${key} removido`);
       });
 
       // 4. VERIFICAÇÃO FINAL
       let remainingData = false;
       Object.keys(localStorage).forEach(key => {
         if (key.startsWith('acex_')) {
-          console.log(`❌ Ainda existe: ${key}`);
           remainingData = true;
         }
       });
@@ -81,7 +75,6 @@ export default function AutoClearButton() {
         
         // Aguardar 2 segundos e recarregar
         setTimeout(() => {
-          console.log('🔄 Recarregando página...');
           window.location.reload();
         }, 2000);
       } else {

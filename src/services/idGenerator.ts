@@ -212,7 +212,6 @@ class IDGenerator {
   setCounter(type: keyof IDCounters, value: number): void {
     this.counters[type] = value;
     this.saveCounters();
-    console.log(`📊 Contador ${type} definido para: ${value}`);
   }
 
   /**
@@ -251,7 +250,6 @@ class IDGenerator {
       //   this.saveCounters();
       // }
       
-      console.log('🔄 Sincronização com backend será implementada');
     } catch (error) {
       console.error('Erro na sincronização de IDs:', error);
     }

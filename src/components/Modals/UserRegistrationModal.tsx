@@ -1,16 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
-interface User {
-  id: string;
-  nome: string;
-  cpf: string;
-  endereco: string;
-  telefone: string;
-  email: string;
-  corretoras: string[]; // IDs das corretoras vinculadas
-}
+import { User } from '@/types';
 
 interface Brokerage {
   id: string;
@@ -44,7 +35,7 @@ export default function UserRegistrationModal({
     endereco: editingUser?.endereco || '',
     telefone: editingUser?.telefone || '',
     email: editingUser?.email || '',
-    corretoras: editingUser?.corretoras || []
+    corretoras: editingUser?.corretoras || editingUser?.brokerageIds || []
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -64,7 +55,7 @@ export default function UserRegistrationModal({
           endereco: editingUser.endereco,
           telefone: editingUser.telefone,
           email: editingUser.email,
-          corretoras: editingUser.corretoras || []
+          corretoras: editingUser.corretoras || editingUser.brokerageIds || []
         });
       }
     } else {

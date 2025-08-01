@@ -4,8 +4,6 @@
  */
 
 export const inspectLocalStorage = () => {
-  console.log('🔍 INSPEÇÃO DO LOCALSTORAGE - ACEX CAPITAL MARKETS\n');
-  console.log('=' .repeat(60));
 
   const keys = [
     'acex_positions',
@@ -36,25 +34,15 @@ export const inspectLocalStorage = () => {
           data: actualData
         };
 
-        console.log(`\n📦 ${key.toUpperCase()}:`);
-        console.log(`   ✅ Existe: Sim`);
-        console.log(`   📅 Timestamp: ${parsedData.timestamp || 'N/A'}`);
-        console.log(`   🏷️  Versão: ${parsedData.version || 'N/A'}`);
-        console.log(`   📊 Tipo: ${Array.isArray(actualData) ? 'Array' : typeof actualData}`);
-        console.log(`   🔢 Quantidade: ${Array.isArray(actualData) ? actualData.length : 1}`);
         
         if (Array.isArray(actualData) && actualData.length > 0) {
-          console.log(`   📋 Primeiros itens:`, actualData.slice(0, 2));
         } else if (!Array.isArray(actualData) && actualData) {
-          console.log(`   📋 Dados:`, actualData);
         }
       } else {
         results[key] = {
           exists: false,
           count: 0
         };
-        console.log(`\n📦 ${key.toUpperCase()}:`);
-        console.log(`   ❌ Existe: Não`);
       }
     } catch (error) {
       results[key] = {
@@ -62,15 +50,10 @@ export const inspectLocalStorage = () => {
         error: error.message,
         count: 0
       };
-      console.log(`\n📦 ${key.toUpperCase()}:`);
-      console.log(`   ⚠️  Erro: ${error.message}`);
     }
   });
 
   // Resumo
-  console.log('\n' + '=' .repeat(60));
-  console.log('📊 RESUMO GERAL:');
-  console.log('=' .repeat(60));
 
   const summary = {
     posições: results.acex_positions?.count || 0,
@@ -83,7 +66,6 @@ export const inspectLocalStorage = () => {
   };
 
   Object.entries(summary).forEach(([key, value]) => {
-    console.log(`   ${key}: ${value}`);
   });
 
   // Estatísticas de armazenamento
@@ -94,10 +76,6 @@ export const inspectLocalStorage = () => {
     }
   }
 
-  console.log('\n📈 ESTATÍSTICAS DE ARMAZENAMENTO:');
-  console.log(`   💾 Tamanho total: ${(totalSize / 1024).toFixed(2)} KB`);
-  console.log(`   📁 Itens no localStorage: ${Object.keys(localStorage).length}`);
-  console.log(`   🎯 Itens ACEX: ${keys.filter(k => results[k]?.exists).length}/${keys.length}`);
 
   return results;
 };

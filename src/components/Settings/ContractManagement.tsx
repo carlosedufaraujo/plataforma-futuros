@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 
 interface Contract {
   id: string;
@@ -42,7 +42,7 @@ const CONTRACT_TYPES = [
 ];
 
 export default function ContractManagement() {
-  const { backendType } = useHybridData();
+  const { backendType } = useData();
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -189,7 +189,6 @@ export default function ContractManagement() {
           .eq('id', editingContract.id);
 
         if (error) throw error;
-        console.log('✅ Contrato atualizado:', formData.symbol);
       } else {
         // Criar novo contrato
         const { error } = await supabase
@@ -207,7 +206,6 @@ export default function ContractManagement() {
           }]);
 
         if (error) throw error;
-        console.log('✅ Novo contrato criado:', formData.symbol);
       }
 
       // Recarregar lista

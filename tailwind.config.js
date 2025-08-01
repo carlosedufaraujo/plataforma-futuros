@@ -21,6 +21,6 @@ module.exports = {
   },
   plugins: [],
   corePlugins: {
-    preflight: false, // Desabilitamos para usar nossos estilos customizados
+    preflight: true, // Habilitamos novamente para normalizar estilos
   },
 } 

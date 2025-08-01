@@ -12,11 +12,14 @@ export interface User {
   telefone: string;
   email: string;
   isActive: boolean;
+  is_active?: boolean; // Para compatibilidade com o banco
   role?: 'admin' | 'trader' | 'viewer'; // Role do usuário
   createdAt: string;
+  created_at?: string; // Para compatibilidade com o banco
   updatedAt: string;
   // Relação com corretoras
   brokerageIds: string[]; // IDs das corretoras que o usuário tem acesso
+  corretoras?: string[]; // Para compatibilidade com alguns componentes
 }
 
 export interface Brokerage {

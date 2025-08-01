@@ -63,7 +63,7 @@ body {
   --input-height: 32px;    /* Era 48px */
   --button-height: 28px;   /* Era 40px */
   --header-height: 44px;   /* Era 64px */
-  --sidebar-width: 220px;  /* Era 280px */
+  --sidebar-width: 240px;  /* Aumentado para acomodar texto maior */
   --card-padding: 10px;    /* Era 24px */
   
   /* ===== TRANSIÇÕES RÁPIDAS ===== */
@@ -134,7 +134,7 @@ body {
 }
 
 .sidebar-header {
-  padding: 16px 20px 12px 20px; /* Reduzido */
+  padding: 18px 20px 16px 20px; /* Aumentado ligeiramente */
   background: var(--bg-tertiary);
   border-bottom: 1px solid var(--border-color);
 }
@@ -203,8 +203,8 @@ body {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm); /* 6px */
-  padding: var(--spacing-sm) var(--spacing-md); /* 6px 10px */
+  gap: var(--spacing-md); /* 10px - aumentado */
+  padding: var(--spacing-md) var(--spacing-lg); /* 10px 14px - aumentado */
   color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-fast);
@@ -213,11 +213,11 @@ body {
   background: none;
   width: 100%;
   text-align: left;
-  font-size: var(--text-sm); /* 11px */
+  font-size: var(--text-md); /* 13px - aumentado */
   font-weight: 500;
   position: relative;
-  border-radius: 4px;
-  margin: 0 var(--spacing-xs);
+  border-radius: 6px;
+  margin: 2px var(--spacing-sm);
 }
 
 .nav-item:hover {
@@ -249,8 +249,8 @@ body {
 }
 
 .nav-icon {
-  width: 14px; /* Design minimalista ACEX */
-  height: 14px;
+  width: 18px; /* Aumentado para melhor visibilidade */
+  height: 18px;
   flex-shrink: 0;
   transition: var(--transition-fast);
 }
@@ -271,10 +271,10 @@ body {
 }
 
 .sidebar-action-btn {
-  padding: 6px; /* Reduzido de 8px */
+  padding: 8px; /* Aumentado */
   background: var(--bg-hover);
   border: 1px solid var(--border-color);
-  border-radius: 5px; /* Reduzido de 6px */
+  border-radius: 6px;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -290,8 +290,8 @@ body {
 }
 
 .sidebar-action-btn svg {
-  width: 14px; /* Reduzido de 16px */
-  height: 14px;
+  width: 16px; /* Aumentado */
+  height: 16px;
 }
 
 /* =================================
@@ -997,16 +997,18 @@ td .btn {
 
 .modal {
   position: relative !important;
-  background: var(--bg-primary) !important;
+  background: #1a1a1a !important; /* Cor sólida */
+  background-color: #1a1a1a !important;
   border-radius: 12px !important; /* Reduzido de 16px */
   border: 1px solid var(--border-color) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3) !important; /* Reduzido */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8) !important; /* Sombra mais forte */
   max-width: 550px !important; /* Reduzido de 650px */
   max-height: calc(100vh - 32px) !important; /* Reduzido */
   width: 100% !important;
   overflow-y: auto !important;
   animation: slideIn 0.3s ease-out !important;
   z-index: 10002 !important;
+  opacity: 1 !important; /* Garantir opacidade total */
 }
 
 .modal-large {
@@ -3420,4 +3422,171 @@ td .btn {
 .animate-fadeIn { animation: fadeIn 0.2s ease-out; }
 .animate-slideUp { animation: slideUp 0.3s ease-out; }
 .animate-scaleIn { animation: scaleIn 0.2s ease-out; }
+
+
+/* =================================
+   FIX PARA ÍCONES GRANDES
+   ================================= */
+/* Ícones Lucide React */
+svg.lucide {
+  width: 16px \!important;
+  height: 16px \!important;
+  flex-shrink: 0;
+}
+
+/* Ícones em botões */
+button svg,
+.btn svg,
+.button svg {
+  width: 14px \!important;
+  height: 14px \!important;
+}
+
+/* Ícones em cards e métricas */
+.metric-card svg,
+.card svg:not(.nav-icon):not(.chart) {
+  width: 16px \!important;
+  height: 16px \!important;
+}
+
+/* Ícones grandes específicos */
+.icon-lg svg {
+  width: 20px \!important;
+  height: 20px \!important;
+}
+
+.icon-xl svg {
+  width: 24px \!important;
+  height: 24px \!important;
+}
+
+/* Fix para ícones inline */
+.inline-flex svg,
+.flex svg {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+/* Hero icons e Tailwind classes */
+svg[class*="h-"],
+svg[class*="w-"] {
+  width: auto \!important;
+  height: auto \!important;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+/* Fix específico para ícones com classes Tailwind */
+.w-4.h-4 { width: 16px \!important; height: 16px \!important; }
+.w-5.h-5 { width: 20px \!important; height: 20px \!important; }
+.w-6.h-6 { width: 24px \!important; height: 24px \!important; }
+.w-8.h-8 { width: 32px \!important; height: 32px \!important; }
+
+/* Reset para elementos com classes específicas */
+.metric-value svg,
+.stat-card svg {
+  width: 14px \!important;
+  height: 14px \!important;
+}
+
+
+/* =================================
+   FIX MODAL NOVA POSIÇÃO
+   ================================= */
+/* Container de resumo do contrato */
+.position-summary {
+  background: var(--bg-secondary) \!important;
+  border: 1px solid var(--border-color) \!important;
+  border-radius: 8px \!important;
+  padding: 16px \!important;
+  margin-bottom: 20px \!important;
+}
+
+.summary-row {
+  display: flex \!important;
+  justify-content: space-between \!important;
+  align-items: center \!important;
+  padding: 8px 0 \!important;
+  border-bottom: 1px solid var(--border-color) \!important;
+}
+
+.summary-row:last-child {
+  border-bottom: none \!important;
+}
+
+.summary-label {
+  font-size: 12px \!important;
+  color: var(--text-secondary) \!important;
+  font-weight: 500 \!important;
+  text-transform: uppercase \!important;
+  letter-spacing: 0.5px \!important;
+}
+
+.summary-value {
+  font-size: 14px \!important;
+  color: var(--text-primary) \!important;
+  font-weight: 600 \!important;
+  text-align: right \!important;
+}
+
+/* Fix para modal body */
+.modal-body {
+  background: var(--bg-primary) \!important;
+  padding: 24px \!important;
+}
+
+/* Fix para position-modal específico */
+.position-modal {
+  background: #1a1a1a \!important;
+  opacity: 1 \!important;
+}
+
+.position-modal .modal-body {
+  background: #1a1a1a \!important;
+}
+
+/* Fix para sugestões de contrato */
+.suggestions-dropdown {
+  background: var(--bg-secondary) \!important;
+  border: 1px solid var(--border-color) \!important;
+  max-height: 200px \!important;
+  overflow-y: auto \!important;
+  z-index: 10003 \!important;
+}
+
+.suggestion-item {
+  background: var(--bg-secondary) \!important;
+  border-bottom: 1px solid var(--border-color) \!important;
+}
+
+.suggestion-item:hover {
+  background: var(--bg-hover) \!important;
+}
+
+.suggestion-symbol {
+  font-weight: 600 \!important;
+  color: var(--text-primary) \!important;
+  font-size: 14px \!important;
+}
+
+.suggestion-name {
+  color: var(--text-secondary) \!important;
+  font-size: 12px \!important;
+  margin-top: 2px \!important;
+}
+
+.suggestion-details {
+  display: flex \!important;
+  justify-content: space-between \!important;
+  align-items: center \!important;
+  margin-top: 4px \!important;
+  font-size: 11px \!important;
+  color: var(--text-tertiary) \!important;
+}
+
+.suggestion-price {
+  color: var(--color-info) \!important;
+  font-weight: 600 \!important;
+  margin-left: 8px \!important;
+}
 

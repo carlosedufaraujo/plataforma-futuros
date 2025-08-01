@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { Plus } from 'lucide-react';
-import { useHybridData } from '@/contexts/HybridDataContext';
+import { useData } from '@/contexts/DataProvider';
 import { useNetPositions } from '@/hooks/useNetPositions';
 
 export default function NetTestComponent() {
-  const { addPosition, positions } = useHybridData();
+  const { addPosition, positions } = useData();
   const { netPositions, formatNetQuantity } = useNetPositions();
   const [testContract] = React.useState('BGIK25');
 
@@ -15,7 +15,7 @@ export default function NetTestComponent() {
       user_id: 'test_user',
       contract_id: `contract_${Date.now()}`,
       contract: testContract,
-      direction: 'LONG',
+      direction: 'COMPRA',
       quantity: 20,
       entry_price: 245.50,
       current_price: 248.00,
@@ -32,7 +32,7 @@ export default function NetTestComponent() {
       user_id: 'test_user',
       contract_id: `contract_${Date.now()}`,
       contract: testContract,
-      direction: 'SHORT',
+      direction: 'VENDA',
       quantity: 20,
       entry_price: 248.00,
       current_price: 248.00,
